@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Django File Upload and Processing with Celery Example</title>
+  </head>
+
+  <body>
+    {# List uploaded files #}
+		{% if uploadfiles %}
+		<ul>
+			{% for uploadfile in uploadfiles %}
+			<li><a href="{{ uploadfile.uploadfile.url }}">{{ uploadfile.uploadfile.name }}</a><br/>
+        {% if uploadfile.processedfile %}
+			  <a href="{{ uploadfile.processedfile.url }}">{{ uploadfile.processedfile.name }}</a>
+        {% else %}
+        File processing not complete.
+        {% endif %}</li>
+      {% endfor %}
+    </ul>
+		{% else %}
+		<p>No files uploaded.</p>
+		{% endif %}
+
+		{# Note enctype 'multipart/form-data' for upload of files. #}
+		<form action="{% url 'list' %}" method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+      <p>{{ form.non_field_errors }}</p>
+      <p>{{ form.uploadfile.label_tag }} {{ form.uploadfile.help_text }}</p>
+      <p>
+				{{ form.uploadfile.errors }}
+				{{ form.uploadfile }}
+			</p>
+			<p><input type="submit" value="Upload" /></p>
+		</form>
+
+	</body>
+
+</html> 
