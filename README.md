@@ -1,15 +1,19 @@
 django_celery_fileprocess_example
 =================================
 
+This project is a demo of implementing Celery and Django to perform
+asynchronous processing of an uploaded file. In this demo, a file is
+uploaded, processed with python's gzip module to create a compressed
+version, and the resulting .gz file is made available for download.
+
 Installation
 ------------
-These instructions were written for Ubuntu Linux.
+These instructions were written for Ubuntu Linux 13.10 or 14.04.
 
 ### Clone the Git repository ###
 
-* Navigate to the directory you want to have the code in, and clone the
-repository with:
-`git clone git://github.com/madprime/django_celery_fileprocess_example`.
+Navigate to the directory you want to have the code in, and clone the
+repository with: `git clone git://github.com/madprime/django_celery_fileprocess_example`.
 
 ### Install pip, virtualenv, and virtualenvwrapper ###
 
@@ -55,19 +59,20 @@ tool.
 `sudo apt-get install rabbitmq-server`
 2. Ubuntu automatically begins running a rabbit server in the background
 once this is installed.
-3. Starting the server is as simple as: `rabbitmq-server` (runs in the
-foreground), or you can start it in the background with
-`rabbitmq-server -detached`. To stop the server use `rabbitmqctl stop`.
+3. **(Root user action)** Starting the server is as simple as:
+`sudo rabbitmq-server` (runs in the foreground), or you can start it in
+the background with `sudo rabbitmq-server -detached`. To stop the server
+use `sudo rabbitmqctl stop`.
 
 ### Launch Celery ###
 
-To launch celery, from the project's base directory run:
+To launch Celery, from the project's base directory run:
 `celery -A django_celery_fileprocess_example worker -l info`
 (this runs in the foreground)
 
 ### Initialize and run Django ###
 
-In a new terminal, start your virtual env (with
+In a new terminal, start your virtual environment (with
 `workon django_celery_fileprocess`) and run the following in the
 project's base directory to initialize the database and then run a
 local Django server.
@@ -79,4 +84,4 @@ If you're running this locally, you'll be able to navigate to
 `http://127.0.0.1:8000` in a web browser. This demo will allow you to
 upload a file to the site, it will then asynchronously create a
 gzipped version of that file. Once the gzip is done, a link to the
-gzip'd file will appear.
+gzipped file will appear.
