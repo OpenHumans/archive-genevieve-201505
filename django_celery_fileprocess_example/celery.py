@@ -1,3 +1,5 @@
+# absolute_import prevents conflicts between project celery.py file
+# and the celery package.
 from __future__ import absolute_import
 
 import os
@@ -7,7 +9,8 @@ from celery import Celery
 from django.conf import settings
 
 # set the default Django settings module for the 'celery' program.
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_celery_fileprocess_example.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE',
+                      'django_celery_fileprocess_example.settings')
 
 app = Celery('django_celery_fileprocess_example')
 
