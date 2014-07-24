@@ -1,5 +1,5 @@
 """
-Django settings for django_celery_fileprocess_example project.
+Django settings for genevieve project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.6/topics/settings/
@@ -47,9 +47,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'django_celery.urls'
+ROOT_URLCONF = 'genevieve.urls'
 
-WSGI_APPLICATION = 'django_celery.wsgi.application'
+WSGI_APPLICATION = 'genevieve.wsgi.application'
 
 
 # Database
