@@ -1,10 +1,8 @@
-django_celery_fileprocess_example
+Genevieve
 =================================
 
-This project is a demo of implementing Celery and Django to perform
-asynchronous processing of an uploaded file. In this demo, a file is
-uploaded, processed with python's gzip module to create a compressed
-version, and the resulting .gz file is made available for download.
+This project, a summer project at the GMC lab, is a remake of their GETevidence page.
+It utitlizes django and celery and is designed to compare .vcf files to a ClinVar database.
 
 Installation
 ------------
@@ -13,7 +11,7 @@ These instructions were written for Ubuntu Linux 13.10 or 14.04.
 ### Clone the Git repository ###
 
 Navigate to the directory you want to have the code in, and clone the
-repository with: `git clone git://github.com/madprime/django_celery_fileprocess_example`.
+repository with: `git clone git://github.com/emilysa/Genevieve`.
 
 ### Install pip, virtualenv, and virtualenvwrapper ###
 
@@ -67,7 +65,7 @@ use `sudo rabbitmqctl stop`.
 ### Launch Celery ###
 
 To launch Celery, from the project's base directory run:
-`celery -A django_celery_fileprocess_example worker -l info`
+`celery -A django_celery worker -l info`
 (this runs in the foreground)
 
 ### Initialize and run Django ###
