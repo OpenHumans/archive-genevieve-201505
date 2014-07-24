@@ -47,9 +47,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'django_celery_fileprocess_example.urls'
+ROOT_URLCONF = 'django_celery.urls'
 
-WSGI_APPLICATION = 'django_celery_fileprocess_example.wsgi.application'
+WSGI_APPLICATION = 'django_celery.wsgi.application'
 
 
 # Database
