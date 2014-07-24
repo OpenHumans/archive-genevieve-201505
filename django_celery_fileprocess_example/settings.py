@@ -84,6 +84,10 @@ STATIC_URL = '/static/'
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+DATA_FILE_ROOT = os.path.join(BASE_DIR, 'data_files')
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 MEDIA_URL = '/media/'
+
+#Max Upload Size
+MAX_UPLOAD_SIZE = "400000000"
