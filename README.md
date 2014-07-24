@@ -71,7 +71,7 @@ To launch Celery, from the project's base directory run:
 ### Initialize and run Django ###
 
 In a new terminal, start your virtual environment (with
-`workon django_celery_fileprocess`) and run the following in the
+`workon genevieve`) and run the following in the
 project's base directory to initialize the database and then run a
 local Django server.
 
