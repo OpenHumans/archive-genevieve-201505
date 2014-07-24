@@ -67,7 +67,7 @@ use `sudo rabbitmqctl stop`.
 ### Launch Celery ###
 
 To launch Celery, from the project's base directory run:
-`celery -A django_celery_fileprocess_example worker -l info`
+`celery -A django_celery worker -l info`
 (this runs in the foreground)
 
 ### Initialize and run Django ###
