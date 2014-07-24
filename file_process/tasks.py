@@ -85,7 +85,7 @@ def read_vcf(file_in):
     clin_curr_line = clin_file.next()
     genome_curr_line = genome_file.next()
 
-    '''write's the results to a .csv format'''
+    '''creates a tmp file to write the .csv'''
     tmp_output_file_path = os.path.join('/tmp', 'django_celery_fileprocess-' +
                                     str(randint(10000000,99999999)) + '-' +
                                     os.path.basename(file_in.uploadfile.path))
@@ -196,9 +196,14 @@ def read_vcf(file_in):
                     clin_curr_line = clin_file.next()
                 except StopIteration:
                     break
+    #closes the tmp file
     tmp_output_file.close()
-
+    
+    #opens the tmp file and creates an output processed file"
     csv_filename = os.path.basename(file_in.uploadfile.path) + '.csv'
     with open(tmp_output_file_path, 'rb') as f:
         output_file = File(f)    
         file_in.processedfile.save(csv_filename, output_file)
+        
+    #clean up
+    os.remove(tmp_gzip_path)
