@@ -13,7 +13,7 @@ urlpatterns = patterns('',
 
 urlpatterns = patterns('',
     # Examples:
-    # url(r'^$', 'django_celery_fileprocess_example.views.home', name='home'),
+    # url(r'^$', 'django_celery.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
     (r'^file_process/', include('file_process.urls')),

@@ -10,9 +10,9 @@ from django.conf import settings
 
 # set the default Django settings module for the 'celery' program.
 os.environ.setdefault('DJANGO_SETTINGS_MODULE',
-                      'django_celery_fileprocess_example.settings')
+                      'django_celery.settings')
 
-app = Celery('django_celery_fileprocess_example')
+app = Celery('django_celery')
 
 # Using a string here means the worker will not have to
 # pickle the object when using Windows.
