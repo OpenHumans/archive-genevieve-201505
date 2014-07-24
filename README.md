@@ -39,9 +39,9 @@ working on this software you should do so within the virtual environment
 (e.g. after performing step 2 below).
 
 1. Create a new virtual environment for working on this code:
-`mkvirtualenv django_celery_fileprocess`
+`mkvirtualenv genevieve`
 2. Start using this virtual environment:
-`workon django_celery_fileprocess`
+`workon genevieve`
 3. Navigate to top directory in this project. (One of the subdirectories
 should be `file_process`.) Install the Python packages required for
 development with `pip install -r requirements.txt`.
@@ -65,7 +65,7 @@ use `sudo rabbitmqctl stop`.
 ### Launch Celery ###
 
 To launch Celery, from the project's base directory run:
-`celery -A django_celery worker -l info`
+`celery -A genevieve worker -l info`
 (this runs in the foreground)
 
 ### Initialize and run Django ###
