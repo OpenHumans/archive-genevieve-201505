@@ -84,7 +84,7 @@ def read_vcf(file_in):
     #genome_file = gzip.open(GENOME_FILEPATH, 'r')
     clin_curr_line = clin_file.next()
     genome_curr_line = genome_file.next()
-
+    
     '''creates a tmp file to write the .csv'''
     tmp_output_file_path = os.path.join('/tmp', 'django_celery_fileprocess-' +
                                     str(randint(10000000,99999999)) + '-' +
@@ -180,6 +180,7 @@ def read_vcf(file_in):
                         if acc:
                             url_list = []
                             for m in acc:
+                                file_in.accnum.save(str(m))
                                 url = "http://www.ncbi.nlm.nih.gov/clinvar/" + \
                                         str(m)
                                 data = (genome_curr_pos['chrom'],
@@ -201,6 +202,8 @@ def read_vcf(file_in):
     
     #opens the tmp file and creates an output processed file"
     csv_filename = os.path.basename(file_in.uploadfile.path) + '.csv'
+
+    file_in.title.save(str(csv_filename))
     with open(tmp_output_file_path, 'rb') as f:
         output_file = File(f)    
         file_in.processedfile.save(csv_filename, output_file)
