@@ -180,7 +180,7 @@ def read_vcf(file_in):
                         if acc:
                             url_list = []
                             for m in acc:
-                                file_in.accnum.save(str(m))
+                                #file_in.accnum.save(str(m))
                                 url = "http://www.ncbi.nlm.nih.gov/clinvar/" + \
                                         str(m)
                                 data = (genome_curr_pos['chrom'],
@@ -203,10 +203,8 @@ def read_vcf(file_in):
     #opens the tmp file and creates an output processed file"
     csv_filename = os.path.basename(file_in.uploadfile.path) + '.csv'
 
-    file_in.title.save(str(csv_filename))
+    #file_in.title.save(str(csv_filename))
     with open(tmp_output_file_path, 'rb') as f:
         output_file = File(f)    
         file_in.processedfile.save(csv_filename, output_file)
-        
-    #clean up
-    os.remove(tmp_gzip_path)
+    
