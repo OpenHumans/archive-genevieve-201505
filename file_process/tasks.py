@@ -182,17 +182,18 @@ def read_vcf(file_in):
                             url_list = []
                             for m in acc:
                                 accstr = str(m)
-                                anumobj = Variant(accnum=accstr)
-                                anumobj.save()
+                                anum = Variant(accnum=accstr)
+                                anum.save()
                                 print "ACCNUM:",
                                 print anum
+                                print accstr
                                 url = "http://www.ncbi.nlm.nih.gov/clinvar/" + \
                                         str(m)
                                 data = (genome_curr_pos['chrom'],
                                         genome_curr_pos['pos'],
                                         zygosity, url)
                                 a.writerow(data)
-                                print data
+                                #print data
                 # Known bug: A couple ClinVar entries are swapped
                 # relative to the genome: what the genome calls
                 # reference, ClinVar calls alternate (and visa versa).
