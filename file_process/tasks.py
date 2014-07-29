@@ -7,6 +7,7 @@ import os
 
 from random import randint
 from celery import shared_task
+from .models import Variant
 
 from django.conf import settings
 from django.core.files import File
@@ -180,7 +181,11 @@ def read_vcf(file_in):
                         if acc:
                             url_list = []
                             for m in acc:
-                                #file_in.accnum.save(str(m))
+                                accstr = str(m)
+                                anumobj = Variant(accnum=accstr)
+                                anumobj.save()
+                                print "ACCNUM:",
+                                print anum
                                 url = "http://www.ncbi.nlm.nih.gov/clinvar/" + \
                                         str(m)
                                 data = (genome_curr_pos['chrom'],
