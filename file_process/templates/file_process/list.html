@@ -18,9 +18,7 @@
         {% endif %}</li>
 
         {% if genome_analysis.variants %}
-        {% for variant in genome_analysis.variants.all %}
-        {{variant.accnum}}<br />
-        {% endfor %}
+        <a href="report/{{ genome_analysis.id }}/">"View Report"</a>
         {% endif %}
 
       {% endfor %}

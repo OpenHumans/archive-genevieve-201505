@@ -6,6 +6,13 @@
   </head>
   <body>
     <p>"Hello.  This is report {{genomeanalysis_id}}."</p>
+    {% if specific_analysis.variants %}
+        {% for variant in specific_analysis.variants.all %}
+        <ul>
+	    {{variant.accnum}}
+        </ul>
+        {% endfor %}
+    {% endif %}
   </body>
 
 </html> 

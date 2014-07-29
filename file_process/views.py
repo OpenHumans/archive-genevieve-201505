@@ -28,7 +28,8 @@ def list(request):
     # Render list page with the documents and the form
     return render_to_response(
         'file_process/list.html',
-        {'genome_analyses': genome_analyses, 'form': form},
+        {'genome_analyses': genome_analyses,
+         'form': form},
         context_instance=RequestContext(request)
     )
 
@@ -37,6 +38,7 @@ def report(request, genomeanalysis_id):
         specific_analysis = GenomeAnalysis.objects.get(pk=genomeanalysis_id)
     except GenomeAnalysis.DoesNotExist:
         raise Http404
+    
     return render_to_response(
         'file_process/report.html',
         {'genomeanalysis_id': genomeanalysis_id,
