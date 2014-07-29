@@ -2,20 +2,27 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Django File Upload and Processing with Celery Example</title>
+    <title>Genevieve</title>
   </head>
 
   <body>
-    {# List uploaded files #}
-    {% if uploadfiles %}
+    {# List genome analyses #}
+    {% if genome_analyses %}
     <ul>
-      {% for uploadfile in uploadfiles %}
-      <li><a href="{{ uploadfile.uploadfile.url }}">{{ uploadfile.uploadfile.name }}</a><br/>
-        {% if uploadfile.processedfile %}
-        <a href="{{ uploadfile.processedfile.url }}">{{ uploadfile.processedfile.name }}</a>
+      {% for genome_analysis in genome_analyses %}
+      <li><a href="{{ genome_analysis.uploadfile.url }}">{{ genome_analysis.uploadfile.name }}</a><br/>
+        {% if genome_analysis.processedfile %}
+        <a href="{{ genome_analysis.processedfile.url }}">{{ genome_analysis.processedfile.name }}</a>
         {% else %}
         File processing not complete.
         {% endif %}</li>
+
+        {% if genome_analysis.variants %}
+        {% for variant in genome_analysis.variants.all %}
+        {{variant.accnum}}<br />
+        {% endfor %}
+        {% endif %}
+
       {% endfor %}
     </ul>
     {% else %}

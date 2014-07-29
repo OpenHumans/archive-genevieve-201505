@@ -75,13 +75,13 @@ def genome_vcf_line_alleles(vcf_line):
     return alleles
 
 @shared_task
-def read_vcf(file_in):
+def read_vcf(analysis_in):
     CLINVAR_FILEPATH = os.path.join(settings.DATA_FILE_ROOT, CLINVAR_FILENAME)
     '''Takes two .vcf files and returns matches'''
     clin_file = open(CLINVAR_FILEPATH, 'r')
 
     genome_file = gzip.GzipFile(mode='rb', compresslevel=9,
-                                fileobj=file_in.uploadfile)
+                                fileobj=analysis_in.uploadfile)
     #genome_file = gzip.open(GENOME_FILEPATH, 'r')
     clin_curr_line = clin_file.next()
     genome_curr_line = genome_file.next()
@@ -89,7 +89,7 @@ def read_vcf(file_in):
     '''creates a tmp file to write the .csv'''
     tmp_output_file_path = os.path.join('/tmp', 'django_celery_fileprocess-' +
                                     str(randint(10000000,99999999)) + '-' +
-                                    os.path.basename(file_in.uploadfile.path))
+                                    os.path.basename(analysis_in.uploadfile.path))
     tmp_output_file = open(tmp_output_file_path, 'w')
     a = csv.writer(tmp_output_file)
     header = ("Chromosome", "Position", "Zygosity", "ACC URL")
@@ -182,10 +182,12 @@ def read_vcf(file_in):
                             url_list = []
                             for m in acc:
                                 accstr = str(m)
-                                anum = Variant(accnum=accstr)
-                                anum.save()
+                                variant = Variant(accnum=accstr)
+                                variant.save()
+                                analysis_in.variants.add(variant)
                                 print "ACCNUM:",
-                                print anum
+                                print variant
+                                print variant.accnum
                                 print accstr
                                 url = "http://www.ncbi.nlm.nih.gov/clinvar/" + \
                                         str(m)
@@ -207,10 +209,9 @@ def read_vcf(file_in):
     tmp_output_file.close()
     
     #opens the tmp file and creates an output processed file"
-    csv_filename = os.path.basename(file_in.uploadfile.path) + '.csv'
+    csv_filename = os.path.basename(analysis_in.uploadfile.path) + '.csv'
 
-    #file_in.title.save(str(csv_filename))
     with open(tmp_output_file_path, 'rb') as f:
         output_file = File(f)    
-        file_in.processedfile.save(csv_filename, output_file)
+        analysis_in.processedfile.save(csv_filename, output_file)
     
