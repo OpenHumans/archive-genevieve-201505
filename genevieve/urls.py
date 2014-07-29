@@ -16,4 +16,5 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     (r'^file_process/', include('file_process.urls')),
-)
+) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
