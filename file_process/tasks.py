@@ -185,12 +185,11 @@ def read_vcf(analysis_in):
                                 variant = Variant(accnum=accstr)
                                 variant.save()
                                 analysis_in.variants.add(variant)
-                                print "ACCNUM:",
+                                print "ACCNUM:"
                                 print variant
                                 print variant.accnum
-                                print accstr
                                 url = "http://www.ncbi.nlm.nih.gov/clinvar/" + \
-                                        str(m)
+                                        accstr
                                 data = (genome_curr_pos['chrom'],
                                         genome_curr_pos['pos'],
                                         zygosity, url)

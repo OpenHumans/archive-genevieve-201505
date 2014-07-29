@@ -32,5 +32,14 @@ def list(request):
         context_instance=RequestContext(request)
     )
 
-def report(request):
-    return HttpResponse("Hello, world. You're at the page where results will be displayed.")
+def report(request, genomeanalysis_id):
+    try:
+        specific_analysis = GenomeAnalysis.objects.get(pk=genomeanalysis_id)
+    except GenomeAnalysis.DoesNotExist:
+        raise Http404
+    return render_to_response(
+        'file_process/report.html',
+        {'genomeanalysis_id': genomeanalysis_id,
+         'specific_analysis': specific_analysis}
+    )
+

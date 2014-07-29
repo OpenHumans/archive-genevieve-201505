@@ -5,5 +5,5 @@ from . import views
 
 urlpatterns = patterns('file_process.views',
     url(r'^list/$', 'list', name='list'),
-    url(r'^report/$', 'report', name='report'),
+    url(r'^report/(?P<genomeanalysis_id>\d+)/$', 'report', name='report'),
 )
