@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 
@@ -30,3 +31,6 @@ def list(request):
         {'genome_analyses': genome_analyses, 'form': form},
         context_instance=RequestContext(request)
     )
+
+def report(request):
+    return HttpResponse("Hello, world. You're at the page where results will be displayed.")

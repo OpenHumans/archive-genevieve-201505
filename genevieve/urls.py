@@ -7,7 +7,6 @@ from django.views.generic import RedirectView
 admin.autodiscover()
 
 urlpatterns = patterns('',
-
     url(r'^admin/', include(admin.site.urls)),
 )
 
@@ -17,5 +16,4 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     (r'^file_process/', include('file_process.urls')),
-    (r'^$', RedirectView.as_view(url='/file_process/list/')), # Just for ease of use.
-) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+)
