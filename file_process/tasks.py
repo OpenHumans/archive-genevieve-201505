@@ -193,6 +193,10 @@ def read_vcf(analysis_in):
                                 data = (genome_curr_pos['chrom'],
                                         genome_curr_pos['pos'],
                                         zygosity, url)
+                                datastr = str(data)
+                                var_report = Variant(report=datastr)
+                                var_report.save()
+                                analysis_in.variants.add(var_report)
                                 a.writerow(data)
                                 #print data
                 # Known bug: A couple ClinVar entries are swapped

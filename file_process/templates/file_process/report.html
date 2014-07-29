@@ -10,6 +10,7 @@
         {% for variant in specific_analysis.variants.all %}
         <ul>
 	    {{variant.accnum}}
+	    {{variant.report}}
         </ul>
         {% endfor %}
     {% endif %}
