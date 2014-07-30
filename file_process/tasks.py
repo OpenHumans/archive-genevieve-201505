@@ -8,7 +8,7 @@ import os
 
 from random import randint
 from celery import shared_task
-from .models import Variant
+from .models import Variant, ClinVarRecord
 
 from django.conf import settings
 from django.core.files import File
@@ -50,15 +50,23 @@ def read_vcf(analysis_in):
     for var in matched_variants:
         chrom = var[0]
         pos = var[1]
-        name = var[2]
-        zygosity = var[3]
-        acc = var[4]
-        for m in acc:
-            variant = Variant(chrom=chrom, pos=pos, name=name,
-                              zyg=zygosity, accnum=acc)
-            variant.save()
+        ref_allele = var[2]
+        alt_allele = var[3]
+        name = var[4]
+        zygosity = var[5]
+        accessions = var[6]
+        variant, created = Variant.objects.get_or_create(chrom=chrom,
+                                                         pos=pos,
+                                                         ref_allele=ref_allele,
+                                                         alt_allele=alt_allele,
+                                                         zyg=zygosity)
+        print "Variant: " + str(variant)
+        print "Created? " + str(created)
+        for accnum in accessions:
+            record = ClinVarRecord(accnum=accnum, variant=variant, condition=name)
+            record.save()
             analysis_in.variants.add(variant)
-            url = "http://www.ncbi.nlm.nih.gov/clinvar/" + str(acc)
+            url = "http://www.ncbi.nlm.nih.gov/clinvar/" + str(accnum)
             data = (chrom, pos, name, zygosity, url)
             a.writerow(data)
 

@@ -1,14 +1,17 @@
 from django.db import models
 
-
 class Variant(models.Model):
     """Store info about a variant"""
     chrom = models.TextField("Chromosome")
     pos = models.TextField("Position")
-    name = models.TextField("Variant Name")
+    ref_allele = models.TextField("Reference allele")
+    alt_allele = models.TextField("Alternate allele")
     zyg = models.TextField("Zygosity")
+
+class ClinVarRecord(models.Model):
     accnum = models.TextField("Accession Number")
-    
+    condition = models.TextField("Condition Name")
+    variant = models.ForeignKey(Variant)
 
 class GenomeAnalysis(models.Model):
     """Model for uploaded file and its processed output. Output is a processed output

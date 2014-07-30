@@ -9,8 +9,13 @@
     {% if specific_analysis.variants %}
         {% for variant in specific_analysis.variants.all %}
         <ul>
-	    {{variant.chrom}}, {{variant.pos}}, {{variant.name}},
-	    {{variant.zyg}}, {{variant.accnum}}
+	        {{variant.chrom}}, {{variant.pos}}, {{variant.alt_allele}}
+	        {{variant.zyg}}
+          <ul>
+          {% for clinvarrecord in variant.clinvarrecord_set.all %}
+            <li>{{clinvarrecord.accnum}} - {{clinvarrecord.condition}}</li>
+          {% endfor %}
+          </ul>
         </ul>
         {% endfor %}
     {% else %}
