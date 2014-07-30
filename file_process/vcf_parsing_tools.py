@@ -64,6 +64,9 @@ class ClinVarData():
         self.ref_allele = vcf_fields[3]
         self.alt_alleles = vcf_fields[4].split(',')
         self.info = self._parse_info(vcf_fields[7])
+        # Shouldn't be storing second element in arrays below, this is a
+        # counter for the number of copies of the allele in the genome,
+        # it's not ClinVarData.
         self.alleles = [[self.ref_allele, 0, None]] + [[x, 0, None] for x in
                                                        self.alt_alleles]
         self._parse_allele_data()
@@ -254,6 +257,8 @@ def match_to_clinvar(genome_file, clin_file):
                             # acc is a list of accession numbers for this variant
                             yield (genome_curr_pos['chrom'],
                                    genome_curr_pos['pos'],
+                                   clinvar_data.alleles[0][0],
+                                   clinvar_data.alleles[i][0],
                                    clndbn,
                                    zygosity,
                                    acc)
