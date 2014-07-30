@@ -3,8 +3,12 @@ from django.db import models
 
 class Variant(models.Model):
     """Store info about a variant"""
-    accnum = models.CharField("accnum", max_length=30)
-    report = models.TextField("report")
+    chrom = models.TextField("Chromosome")
+    pos = models.TextField("Position")
+    name = models.TextField("Variant Name")
+    zyg = models.TextField("Zygosity")
+    accnum = models.TextField("Accession Number")
+    
 
 class GenomeAnalysis(models.Model):
     """Model for uploaded file and its processed output. Output is a processed output

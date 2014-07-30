@@ -249,10 +249,12 @@ def match_to_clinvar(genome_file, clin_file):
                         acc = [clinvar_data.alleles[i][2].entries[n].acc \
                                for n in range(len(clnsig)) \
                                if clnsig[n] == 4 or clnsig[n] == 5]
+                        clndbn = clinvar_data.alleles[i][2].entries[n].dbn
                         if acc:
                             # acc is a list of accession numbers for this variant
                             yield (genome_curr_pos['chrom'],
                                    genome_curr_pos['pos'],
+                                   clndbn,
                                    zygosity,
                                    acc)
                 # Known bug: A couple ClinVar entries are swapped

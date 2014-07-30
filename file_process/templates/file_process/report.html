@@ -9,8 +9,8 @@
     {% if specific_analysis.variants %}
         {% for variant in specific_analysis.variants.all %}
         <ul>
-	    {{variant.accnum}}
-	    {{variant.report}}
+	    {{variant.chrom}}, {{variant.pos}}, {{variant.name}},
+	    {{variant.zyg}}, {{variant.accnum}}
         </ul>
         {% endfor %}
     {% else %}
