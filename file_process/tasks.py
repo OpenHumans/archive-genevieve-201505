@@ -52,9 +52,8 @@ def read_vcf(analysis_in):
         pos = var[1]
         ref_allele = var[2]
         alt_allele = var[3]
-        name = var[4]
+        name_acc = var[4]
         zygosity = var[5]
-        accessions = var[6]
         variant, created = Variant.objects.get_or_create(chrom=chrom,
                                                          pos=pos,
                                                          ref_allele=ref_allele,
@@ -62,12 +61,14 @@ def read_vcf(analysis_in):
                                                          zyg=zygosity)
         print "Variant: " + str(variant)
         print "Created? " + str(created)
-        for accnum in accessions:
-            record = ClinVarRecord(accnum=accnum, variant=variant, condition=name)
+        for spec in name_acc:
+            record, created = ClinVarRecord.objects.get_or_create(accnum=spec[0],
+                                                         variant=variant,
+                                                         condition=spec[1])
             record.save()
             analysis_in.variants.add(variant)
-            url = "http://www.ncbi.nlm.nih.gov/clinvar/" + str(accnum)
-            data = (chrom, pos, name, zygosity, url)
+            url = "http://www.ncbi.nlm.nih.gov/clinvar/" + str(spec[0])
+            data = (chrom, pos, spec[1], zygosity, url)
             a.writerow(data)
 
     #closes the tmp file
