@@ -12,16 +12,14 @@
       {% for genome_analysis in genome_analyses %}
       <li><a href="{{ genome_analysis.uploadfile.url }}">{{ genome_analysis.uploadfile.name }}</a><br/>
         {% if genome_analysis.processedfile %}
-        <a href="{{ genome_analysis.processedfile.url }}">{{ genome_analysis.processedfile.name }}</a>
+        <a href="{{ genome_analysis.processedfile.url }}">{{ genome_analysis.processedfile.name }}</a><br/>
+	    {% if genome_analysis.variants %}
+	    <a href="report/{{ genome_analysis.id }}/">View Report</a>
+	    {% endif %}
         {% else %}
         File processing not complete.
         {% endif %}</li>
-
-        {% if genome_analysis.variants %}
-        <a href="report/{{ genome_analysis.id }}/">"View Report"</a>
-        {% endif %}
-
-      {% endfor %}
+    {% endfor %}
     </ul>
     {% else %}
     <p>No files uploaded.</p>
