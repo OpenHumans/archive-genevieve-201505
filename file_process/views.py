@@ -7,7 +7,7 @@ from django.core.urlresolvers import reverse
 
 from .models import GenomeAnalysis
 from .forms import UploadForm
-from .tasks import timestamp, vcf_line_pos, genome_vcf_line_alleles, read_vcf
+from .tasks import timestamp, read_vcf
 
 def list(request):
     # Handle file upload
