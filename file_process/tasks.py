@@ -62,12 +62,16 @@ def read_vcf(analysis_in):
         print "Variant: " + str(variant)
         print "Created? " + str(created)
         for spec in name_acc:
-            record, created = ClinVarRecord.objects.get_or_create(accnum=spec[0],
+            #for online report
+            accnum = spec[0]
+            url = "http://www.ncbi.nlm.nih.gov/clinvar/" + str(spec[0])
+            name = spec[1]
+            record, created = ClinVarRecord.objects.get_or_create(accnum=url,
                                                          variant=variant,
-                                                         condition=spec[1])
+                                                         condition=name)
             record.save()
             analysis_in.variants.add(variant)
-            url = "http://www.ncbi.nlm.nih.gov/clinvar/" + str(spec[0])
+            #for CSV output
             data = (chrom, pos, spec[1], zygosity, url)
             a.writerow(data)
 
