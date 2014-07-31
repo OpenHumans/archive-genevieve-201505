@@ -17,11 +17,9 @@ urlpatterns = patterns('',
     # url(r'^$', 'genevieve.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
-    (r'^file_process/$', include('file_process.urls')),
-    url(r'^$', include('login.urls')),
-
-    url(r'^accounts/signup/$', UserCreateView.as_view()),
-    url(r'^accounts/login/$', auth_views.login,
+    (r'^file_process/', include('file_process.urls')),
+    url(r'^signup/$', UserCreateView.as_view()),
+    url(r'^login/$', auth_views.login,
         {'template_name': 'login.html',
          'extra_context': {'next': '/file_process'}}, name='auth_login'),
 

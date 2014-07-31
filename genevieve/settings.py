@@ -91,3 +91,8 @@ MEDIA_URL = '/media/'
 
 #Max Upload Size
 MAX_UPLOAD_SIZE = "400000000"
+
+TEMPLATE_DIRS = (
+    'templates/',
+    'file_process/templates/',
+    )

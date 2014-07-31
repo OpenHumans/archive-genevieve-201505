@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Genevieve</title>
-  </head>
+{% extends "base.html" %}
 
-  <body>
+{% block content %}
     {# List genome analyses #}
     {% if genome_analyses %}
     <ul>
@@ -37,6 +32,4 @@
       <p><input type="submit" value="Upload" /></p>
     </form>
 
-  </body>
-
-</html> 
+{% endblock %}
