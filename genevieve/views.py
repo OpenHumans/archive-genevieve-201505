@@ -1,6 +1,7 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.http import HttpResponseRedirect
 from django.views.generic.edit import CreateView
 
 class UserCreateView(CreateView):
@@ -21,4 +22,4 @@ class UserCreateView(CreateView):
         if user is not None:
             login(self.request, user)
 
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/file_process')
