@@ -29,7 +29,8 @@ def list(request):
     return render_to_response(
         'file_process/list.html',
         {'genome_analyses': genome_analyses,
-         'form': form},
+         'form': form,
+         'username': request.user.username},
         context_instance=RequestContext(request)
     )
 
