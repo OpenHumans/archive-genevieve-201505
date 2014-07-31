@@ -16,7 +16,8 @@
 	        Zygosity: {{variant.zyg}}
           <ul>
           {% for clinvarrecord in variant.clinvarrecord_set.all %}
-            <li>Condition: <a href="{{clinvarreccord.accnum}}">{{clinvarrecord.condition}}</a>
+            <li>Condition: <a href="http://www.ncbi.nlm.nih.gov/clinvar/{{clinvarrecord.accnum}}">
+		{{clinvarrecord.condition}}</a>
           {% endfor %}
           </ul>
         </ul>

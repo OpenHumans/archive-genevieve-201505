@@ -63,10 +63,9 @@ def read_vcf(analysis_in):
         print "Created? " + str(created)
         for spec in name_acc:
             #for online report
-            accnum = spec[0]
             url = "http://www.ncbi.nlm.nih.gov/clinvar/" + str(spec[0])
             name = spec[1]
-            record, created = ClinVarRecord.objects.get_or_create(accnum=url,
+            record, created = ClinVarRecord.objects.get_or_create(accnum=spec[0],
                                                          variant=variant,
                                                          condition=name)
             record.save()
