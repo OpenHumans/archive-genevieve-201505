@@ -1,60 +1,36 @@
-        <form class="form-horizontal" role="form" method="POST"
-            action="/accounts/signup/" id="signup-form">
-          {% csrf_token %}
+<form role="form" method="POST"
+      action="/accounts/signup/" id="signup-form">
+  {% csrf_token %}
 
-          {{ form.username.errors }}
+  {{ form.username.errors }}
 
-          <div class="form-group">
-            <label for="username"
-              class="col-sm-4 control-label">Username</label>
+  Username: <input type="text" name="username"
+             id="username" placeholder="Username"
+             value="{{ form.username.value|default:"" }}">
+  <br />
 
-            <div class="col-sm-8">
-              <input type="text" class="form-control" name="username"
-                id="username" placeholder="Username"
-                value="{{ form.username.value|default:"" }}">
-            </div>
-          </div>
+  {{ form.email.errors }}
 
-          {{ form.email.errors }}
-
-          <div class="form-group">
-            <label for="email-address"
-              class="col-sm-4 control-label">Email</label>
-
-            <div class="col-sm-8">
-              <input type="email" class="form-control" name="email"
+  Email: <input type="email" name="email"
                 id="email-address" placeholder="Email"
                 value="{{ form.email.value|default:"" }}">
-            </div>
-          </div>
+  <br />
 
-          {{ form.password1.errors }}
+  {{ form.password1.errors }}
 
-          <div class="form-group">
-            <label for="password-1"
-              class="col-sm-4 control-label">Password</label>
+  Password: <input type="password" name="password1"
+             id="password-1" placeholder="Password"
+             value="{{ form.password1.value|default:"" }}">
+  <br />
 
-            <div class="col-sm-8">
-              <input type="password" class="form-control" name="password1"
-                id="password-1" placeholder="Password"
-                value="{{ form.password1.value|default:"" }}">
-            </div>
-          </div>
+  {{ form.password2.errors }}
 
-          {{ form.password2.errors }}
+  Retype password: <input type="password" name="password2"
+                          id="password-2" placeholder="Password"
+                          value="{{ form.password2.value|default:"" }}">
+  <br />
 
-          <div class="form-group">
-            <label for="password-2"
-              class="col-sm-4 control-label">Re-enter password</label>
+  <input id="create-account" type="submit" value="Create" />
 
-            <div class="col-sm-8">
-              <input type="password" class="form-control" name="password2"
-                id="password-2" placeholder="Password"
-                value="{{ form.password2.value|default:"" }}">
-            </div>
-          </div>
+</form>
 
-        </form>
-
-        <button id="create-account" type="button"
-          class="btn btn-primary">Create my Account</button>
