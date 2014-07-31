@@ -22,7 +22,8 @@ urlpatterns = patterns('',
 
     url(r'^accounts/signup/$', UserCreateView.as_view()),
     url(r'^accounts/login/$', auth_views.login,
-        {'template_name': 'login.html'}, name='auth_login'),
+        {'template_name': 'login.html',
+         'extra_context': {'next': '/file_process'}}, name='auth_login'),
 
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
