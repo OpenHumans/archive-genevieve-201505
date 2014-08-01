@@ -3,39 +3,38 @@
 {% block title %}Genevieve Signup{% endblock %}
 
 {% block content %}
-<form role="form" method="POST"
-      action="/accounts/signup/" id="signup-form">
+<form role="form" method="POST" action="/accounts/signup/" id="signup-form">
   {% csrf_token %}
 
-  {{ form.username.errors }}
+  <div class="form-group">
+    {{ form.username.errors }}
+    <label for="form.username.label_for">Username</label>
+    <input type="text" class="form-control" name="username" id="username" placeholder="Enter Username"
+              value="{{ form.username.value|default:"" }}">
+  </div>
 
-  Username: <input type="text" name="username"
-             id="username" placeholder="Username"
-             value="{{ form.username.value|default:"" }}">
-  <br />
+  <div class="form-group">
+    {{ form.email.errors }}
+    <label for="form.email.label_for">Email address</label>
+    <input type="email" class="form-control" name="email" id="email-address" placeholder="Enter Email"
+              value="{{ form.email.value|default:"" }}">
+  </div>
 
-  {{ form.email.errors }}
+  <div class="form-group">
+    {{ form.password1.errors }}
+    <label for="form.password1.label_for">Password</label>
+    <input type="password" class="form-control" name="password1" id="password-1" placeholder="Enter Password"
+              value="{{ form.password1.value|default:"" }}">
+  </div>
 
-  Email: <input type="email" name="email"
-                id="email-address" placeholder="Email"
-                value="{{ form.email.value|default:"" }}">
-  <br />
-
-  {{ form.password1.errors }}
-
-  Password: <input type="password" name="password1"
-             id="password-1" placeholder="Password"
-             value="{{ form.password1.value|default:"" }}">
-  <br />
-
-  {{ form.password2.errors }}
-
-  Retype password: <input type="password" name="password2"
-                          id="password-2" placeholder="Password"
-                          value="{{ form.password2.value|default:"" }}">
-  <br />
-
-  <input id="create-account" type="submit" value="Create" />
+  <div class="form-group">
+    {{ form.password2.errors }}
+    <label for="form.password2.label_for">Retype Password</label>
+    <input type="password" class="form-control" name="password2" id="password-2" placeholder="Re-enter Password"
+              value="{{ form.password2.value|default:"" }}">
+   </div>
+ 
+  <button type="submit" class="btn btn-primary" id="create-account">Create Account</button>
 
 </form>
 {% endblock %}

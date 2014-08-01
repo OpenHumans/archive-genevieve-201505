@@ -4,14 +4,38 @@
     {# Welcome user #}
     <h3>Welcome {{username}}!</h3>
     {# List genome analyses #}
-    {% if genome_analyses %}
-    <ul>
+    <table class="table table-striped">
+      {% if genome_analyses %}
+      <thead>
+	<tr>
+	  <th>File Name</th>
+	  <th>Date Added</th>
+	  <th>Uploaded File</th>
+	  <th>Processed File</th>
+	  <th>Report</th>
+	</tr>
+	</thead>
+      <tbody>
       {% for genome_analysis in genome_analyses %}
-      <li><a href="{{ genome_analysis.uploadfile.url }}">{{ genome_analysis.uploadfile.name }}</a><br/>
+      <tr>
+	<th>
+	  File Name
+	</th>
+	<th>
+	  datetime.now()
+	</th>
+	<th>
+	  <a href="{{ genome_analysis.uploadfile.url }}">Download Uploaded File</a>
+	</th>
         {% if genome_analysis.processedfile %}
-        <a href="{{ genome_analysis.processedfile.url }}">{{ genome_analysis.processedfile.name }}</a><br/>
-	    {% if genome_analysis.variants %}
+        <th>
+	  <a href="{{ genome_analysis.processedfile.url }}">Download Processed File</a>
+	</th>    
+	  {% if genome_analysis.variants %}
+	<th>
 	    <a href="report/{{ genome_analysis.id }}/">View Report</a>
+	</th>
+	</tr>
 	    {% endif %}
         {% else %}
         File processing not complete.
@@ -23,15 +47,15 @@
     {% endif %}
 
     {# Note enctype 'multipart/form-data' for upload of files. #}
-    <form action="{% url 'list' %}" method="post" enctype="multipart/form-data">
+    <form role="form" action="{% url 'list' %}" method="post" enctype="multipart/form-data">
       {% csrf_token %}
-      <p>{{ form.non_field_errors }}</p>
-      <p>{{ form.uploadfile.label_tag }} {{ form.uploadfile.help_text }}</p>
-      <p>
-        {{ form.uploadfile.errors }}
-        {{ form.uploadfile }}
-      </p>
-      <p><input type="submit" value="Upload" /></p>
+      <div class="form-group">
+	<label for="form.uploadfile.label_tag">File input</label>
+	<input type="file" id="id_uploadfile"  name="uploadfile">
+	<p class="help-block">Please upload a gzipped vcf file</p>
+      </div>
+      {{ form.uploadfile.errors }}
+      <p><button type="submit" class="btn btn-default">Submit</button></p>
     </form>
 
 {% endblock %}

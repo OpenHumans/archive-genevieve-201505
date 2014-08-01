@@ -30,7 +30,8 @@ def list(request):
         'file_process/list.html',
         {'genome_analyses': genome_analyses,
          'form': form,
-         'username': request.user.username},
+         'username': request.user.username
+        },
         context_instance=RequestContext(request)
     )
 
