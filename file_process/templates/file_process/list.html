@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block navbar %}
-<button type="button" class="btn btn-primary">Logout</button>
+  <a href="/accounts/logout">[logout]</a>
 {% endblock %}
 {% block content %}
     {# Welcome user #}
@@ -19,9 +19,10 @@
 	</thead>
       <tbody>
       {% for genome_analysis in genome_analyses %}
+      {% if user == genome_analysis.user %}
       <tr>
 	<th>
-	  File Name
+	  File Name, {{user}}, {{genome_analysis.user}}
 	</th>
 	<th>
 	  {{ genome_analysis.timestamp }} 
@@ -33,24 +34,24 @@
         <th>
 	  <a href="{{ genome_analysis.processedfile.url }}">Download Processed File</a>
 	</th>    
-	  {% if genome_analysis.variants %}
+	{% if genome_analysis.variants %}
 	<th>
-	    <a href="report/{{ genome_analysis.id }}/">View Report</a>
+	  <a href="report/{{ genome_analysis.id }}/">View Report</a>
 	</th>
-	</tr>
-	    {% endif %}
-        {% else %}
-        File processing not complete.
-        {% endif %}</li>
+      </tr>
+      {% endif %}
+      {% else %}
+      File processing not complete.
+      {% endif %}
+      {% endif %}
     {% endfor %}
-    </ul>
-    {% else %}
-    <p>No files uploaded.</p>
-    {% endif %}
+{% else %}
+<p>No files uploaded.</p>
+{% endif %}
 
-    {# Note enctype 'multipart/form-data' for upload of files. #}
-    <form role="form" action="{% url 'list' %}" method="post" enctype="multipart/form-data">
-      {% csrf_token %}
+{# Note enctype 'multipart/form-data' for upload of files. #}
+<form role="form" action="{% url 'list' %}" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
       <div class="form-group">
 	<label for="form.uploadfile.label_tag">File input</label>
 	<input type="file" id="id_uploadfile"  name="uploadfile">

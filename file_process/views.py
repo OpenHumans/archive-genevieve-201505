@@ -4,17 +4,23 @@ from django.template import RequestContext
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
+from django.contrib.auth import logout
 
 from .models import GenomeAnalysis
 from .forms import UploadForm
 from .tasks import timestamp, read_vcf
 
 def list(request):
+    # Authenticate
+    if not request.user.is_authenticated():
+        return render_to_response('file_process/login_error.html')
     # Handle file upload
     if request.method == 'POST':
-        form = UploadForm(request.POST, request.FILES)
+        form = UploadForm(request.POST or None, request.FILES or None)
+        user = request.user
         if form.is_valid():
-            new_analysis = GenomeAnalysis(uploadfile = request.FILES['uploadfile'])
+            form.user = user
+            new_analysis = GenomeAnalysis(uploadfile = request.FILES['uploadfile'], user=form.user)
             new_analysis.save()
             timestamp.delay()
             read_vcf.delay(analysis_in = new_analysis)
@@ -30,7 +36,8 @@ def list(request):
         'file_process/list.html',
         {'genome_analyses': genome_analyses,
          'form': form,
-         'username': request.user.username
+         'username': request.user.username,
+         'user': request.user,
         },
         context_instance=RequestContext(request)
     )
@@ -47,3 +54,5 @@ def report(request, genomeanalysis_id):
          'specific_analysis': specific_analysis}
     )
 
+def logout_view(request):
+    logout(request)

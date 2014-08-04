@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 
 {% block title %}Genevieve Report{% endblock %}
-
+{% block navbar %}
+<a href="/file_process/"><button type="button" class="btn btn-primary navbar-btn">Back to Genome Uploads</button></a>
+{% endblock %}
 {% block content %}
     <p>"Hello.  This is report {{genomeanalysis_id}}."</p>
     {% if specific_analysis.variants %}
