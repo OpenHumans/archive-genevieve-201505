@@ -16,6 +16,7 @@ class ClinVarRecord(models.Model):
 class GenomeAnalysis(models.Model):
     """Model for uploaded file and its processed output. Output is a processed output
     file"""
+    timestamp = models.DateTimeField(auto_now_add=True)
     uploadfile = models.FileField(upload_to='uploads/%Y/%m/%d')
     processedfile = models.FileField(blank=True, upload_to='processed/%Y/%m/%d')
     variants = models.ManyToManyField(Variant)

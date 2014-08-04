@@ -5,21 +5,37 @@
 {% block content %}
     <p>"Hello.  This is report {{genomeanalysis_id}}."</p>
     {% if specific_analysis.variants %}
+<div class="table-responsive">
+    <table class="table">
+      <thead>
+	<tr>
+	  <th>Chromosome</th>
+	  <th>Position</th>
+	  <th>Reference Allele</th>
+	  <th>Alternate Allele</th>
+	  <th>Zygosity</th>
+	</tr>
+      </thead>
         {% for variant in specific_analysis.variants.all %}
-        <ul>
-	        Chrom: {{variant.chrom}} 
-		Pos: {{variant.pos}} 
-		Ref: {{variant.ref_allele}}
-		Alt: {{variant.alt_allele}}
-	        Zygosity: {{variant.zyg}}
-          <ul>
+      <tbody>
+	<tr class="active">
+           <td>{{variant.chrom}}</td> 
+	   <td>{{variant.pos}}</td>
+	   <td>{{variant.ref_allele}}</td>
+	   <td>{{variant.alt_allele}}</td>
+	   <td>{{variant.zyg}}</td>
+        </tr>
           {% for clinvarrecord in variant.clinvarrecord_set.all %}
-            <li>Condition: <a href="http://www.ncbi.nlm.nih.gov/clinvar/{{clinvarrecord.accnum}}">
+            <tr>
+	      <td colspan="5"><a href="http://www.ncbi.nlm.nih.gov/clinvar/{{clinvarrecord.accnum}}">
 		{{clinvarrecord.condition}}</a>
+	      </td>
+	    </tr>
           {% endfor %}
-          </ul>
-        </ul>
         {% endfor %}
+      </tbody>
+    </table>
+</div>
     {% else %}
 	There were no matches against the ClinVar Database.
     {% endif %}
