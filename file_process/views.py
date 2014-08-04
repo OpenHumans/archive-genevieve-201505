@@ -52,7 +52,7 @@ def report(request, genomeanalysis_id):
         'file_process/report.html',
         {'genomeanalysis_id': genomeanalysis_id,
          'specific_analysis': specific_analysis}
-    )
+        )
 
 def logout_view(request):
     logout(request)

@@ -250,10 +250,11 @@ def match_to_clinvar(genome_file, clin_file):
                                   for x in range(len(clinvar_data.alleles[i][2].entries))]
 
                         data = [(clinvar_data.alleles[i][2].entries[n].acc,
-                                     clinvar_data.alleles[i][2].entries[n].dbn) \
+                                 clinvar_data.alleles[i][2].entries[n].dbn,
+                                CLNSIG_INDEX[clnsig[n]])\
                                      for n in range(len(clnsig)) \
-                                     if clnsig[n] == 4 or clnsig[n] == 5]
-
+                                     if clnsig[n] == 4 or clnsig[n] == 5 or clnsig[n] == 255]
+                                
                         if data:
                             print "DATA:"
                             print data
@@ -273,4 +274,3 @@ def match_to_clinvar(genome_file, clin_file):
                     clin_curr_line = clin_file.next()
                 except StopIteration:
                     break
-

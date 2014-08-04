@@ -13,6 +13,8 @@ class ClinVarRecord(models.Model):
     """Stores info specific to the Clinvar Record about the variant"""
     accnum = models.TextField("Accession Number")
     condition = models.TextField("Condition Name")
+    clnsig = models.TextField("Clinvar Significance")
+    freq = models.TextField("Allele Frequency")
     variant = models.ForeignKey(Variant)
 
 class GenomeAnalysis(models.Model):

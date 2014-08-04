@@ -21,23 +21,23 @@
       {% for genome_analysis in genome_analyses %}
       {% if user == genome_analysis.user %}
       <tr>
-	<th>
-	  File Name, {{user}}, {{genome_analysis.user}}
-	</th>
-	<th>
+	<td>
+	  File Name
+	</td>
+	<td>
 	  {{ genome_analysis.timestamp }} 
-	</th>
-	<th>
+	</td>
+	<td>
 	  <a href="{{ genome_analysis.uploadfile.url }}">Download Uploaded File</a>
-	</th>
+	</td>
         {% if genome_analysis.processedfile %}
-        <th>
+        <td>
 	  <a href="{{ genome_analysis.processedfile.url }}">Download Processed File</a>
-	</th>    
+	</td>    
 	{% if genome_analysis.variants %}
-	<th>
+	<td>
 	  <a href="report/{{ genome_analysis.id }}/">View Report</a>
-	</th>
+	</td>
       </tr>
       {% endif %}
       {% else %}
