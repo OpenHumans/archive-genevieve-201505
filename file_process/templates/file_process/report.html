@@ -1,30 +1,39 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Genevieve Report</title>
-  </head>
-  <body>
-    <p>"Hello.  This is report {{genomeanalysis_id}}."</p>
+{% extends "base.html" %}
+
+{% block title %}Genevieve Report{% endblock %}
+{% block navbar %}
+<a href="/file_process/"><button type="button" class="btn btn-default navbar-btn">Back to Genome Uploads</button></a>
+<a href="/accounts/logout"><button type="button" class="btn btn-primary navbar-btn navbar-right">Logout</button></a>
+{% endblock %}
+{% block content %}
+    <h2>Genome Report: {{specific_analysis.name}}</h2>
     {% if specific_analysis.variants %}
+<div class="table-responsive">
+    <table class="table">
+      <thead></thead>
         {% for variant in specific_analysis.variants.all %}
-        <ul>
-	        Chrom: {{variant.chrom}} 
-		Pos: {{variant.pos}} 
-		Ref: {{variant.ref_allele}}
-		Alt: {{variant.alt_allele}}
-	        Zygosity: {{variant.zyg}}
-          <ul>
+      <tbody>
+	<tr class="active">
+           <td>Chromosome: {{variant.chrom}}</td> 
+	   <td>Position: {{variant.pos}}</td>
+	   <td>Reference Allele: {{variant.ref_allele}}</td>
+	   <td>Alternate Allele: {{variant.alt_allele}}</td>
+	   <td>Zygosity: {{variant.zyg}}</td>
+        </tr>
           {% for clinvarrecord in variant.clinvarrecord_set.all %}
-            <li>Condition: <a href="http://www.ncbi.nlm.nih.gov/clinvar/{{clinvarrecord.accnum}}">
+            <td>
+	      <td>Frequency: </td>
+	      <td colspan="2">Significance: {{clinvarrecord.clnsig}}</td>
+	      <td colspan="2">Condition: <a href="http://www.ncbi.nlm.nih.gov/clinvar/{{clinvarrecord.accnum}}">
 		{{clinvarrecord.condition}}</a>
+	      </td>
+	    </tr>
           {% endfor %}
-          </ul>
-        </ul>
         {% endfor %}
+      </tbody>
+    </table>
+</div>
     {% else %}
 	There were no matches against the ClinVar Database.
     {% endif %}
-  </body>
-
-</html> 
+{% endblock %}

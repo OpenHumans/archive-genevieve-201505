@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Genevieve Signup{% endblock %}
+
+{% block content %}
+<form role="form" method="POST" action="/accounts/signup/" id="signup-form">
+  {% csrf_token %}
+
+  <div class="form-group">
+    {{ form.username.errors }}
+    <label for="form.username.label_for">Username</label>
+    <input type="text" class="form-control" name="username" id="username" placeholder="Enter Username"
+              value="{{ form.username.value|default:"" }}">
+  </div>
+
+  <div class="form-group">
+    {{ form.email.errors }}
+    <label for="form.email.label_for">Email address</label>
+    <input type="email" class="form-control" name="email" id="email-address" placeholder="Enter Email"
+              value="{{ form.email.value|default:"" }}">
+  </div>
+
+  <div class="form-group">
+    {{ form.password1.errors }}
+    <label for="form.password1.label_for">Password</label>
+    <input type="password" class="form-control" name="password1" id="password-1" placeholder="Enter Password"
+              value="{{ form.password1.value|default:"" }}">
+  </div>
+
+  <div class="form-group">
+    {{ form.password2.errors }}
+    <label for="form.password2.label_for">Retype Password</label>
+    <input type="password" class="form-control" name="password2" id="password-2" placeholder="Re-enter Password"
+              value="{{ form.password2.value|default:"" }}">
+   </div>
+ 
+  <button type="submit" class="btn btn-success" id="create-account">Create Account</button>
+
+</form>
+{% endblock %}

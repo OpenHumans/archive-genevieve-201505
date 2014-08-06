@@ -8,7 +8,7 @@ import os
 
 from random import randint
 from celery import shared_task
-from .models import Variant, ClinVarRecord
+from .models import Variant, ClinVarRecord, GenomeAnalysis
 
 from django.conf import settings
 from django.core.files import File
@@ -23,6 +23,8 @@ CLINVAR_FILENAME = "clinvar-latest.vcf"
 def timestamp():
     """An example celery task, appends datetime to a log file."""
     LOGFILE = os.path.join(settings.MEDIA_ROOT, 'stamped_log_file.txt')
+    datetime, created = GenomeAnalysis.objects.get_or_create(timestamp=datetime.now())
+    datetime.save()
     with open(LOGFILE, 'a') as logfile:
         datetime_str = str(datetime.now()) + '\n'
         logfile.write(datetime_str)
@@ -65,9 +67,10 @@ def read_vcf(analysis_in):
             #for online report
             url = "http://www.ncbi.nlm.nih.gov/clinvar/" + str(spec[0])
             name = spec[1]
+            clnsig = spec[2]
             record, created = ClinVarRecord.objects.get_or_create(accnum=spec[0],
                                                          variant=variant,
-                                                         condition=name)
+                                                         condition=name, clnsig=clnsig)
             record.save()
             analysis_in.variants.add(variant)
             #for CSV output
