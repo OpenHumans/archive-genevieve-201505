@@ -20,7 +20,8 @@ def list(request):
         user = request.user
         if form.is_valid():
             form.user = user
-            new_analysis = GenomeAnalysis(uploadfile = request.FILES['uploadfile'], user=form.user)
+            new_analysis = GenomeAnalysis(uploadfile = request.FILES['uploadfile'],
+                                          user=form.user, name = request.POST['reportname'])
             new_analysis.save()
             timestamp.delay()
             read_vcf.delay(analysis_in = new_analysis)
@@ -32,6 +33,7 @@ def list(request):
     # Load documents for the list page
     genome_analyses = GenomeAnalysis.objects.all()
     # Render list page with the documents and the form
+    # Render list page with the documents and the form
     return render_to_response(
         'file_process/list.html',
         {'genome_analyses': genome_analyses,
@@ -42,17 +44,23 @@ def list(request):
         context_instance=RequestContext(request)
     )
 
+
 def report(request, genomeanalysis_id):
+    # Authenticate
+    if not request.user.is_authenticated():
+        return render_to_response('file_process/login_error.html')
     try:
         specific_analysis = GenomeAnalysis.objects.get(pk=genomeanalysis_id)
     except GenomeAnalysis.DoesNotExist:
         raise Http404
-    
-    return render_to_response(
-        'file_process/report.html',
-        {'genomeanalysis_id': genomeanalysis_id,
-         'specific_analysis': specific_analysis}
-        )
+    if request.user != specific_analysis.user:
+        return render_to_response('file_process/login_error.html')
+    else:
+        return render_to_response(
+            'file_process/report.html',
+            {'genomeanalysis_id': genomeanalysis_id,
+             'specific_analysis': specific_analysis}
+            )
 
 def logout_view(request):
     logout(request)

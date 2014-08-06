@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block navbar %}
-  <a href="/accounts/logout">[logout]</a>
+<a href="/accounts/logout"><button type="button" class="btn btn-primary navbar-btn navbar-right">Logout</button></a>
 {% endblock %}
 {% block content %}
     {# Welcome user #}
@@ -22,7 +22,7 @@
       {% if user == genome_analysis.user %}
       <tr>
 	<td>
-	  File Name
+	  {{ genome_analysis.name }}
 	</td>
 	<td>
 	  {{ genome_analysis.timestamp }} 
@@ -49,15 +49,23 @@
 <p>No files uploaded.</p>
 {% endif %}
 
+<ul class="nav nav-tabs" role="tablist">
+  <li class="active"><a href="#uploadform">Upload A File</a></li>
+  <li><a href="#reportlist">View Reports</a></li>
+</ul>
 {# Note enctype 'multipart/form-data' for upload of files. #}
+
 <form role="form" action="{% url 'list' %}" method="post" enctype="multipart/form-data">
   {% csrf_token %}
       <div class="form-group">
-	<label for="form.uploadfile.label_tag">File input</label>
+	{{ form.uploadfile.errors }}
 	<input type="file" id="id_uploadfile"  name="uploadfile">
 	<p class="help-block">Please upload a gzipped vcf file</p>
       </div>
-      {{ form.uploadfile.errors }}
+      <div class="form-group">
+	<input type="text" id="id_reportname" class="form-control" name="reportname" type="text"
+	       placeholder="Enter Filename">{{ form.reportname.errors }}
+      </div>
       <p><button type="submit" class="btn btn-default">Submit</button></p>
     </form>
 

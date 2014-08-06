@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block navbar %}
 <!-- Button trigger modal -->
-<button class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#myModal">
+<button class="btn btn-primary navbar-btn navbar-right" data-toggle="modal" data-target="#myModal">
     Login
     </button>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -23,15 +23,17 @@
 		<input type="password" class="form-control" placeholder="Enter Password" id=" id_password" name="password">
               </div>
               <div class="modal-footer">
-		<button type="submit" class="btn btn-default">Login</button>
+		<a href="/accounts/signup/"><button type="button" class="btn btn-success">Sign Up</button></a>
+		<button type="submit" class="btn btn-primary">Login</button>
 		<input type="hidden" name="next" value="{{ next }}" />
-              </div>
             </form>
 	      </div><!-- /.modal-content -->
 		        </div><!-- /.modal-dialog -->
 	    </div><!-- /.modal -->
 {% endblock %}
 {% block content %}
-<p> Welcome to Genevieve </p>
-<a href="/accounts/signup/"><button type="button" class="btn btn-primary btn-lg">Sign Up</button></a>
+<h1> Welcome to Genevieve </h1>
+<div id="signup-button">
+	 <a href="/accounts/signup/"><button type="button" class="btn btn-success btn-lg">Sign Up</button></a>
+</div>
 {% endblock %}

@@ -1,3 +1,29 @@
 body{
     font-family:"Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-    }
+}
+
+#content{
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+h1{
+    text-align: center;
+    font-size: 65px;
+}
+
+#signup-button {
+margin-left: auto;
+margin-right: auto;
+width: 12.75%;
+}
+
+.btn-lg{
+    font-size: 30px;
+    border-radius: 18px;
+}
+
+label{
+    font-weight: 400;
+    font-size: 18px;
+}

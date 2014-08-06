@@ -2,10 +2,11 @@
 
 {% block title %}Genevieve Report{% endblock %}
 {% block navbar %}
-<a href="/file_process/"><button type="button" class="btn btn-primary navbar-btn">Back to Genome Uploads</button></a>
+<a href="/file_process/"><button type="button" class="btn btn-default navbar-btn">Back to Genome Uploads</button></a>
+<a href="/accounts/logout"><button type="button" class="btn btn-primary navbar-btn navbar-right">Logout</button></a>
 {% endblock %}
 {% block content %}
-    <p>"Hello.  This is report {{genomeanalysis_id}}."</p>
+    <h2>Genome Report: {{specific_analysis.name}}</h2>
     {% if specific_analysis.variants %}
 <div class="table-responsive">
     <table class="table">

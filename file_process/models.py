@@ -5,8 +5,8 @@ class Variant(models.Model):
     """Store info about a variant"""
     chrom = models.TextField("Chromosome")
     pos = models.TextField("Position")
-    ref_allele = models.TextField("Reference allele")
-    alt_allele = models.TextField("Alternate allele")
+    ref_allele = models.TextField("Reference Allele")
+    alt_allele = models.TextField("Alternate Allele")
     zyg = models.TextField("Zygosity")
 
 class ClinVarRecord(models.Model):
@@ -22,6 +22,7 @@ class GenomeAnalysis(models.Model):
     file"""
     #This associates a user with a specific genome analysis
     user = models.ForeignKey(User)
+    name = models.TextField("File Name")
     timestamp = models.DateTimeField(auto_now_add=True)
     uploadfile = models.FileField(upload_to='uploads/%Y/%m/%d')
     processedfile = models.FileField(blank=True, upload_to='processed/%Y/%m/%d')

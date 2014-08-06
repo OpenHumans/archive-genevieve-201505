@@ -22,7 +22,7 @@ urlpatterns = patterns('',
         auth_views.login,
         {'template_name': 'home.html',
          'extra_context': {'next': '/file_process'}}, name='auth_login'),
-    url(r'^logout/$', auth_views.logout, {'next_page': '/file_process'},
+    url(r'^accounts/logout/$', auth_views.logout, {'next_page': '/'},
         name='auth_logout'),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
