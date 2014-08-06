@@ -27,3 +27,9 @@ label{
     font-weight: 400;
     font-size: 18px;
 }
+
+.alert {
+    padding: 6px 12px;
+    margin-bottom: 0px;
+    height: 34px;
+}

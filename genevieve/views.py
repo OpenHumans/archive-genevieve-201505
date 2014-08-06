@@ -10,6 +10,11 @@ def home(request):
      return render_to_response(
          'home.html'
          )
+
+def auto_login(request):
+     if request.user.is_authenticated():
+          return HttpResponseRedirect('/file_process')
+
 class UserCreateView(CreateView):
     """
     A view that creates a new user, logs them in, and redirects them to the

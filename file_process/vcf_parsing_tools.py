@@ -21,7 +21,7 @@ CLNSIG_INDEX = {0 : "unknown",
 
 class ClinVarEntry():
     """Store ClinVar data relating to one accession."""
-    def __init__(self, clndsdb, clndsdbid, clnacc, clndbn, clnsig):
+    def __init__(self, clndsdb, clndsdbid, clnacc, clndbn, clnsig, freq):
         clndsdbs = clndsdb.split(':')
         clndsdbids = clndsdbid.split(':')
         self.dsdb = [ (clndsdbs[i], clndsdbids[i]) for i
@@ -29,6 +29,7 @@ class ClinVarEntry():
         self.acc = clnacc
         self.dbn = clndbn
         self.sig = clnsig
+        self.freq = freq
 
     def __str__(self):
         return json.dumps(self.as_dict(), ensure_ascii=True)
@@ -37,7 +38,8 @@ class ClinVarEntry():
         return {'dsdb': self.dsdb,
                 'acc': self.acc,
                 'dbn': self.dbn,
-                'sig': self.sig}
+                'sig': self.sig,
+                'freq': self.freq}
 
 class ClinVarAllele():
     """Store ClinVar data relating to one allele."""
@@ -104,7 +106,11 @@ class ClinVarData():
         info_clnvar_tags = ['CLNDSDB', 'CLNDSDBID', 'CLNACC', 'CLNDBN',
                             'CLNSIG', 'CLNHGVS', 'CLNSRC', 'CLNSRCID']
         clnvar_data = {x:[ y.split('|') for y in self.info[x].split(',') ]
-                       for x in info_clnvar_tags}
+                       for x in info_clnvar_tags if x}
+        try:
+            caf = self.info['CAF']
+        except KeyError:
+            pass
         # For each clnalle_key, create a list of ClinVarEntries
         for i in range(len(clnalle_keys)):
             if int(clnalle_keys[i]) == -1:
@@ -118,19 +124,28 @@ class ClinVarData():
                                      clndsdbid=clnvar_data['CLNDSDBID'][i][j],
                                      clnacc=clnvar_data['CLNACC'][i][j],
                                      clndbn=clnvar_data['CLNDBN'][i][j],
-                                     clnsig=clnvar_data['CLNSIG'][i][j])
+                                     clnsig=clnvar_data['CLNSIG'][i][j],
+                                     freq=caf)
+                    print entry
                 except IndexError:
                     # Skip inconsintent entries. At least one line in the
                     # ClinVar VCF as of 2014/06 has inconsistent CLNSIG and
                     # CLNACC information (rs799916).
                     pass
+                except UnboundLocalError:
+                    entry = ClinVarEntry(clndsdb=clnvar_data['CLNDSDB'][i][j],
+                                     clndsdbid=clnvar_data['CLNDSDBID'][i][j],
+                                     clnacc=clnvar_data['CLNACC'][i][j],
+                                     clndbn=clnvar_data['CLNDBN'][i][j],
+                                     clnsig=clnvar_data['CLNSIG'][i][j],
+                                     freq="Not Provided")
+                    print entry
                 entries.append(entry)
             self.alleles[int(clnalle_keys[i])][2] = ClinVarAllele(
                 entries=entries,
                 clnhgvs=clnvar_data['CLNHGVS'][i][0],
                 clnsrcs=clnvar_data['CLNSRC'][i],
                 clnsrcids=clnvar_data['CLNSRCID'][i])
-
 
 def vcf_line_pos(vcf_line):
     """
@@ -251,6 +266,7 @@ def match_to_clinvar(genome_file, clin_file):
 
                         data = [(clinvar_data.alleles[i][2].entries[n].acc,
                                  clinvar_data.alleles[i][2].entries[n].dbn,
+                                 clinvar_data.alleles[i][2].entries[n].freq,
                                 CLNSIG_INDEX[clnsig[n]])\
                                      for n in range(len(clnsig)) \
                                      if clnsig[n] == 4 or clnsig[n] == 5 or clnsig[n] == 255]

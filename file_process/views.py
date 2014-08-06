@@ -54,7 +54,7 @@ def report(request, genomeanalysis_id):
     except GenomeAnalysis.DoesNotExist:
         raise Http404
     if request.user != specific_analysis.user:
-        return render_to_response('file_process/login_error.html')
+        return render_to_response('file_process/not_authorized.html')
     else:
         return render_to_response(
             'file_process/report.html',

@@ -44,7 +44,7 @@ def read_vcf(analysis_in):
                                     os.path.basename(analysis_in.uploadfile.path))
     tmp_output_file = open(tmp_output_file_path, 'w')
     a = csv.writer(tmp_output_file)
-    header = ("Chromosome", "Position", "Name", "Zygosity", "ACC URL")
+    header = ("Chromosome", "Position", "Name", "Significance", "Frequency", "Zygosity", "ACC URL")
     a.writerow(header)
 
     matched_variants = match_to_clinvar(genome_file, clin_file)
@@ -67,14 +67,15 @@ def read_vcf(analysis_in):
             #for online report
             url = "http://www.ncbi.nlm.nih.gov/clinvar/" + str(spec[0])
             name = spec[1]
-            clnsig = spec[2]
+            freq = spec[2]
+            clnsig = spec[3]
             record, created = ClinVarRecord.objects.get_or_create(accnum=spec[0],
                                                          variant=variant,
-                                                         condition=name, clnsig=clnsig)
+                                                         condition=name, freq=freq, clnsig=clnsig)
             record.save()
             analysis_in.variants.add(variant)
             #for CSV output
-            data = (chrom, pos, spec[1], zygosity, url)
+            data = (chrom, pos, name, clnsig, freq, zygosity, url)
             a.writerow(data)
 
     #closes the tmp file
