@@ -7,14 +7,16 @@ class Variant(models.Model):
     pos = models.TextField("Position")
     ref_allele = models.TextField("Reference Allele")
     alt_allele = models.TextField("Alternate Allele")
-    zyg = models.TextField("Zygosity")
+    freq = models.TextField("Allele Frequency")
+    
+    class Meta:
+        unique_together = ('chrom', 'pos', 'ref_allele', 'alt_allele')
 
 class ClinVarRecord(models.Model):
     """Stores info specific to the Clinvar Record about the variant"""
     accnum = models.TextField("Accession Number")
     condition = models.TextField("Condition Name")
     clnsig = models.TextField("Clinvar Significance")
-    freq = models.TextField("Allele Frequency")
     variant = models.ForeignKey(Variant)
 
 class GenomeAnalysis(models.Model):
@@ -26,4 +28,9 @@ class GenomeAnalysis(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     uploadfile = models.FileField(upload_to='uploads/%Y/%m/%d')
     processedfile = models.FileField(blank=True, upload_to='processed/%Y/%m/%d')
-    variants = models.ManyToManyField(Variant)
+    variants = models.ManyToManyField(Variant, through='GenomeAnalysisVariant')
+
+class GenomeAnalysisVariant(models.Model):
+    genomeanalysis = models.ForeignKey(GenomeAnalysis)
+    variant = models.ForeignKey(Variant)
+    zyg = models.TextField("Zygosity")

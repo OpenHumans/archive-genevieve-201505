@@ -6,8 +6,8 @@
 <a href="/accounts/logout"><button type="button" class="btn btn-primary navbar-btn navbar-right">Logout</button></a>
 {% endblock %}
 {% block content %}
-    <h2>Genome Report: {{specific_analysis.name}}</h2>
-    {% if specific_analysis.variants %}
+<h2>Genome Report: {{specific_analysis.name}}</h2>
+{% if specific_analysis.variants %}
 <div class="table-responsive">
     <table class="table">
       <thead></thead>
@@ -18,16 +18,22 @@
 	   <td>Position: {{variant.pos}}</td>
 	   <td>Reference Allele: {{variant.ref_allele}}</td>
 	   <td>Alternate Allele: {{variant.alt_allele}}</td>
-	   <td>Zygosity: {{variant.zyg}}</td>
-        </tr>
-          {% for clinvarrecord in variant.clinvarrecord_set.all %}
-            <td>
-	      <td>Frequency: {{clinvarrecord.freq}}</td>
-	      <td colspan="2">Significance: {{clinvarrecord.clnsig}}</td>
-	      <td colspan="2">Condition: <a href="http://www.ncbi.nlm.nih.gov/clinvar/{{clinvarrecord.accnum}}">
-		{{clinvarrecord.condition}}</a>
-	      </td>
-	    </tr>
+	   {% if variant.freq == "." %}
+	   <td>Frequency: Not Seen in 1000 Genomes</td>
+	   {% else %}
+	   <td>Frequency: {{variant.freq}}</td>
+	   {% endif %}
+           <td>Zygosity: {{zygosity.zyg}}</td>
+	</tr>
+        {% for clinvarrecord in variant.clinvarrecord_set.all %}
+	<tr>
+	  <td colspan="3" style="word-wrap: break-word;min-width: 180px;max-width: 180px;">
+            Condition:
+            <a href="http://www.ncbi.nlm.nih.gov/clinvar/{{clinvarrecord.accnum}}">
+              {{clinvarrecord.condition}}</a>
+          </td>
+	  <td colspan="3">Significance: {{clinvarrecord.clnsig}}</td>
+	</tr>
           {% endfor %}
         {% endfor %}
       </tbody>

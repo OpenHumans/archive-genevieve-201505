@@ -8,7 +8,7 @@ import os
 
 from random import randint
 from celery import shared_task
-from .models import Variant, ClinVarRecord, GenomeAnalysis
+from .models import Variant, ClinVarRecord, GenomeAnalysis, GenomeAnalysisVariant
 
 from django.conf import settings
 from django.core.files import File
@@ -55,36 +55,39 @@ def read_vcf(analysis_in):
         ref_allele = var[2]
         alt_allele = var[3]
         name_acc = var[4]
-        zygosity = var[5]
+        freq = var[5]
+        zygosity = var[6]
         variant, created = Variant.objects.get_or_create(chrom=chrom,
-                                                         pos=pos,
-                                                         ref_allele=ref_allele,
-                                                         alt_allele=alt_allele,
-                                                         zyg=zygosity)
-        print "Variant: " + str(variant)
-        print "Created? " + str(created)
+                                                             pos=pos,
+                                                             ref_allele=ref_allele,
+                                                             alt_allele=alt_allele)
+        if not variant.freq:
+            variant.freq = freq
+            variant.save()
+
+        genomeanalysisvariant = GenomeAnalysisVariant.objects.create(genomeanalysis=analysis_in, variant=variant, zyg=zygosity)
         for spec in name_acc:
             #for online report
             url = "http://www.ncbi.nlm.nih.gov/clinvar/" + str(spec[0])
             name = spec[1]
-            freq = spec[2]
-            clnsig = spec[3]
+            clnsig = spec[2]
+
             record, created = ClinVarRecord.objects.get_or_create(accnum=spec[0],
-                                                         variant=variant,
-                                                         condition=name, freq=freq, clnsig=clnsig)
+                                                                  variant=variant,
+                                                                  condition=name, clnsig=clnsig)
             record.save()
-            analysis_in.variants.add(variant)
+            #analysis_in.variants.add(variant)
             #for CSV output
             data = (chrom, pos, name, clnsig, freq, zygosity, url)
             a.writerow(data)
-
+            
     #closes the tmp file
     tmp_output_file.close()
-    
+            
     #opens the tmp file and creates an output processed file"
     csv_filename = os.path.basename(analysis_in.uploadfile.path) + '.csv'
-
+            
     with open(tmp_output_file_path, 'rb') as f:
         output_file = File(f)    
         analysis_in.processedfile.save(csv_filename, output_file)
-    
+                

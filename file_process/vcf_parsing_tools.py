@@ -103,14 +103,12 @@ class ClinVarData():
     def _parse_allele_data(self):
         # CLNALLE describes which allele ClinVar data correspond to.
         clnalle_keys = [int(x) for x in self.info['CLNALLE'].split(',')]
+        print "clnalle_keys"
+        print clnalle_keys
         info_clnvar_tags = ['CLNDSDB', 'CLNDSDBID', 'CLNACC', 'CLNDBN',
                             'CLNSIG', 'CLNHGVS', 'CLNSRC', 'CLNSRCID']
         clnvar_data = {x:[ y.split('|') for y in self.info[x].split(',') ]
                        for x in info_clnvar_tags if x}
-        try:
-            caf = self.info['CAF']
-        except KeyError:
-            pass
         # For each clnalle_key, create a list of ClinVarEntries
         for i in range(len(clnalle_keys)):
             if int(clnalle_keys[i]) == -1:
@@ -120,18 +118,34 @@ class ClinVarData():
             # CLNDBN, and CLNSIG.
             for j in range(len(clnvar_data['CLNACC'][i])):
                 try:
-                    entry = ClinVarEntry(clndsdb=clnvar_data['CLNDSDB'][i][j],
-                                     clndsdbid=clnvar_data['CLNDSDBID'][i][j],
-                                     clnacc=clnvar_data['CLNACC'][i][j],
-                                     clndbn=clnvar_data['CLNDBN'][i][j],
-                                     clnsig=clnvar_data['CLNSIG'][i][j],
-                                     freq=caf)
+                    remove_caf = self.info['CAF'].replace("[","")
+                    remove2_caf = remove_caf.replace("]","")
+                    caf_list = remove2_caf.split(',')
+                    print caf_list
+                except KeyError:
+                    pass
+                try:
+                    for alle in clnalle_keys:
+                        entry = ClinVarEntry(clndsdb=clnvar_data['CLNDSDB'][i][j],
+                                             clndsdbid=clnvar_data['CLNDSDBID'][i][j],
+                                             clnacc=clnvar_data['CLNACC'][i][j],
+                                             clndbn=clnvar_data['CLNDBN'][i][j],
+                                             clnsig=clnvar_data['CLNSIG'][i][j],
+                                             freq=caf_list[alle])
                     print entry
                 except IndexError:
                     # Skip inconsintent entries. At least one line in the
                     # ClinVar VCF as of 2014/06 has inconsistent CLNSIG and
                     # CLNACC information (rs799916).
                     pass
+                except KeyError:
+                    entry = ClinVarEntry(clndsdb=clnvar_data['CLNDSDB'][i][j],
+                                     clndsdbid=clnvar_data['CLNDSDBID'][i][j],
+                                     clnacc=clnvar_data['CLNACC'][i][j],
+                                     clndbn=clnvar_data['CLNDBN'][i][j],
+                                     clnsig=clnvar_data['CLNSIG'][i][j],
+                                     freq="Not Provided")
+                    print entry
                 except UnboundLocalError:
                     entry = ClinVarEntry(clndsdb=clnvar_data['CLNDSDB'][i][j],
                                      clndsdbid=clnvar_data['CLNDSDBID'][i][j],
@@ -266,11 +280,13 @@ def match_to_clinvar(genome_file, clin_file):
 
                         data = [(clinvar_data.alleles[i][2].entries[n].acc,
                                  clinvar_data.alleles[i][2].entries[n].dbn,
-                                 clinvar_data.alleles[i][2].entries[n].freq,
                                 CLNSIG_INDEX[clnsig[n]])\
                                      for n in range(len(clnsig)) \
                                      if clnsig[n] == 4 or clnsig[n] == 5 or clnsig[n] == 255]
-                                
+
+                        freq_list = [clinvar_data.alleles[i][2].entries[n].freq
+                                for n in range(len(clnsig))]
+                        freq = freq_list[0]
                         if data:
                             print "DATA:"
                             print data
@@ -280,6 +296,7 @@ def match_to_clinvar(genome_file, clin_file):
                                    clinvar_data.alleles[0][0],
                                    clinvar_data.alleles[i][0],
                                    data,
+                                   freq,
                                    zygosity)
                 # Known bug: A couple ClinVar entries are swapped
                 # relative to the genome: what the genome calls
