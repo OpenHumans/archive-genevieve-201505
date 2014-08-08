@@ -4,13 +4,9 @@ from twobit import TwoBitFile
 # wget http://hgdownload.soe.ucsc.edu/goldenPath/hg19/bigZips/hg19.2bit 
 HG19_2BIT_FILEPATH = 'hg19.2bit'
 
-def main():
+def get_reference_allele(chrom, start):
     twobit_file = TwoBitFile(HG19_2BIT_FILEPATH)
-    chrom = 'chrY'
-    start = 10000
-    end = start + 50
-    seq = twobit_file[chrom][start:end]
-    print seq
-
-if __name__ == "__main__":
-    main()
+    end = start + 1
+    refallele = twobit_file[chrom][start:end]
+    print refallele
+    return refallele

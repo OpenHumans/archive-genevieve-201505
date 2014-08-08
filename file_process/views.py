@@ -8,7 +8,7 @@ from django.contrib.auth import logout
 
 from .models import GenomeAnalysis
 from .forms import UploadForm
-from .tasks import timestamp, read_vcf
+from .tasks import timestamp, read_input_genome
 
 def list(request):
     # Authenticate
@@ -16,6 +16,7 @@ def list(request):
         return render_to_response('file_process/login_error.html')
     # Handle file upload
     if request.method == 'POST':
+        print "in post"
         form = UploadForm(request.POST or None, request.FILES or None)
         user = request.user
         if form.is_valid():
@@ -23,8 +24,8 @@ def list(request):
             new_analysis = GenomeAnalysis(uploadfile = request.FILES['uploadfile'],
                                           user=form.user, name = request.POST['reportname'])
             new_analysis.save()
-            timestamp.delay()
-            read_vcf.delay(analysis_in = new_analysis)
+            print "Sending to analysis"
+            read_input_genome.delay(analysis_in = new_analysis)
             # Redirect to the uploaded files list after POST
             return HttpResponseRedirect(reverse('file_process.views.list'))
     else:

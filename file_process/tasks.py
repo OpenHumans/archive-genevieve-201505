@@ -13,8 +13,9 @@ from .models import Variant, ClinVarRecord, GenomeAnalysis, GenomeAnalysisVarian
 from django.conf import settings
 from django.core.files import File
 
-from .vcf_parsing_tools import (ClinVarEntry, ClinVarAllele, ClinVarData,
+from .utils.vcf_parsing_tools import (ClinVarEntry, ClinVarAllele, ClinVarData,
                                 match_to_clinvar)
+from .utils.conv23andMetoVCF import conv23andme_to_vcf
 
 CLINVAR_FILENAME = "clinvar-latest.vcf" 
 
@@ -30,13 +31,28 @@ def timestamp():
         logfile.write(datetime_str)
 
 @shared_task
-def read_vcf(analysis_in):
+def read_input_genome(analysis_in):
+    print "In read_input_genome"
+    name = os.path.basename(analysis_in.uploadfile.path)
+    if name.endswith('txt.gz'):
+        print "I think this is 23andMe"
+        conv23Me_file = gzip.GzipFile(mode='rb', compresslevel=9,
+                                  fileojb=analysis_in.uploadfile)
+        genome_file = conv23andme_to_vcf(conv23Me_file)
+    elif name.endswith('vcf.gz'):
+        print "I think this is vcf"
+        genome_file = gzip.GzipFile(mode='rb', compresslevel=9,
+                                fileobj=analysis_in.uploadfile)
+    print "sending to read vcf"
+    read_vcf(analysis_in, genome_file)
+
+@shared_task
+def read_vcf(analysis_in, genome_file):
+    print "read vcf"
     CLINVAR_FILEPATH = os.path.join(settings.DATA_FILE_ROOT, CLINVAR_FILENAME)
     '''Takes two .vcf files and returns matches'''
 
     clin_file = open(CLINVAR_FILEPATH, 'r')
-    genome_file = gzip.GzipFile(mode='rb', compresslevel=9,
-                                fileobj=analysis_in.uploadfile)
     
     '''creates a tmp file to write the .csv'''
     tmp_output_file_path = os.path.join('/tmp', 'django_celery_fileprocess-' +
