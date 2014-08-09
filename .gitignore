@@ -69,3 +69,6 @@ target/
 
 # Data Files
 data_files/
+
+#2bitreference
+hg19.2bit

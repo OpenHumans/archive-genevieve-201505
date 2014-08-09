@@ -18,7 +18,7 @@ from .utils.vcf_parsing_tools import (ClinVarEntry, ClinVarAllele, ClinVarData,
 from .utils.conv23andMetoVCF import conv23andme_to_vcf
 
 CLINVAR_FILENAME = "clinvar-latest.vcf" 
-
+HG19_2BIT_FILEPATH = 'hg19.2bit'
 
 @shared_task
 def timestamp():
@@ -34,17 +34,22 @@ def timestamp():
 def read_input_genome(analysis_in):
     print "In read_input_genome"
     name = os.path.basename(analysis_in.uploadfile.path)
-    if name.endswith('txt.gz'):
-        print "I think this is 23andMe"
-        conv23Me_file = gzip.GzipFile(mode='rb', compresslevel=9,
-                                  fileojb=analysis_in.uploadfile)
-        genome_file = conv23andme_to_vcf(conv23Me_file)
-    elif name.endswith('vcf.gz'):
+    print name
+    if name.endswith('vcf.gz'):
         print "I think this is vcf"
         genome_file = gzip.GzipFile(mode='rb', compresslevel=9,
                                 fileobj=analysis_in.uploadfile)
-    print "sending to read vcf"
-    read_vcf(analysis_in, genome_file)
+        print "sending to read vcf"
+        read_vcf(analysis_in, genome_file)
+    elif name.endswith('.gz'):
+        print "I think this is 23andMe"
+        conv23Me_file = gzip.GzipFile(mode='rb', compresslevel=9,
+                                  fileobj=analysis_in.uploadfile)
+        genome_file = conv23andme_to_vcf(conv23Me_file)
+        print "sending to read vcf"
+        read_vcf(analysis_in, genome_file)
+    else:
+        print "Error with incorrect file name"
 
 @shared_task
 def read_vcf(analysis_in, genome_file):

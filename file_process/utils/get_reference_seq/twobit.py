@@ -8,7 +8,6 @@ This code is part of the bx-python project and is governed by its license.
 (According to the following link, this is a BSD license.)
 https://bitbucket.org/james_taylor/bx-python/issue/28/license-copyright-for-this-code
 """
-
 import pyximport
 pyximport.install()
 import _twobit

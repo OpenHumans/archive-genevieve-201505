@@ -9,10 +9,13 @@ conv23ME_CHROM_INDEX = {"1": 1, "2": 2, "3": 3, "4": 4, "5": 5,
 
 
 def conv23andme_to_vcf(conv23Me_file):
+    global conv23ME_CHROM_INDEX
     for conv23Me_line in conv23Me_file:
+        while conv23Me_line.startswith("#"):
+            conv23Me_line = conv23Me_file.next()
         conv23Me_fields = conv23Me_line.strip().split('\t')
         rsid = conv23Me_fields[0]
-        chrom = conv23Me_CHROM_INDEX[conv23Me_fields[1]]
+        chrom = conv23ME_CHROM_INDEX[conv23Me_fields[1]]
         pos = int(conv23Me_fields[2])
         genotype = conv23Me_fields[3]
 
@@ -34,12 +37,11 @@ def conv23andme_to_vcf(conv23Me_file):
             vcf_id = rsid
         else:
             vcf_id = '.'
-
+        
         refallele = get_reference_allele('chr' + str(chrom), pos)
         vcf_ref = refallele
-
         # This is for extracting the ref/alt alleles
-        split_genotype = self.genotype.split("")
+        split_genotype = list(genotype)
         allele_list = []
         allele_list.append(refallele)
         for allele in split_genotype:
@@ -50,11 +52,12 @@ def conv23andme_to_vcf(conv23Me_file):
             vcf_alt = ','.join(alt_list)
         else:
             vcf_alt = '.'
-
         vcf_genome_data = '/'.join([str(allele_list.index(x)) for
                                     x in split_genotype])
         # build the vcf line
-        vcf_line ='\t'.join[vcf_chrom, vcf_pos,
-                        vcf_id, vcf_ref, vcf_alt,
-                        vcf_qual, vcf_filter, vcf_info, vcf_format, vcf_genome_data]
+        vcf_seq = [str(vcf_chrom), str(vcf_pos),
+                   vcf_id, vcf_ref, vcf_alt,
+                   vcf_qual, vcf_filter, vcf_info,
+                   vcf_format, vcf_genome_data]
+        vcf_line ='\t'.join(vcf_seq)
         yield vcf_line
