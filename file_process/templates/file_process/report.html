@@ -31,7 +31,12 @@
             <a href="http://www.ncbi.nlm.nih.gov/clinvar/{{clinvarrecord.accnum}}">
               {{clinvarrecord.condition}}</a>
           </td>
-	  <td colspan="3">Significance: {{clinvarrecord.clnsig}}</td>
+	  <td colspan="2">Significance: {{clinvarrecord.clnsig}}</td>
+	  <td>
+	    <a href="/file_process/commentary/{{clinvarrecord.id}}/">
+	      View Community Comments
+	    </a>
+	  </td>
 	</tr>
           {% endfor %}
         {% endfor %}

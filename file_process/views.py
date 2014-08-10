@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.contrib.auth import logout
 
-from .models import GenomeAnalysis
+from .models import GenomeAnalysis, ClinVarRecord
 from .forms import UploadForm
 from .tasks import timestamp, read_input_genome
 
@@ -65,3 +65,17 @@ def report(request, genomeanalysis_id):
 
 def logout_view(request):
     logout(request)
+
+def commentary(request, variant_id):
+    # Authenticate                                                                                                                            
+    if not request.user.is_authenticated():
+        return render_to_response('file_process/login_error.html')
+    try:
+        specific_variant = ClinVarRecord.objects.get(pk=variant_id)
+        return render_to_response(
+            'file_process/community_comments.html',
+            {'variant_id': variant_id,
+             'specific_variant': specific_variant}
+            )
+    except ClinVarRecord.DoesNotExist:
+        raise Http404
