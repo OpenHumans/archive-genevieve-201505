@@ -26,24 +26,25 @@
 	</tr>
         {% for clinvarrecord in variant.clinvarrecord_set.all %}
 	<tr>
-	  <td colspan="3" style="word-wrap: break-word;min-width: 180px;max-width: 180px;">
+	  <td></td>
+	  <td colspan="3" style="word-wrap: break-word;min-width: 140px;max-width: 140px;">
             Condition:
             <a href="http://www.ncbi.nlm.nih.gov/clinvar/{{clinvarrecord.accnum}}">
               {{clinvarrecord.condition}}</a>
           </td>
-	  <td colspan="2">Significance: {{clinvarrecord.clnsig}}</td>
+	  <td>Significance: {{clinvarrecord.clnsig}}</td>
 	  <td>
 	    <a href="/file_process/commentary/{{clinvarrecord.id}}/">
-	      View Community Comments
+	      Genevieve Re-Evaluation
 	    </a>
 	  </td>
 	</tr>
-          {% endfor %}
+        {% endfor %}
         {% endfor %}
       </tbody>
     </table>
 </div>
-    {% else %}
-	There were no matches against the ClinVar Database.
-    {% endif %}
+{% else %}
+There were no matches against the ClinVar Database.
+{% endif %}
 {% endblock %}

@@ -5,6 +5,7 @@ from datetime import datetime
 import csv
 import gzip
 import os
+import re
 
 from random import randint
 from celery import shared_task
@@ -35,13 +36,13 @@ def read_input_genome(analysis_in):
     print "In read_input_genome"
     name = os.path.basename(analysis_in.uploadfile.path)
     print name
-    if name.endswith('vcf.gz'):
+    if re.match(r"\w+.vcf(_\d+)?.gz$", name):
         print "I think this is vcf"
         genome_file = gzip.GzipFile(mode='rb', compresslevel=9,
                                 fileobj=analysis_in.uploadfile)
         print "sending to read vcf"
         read_vcf(analysis_in, genome_file)
-    elif name.endswith('.gz'):
+    elif re.match(r"\w+.txt(_\d+)?.gz$", name):
         print "I think this is 23andMe"
         conv23Me_file = gzip.GzipFile(mode='rb', compresslevel=9,
                                   fileobj=analysis_in.uploadfile)
