@@ -14,8 +14,7 @@ from .models import Variant, ClinVarRecord, GenomeAnalysis, GenomeAnalysisVarian
 from django.conf import settings
 from django.core.files import File
 
-from .utils.vcf_parsing_tools import (ClinVarEntry, ClinVarAllele, ClinVarData,
-                                match_to_clinvar)
+from .utils import vcf_parsing_tools as vcftools
 from .utils.conv23andMetoVCF import conv23andme_to_vcf
 
 CLINVAR_FILENAME = "clinvar-latest.vcf" 
@@ -69,7 +68,7 @@ def read_vcf(analysis_in, genome_file):
     header = ("Chromosome", "Position", "Name", "Significance", "Frequency", "Zygosity", "ACC URL")
     a.writerow(header)
 
-    matched_variants = match_to_clinvar(genome_file, clin_file)
+    matched_variants = vcftools.match_to_clinvar(genome_file, clin_file)
 
     for var in matched_variants:
         chrom = var[0]
