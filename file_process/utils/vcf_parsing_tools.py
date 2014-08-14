@@ -1,5 +1,6 @@
 import json
 import re
+import sys
 
 CHROM_INDEX = {"1": 1, "2": 2, "3": 3, "4": 4, "5": 5,
                "6": 6, "7": 7, "8": 8, "9": 9, "10": 10,
@@ -19,9 +20,9 @@ CLNSIG_INDEX = {0 : "unknown",
                 255 : "other"
                }
 
-class ClinVarEntry():
-    """Store ClinVar data relating to one accession."""
-    def __init__(self, clndsdb, clndsdbid, clnacc, clndbn, clnsig, freq):
+class ClinVarRecord(object):
+    """Store ClinVar data relating to one record."""
+    def __init__(self, clndsdb, clndsdbid, clnacc, clndbn, clnsig):
         clndsdbs = clndsdb.split(':')
         clndsdbids = clndsdbid.split(':')
         self.dsdb = [ (clndsdbs[i], clndsdbids[i]) for i
@@ -29,7 +30,6 @@ class ClinVarEntry():
         self.acc = clnacc
         self.dbn = clndbn
         self.sig = clnsig
-        self.freq = freq
 
     def __str__(self):
         return json.dumps(self.as_dict(), ensure_ascii=True)
@@ -38,53 +38,121 @@ class ClinVarEntry():
         return {'dsdb': self.dsdb,
                 'acc': self.acc,
                 'dbn': self.dbn,
-                'sig': self.sig,
-                'freq': self.freq}
+                'sig': self.sig}
 
-class ClinVarAllele():
-    """Store ClinVar data relating to one allele."""
-    def __init__(self, entries, clnhgvs, clnsrcs, clnsrcids):
-        self.src = [ (clnsrcs[i], clnsrcids[i]) for i
-                     in range(len(clnsrcs)) ]
-        self.hgvs = clnhgvs
-        self.entries = entries
+
+class Allele(object):
+    """Store data relating to one allele."""
+    def __init__(self, *args, **kwargs):
+        """
+        Initialize Allele object
+
+        Required arguments:
+        sequence:  Short string of DNA letters (ACGT) for the allele.
+                   May be empty (to represent a deletion).
+
+        Optional arguments:
+        frequency: a string/float between 0 and 1, or string saying "NOT1000G"
+        """
+        sequence = kwargs['sequence']
+        if 'frequency' in kwargs:
+            frequency = kwargs['frequency']
+        else:
+            frequency = None
+
+        if not re.match('^[ACGT]*$', sequence):
+            raise ValueError("Allele sequence isn't a standard DNA sequence")
+        self.sequence = sequence
+        if frequency:
+            try:
+                if (float(frequency) < 0.0 or
+                    float(frequency) > 1.0):
+                    raise ValueError('Allele frequency must be between 0 and 1')
+            except ValueError:
+                if not (frequency == 'NOT1000G'):
+                    raise ValueError('Allele frequency must be a number ' +
+                                     'between 0 and 1, or the string ' +
+                                     '"NOT1000G".')
+            self.frequency = frequency
 
     def __str__(self):
+        """Print Allele object as dict object data."""
         return json.dumps(self.as_dict(), ensure_ascii=True)
 
     def as_dict(self):
-        return {'hgvs': self.hgvs,
-                'src': self.src,
-                'entries': [x.as_dict() for x in self.entries]}
+        """Return Allele data as dict object."""
+        self_as_dict['sequence'] = self.sequence
+        if hasattr(self, 'frequency'):
+            self_as_dict['frequency'] = self.frequency
+        return self_as_dict
 
-class ClinVarData():
-    """Store ClinVar data from a VCF line."""
-    def __init__(self, vcf_line):
+
+class ClinVarAllele(Allele):
+    """Store ClinVar data relating to one allele."""
+    def __init__(self, *args, **kwargs):
+        """
+        Initialize ClinVarAllele object
+
+        A ClinVarAllele is an allele for a genomic position that has data
+        from ClinVar associated with it. ClinVar data in the VCF appears to
+        exist at two levels: the allele, and records. A ClinVar "record"
+        describes a reported effect, and any allele may have multiple
+        records associated with it. An allele can also have other data
+        returned by ClinVar (in the ClinVar VCF this appears to be separate
+        to the Records).
+
+        Required arguments:
+        sequence:  String of DNA letters (A, C, G, or T) for the allele;
+                   may be empty (to represent a deletion).
+        records:   list of ClinVarRecord objects associated with this allele
+        hgvs:      HGVS nomenclature for this allele
+        clnsrcs:   list of ClinVar sources
+        clnsrcids: list of IDs for the ClinVar sources
+
+        Optional arguments:
+        frequency: a float between 0 and 1, or string saying "NOT1000G"
+        """
+        clnsrcs, clnsrcids, clnhgvs, records = [kwargs[x] for x in
+                                                ['clnsrcs', 'clnsrcids',
+                                                 'clnhgvs', 'records']]
+        self.src = [ (clnsrcs[i], clnsrcids[i]) for
+                     i in range(len(clnsrcs)) ]
+        self.hgvs = clnhgvs
+        self.records = records
+        super(ClinVarAllele, self).__init__(*args, **kwargs)
+
+    def as_dict(self):
+        """Return ClinVarAllele data as dict object."""
+        self_as_dict = super.ClinVarAllele.as_dict(*args, **kwargs)
+        self_as_dict['hgvs'] = self.hgvs
+        self_as_dict['src'] = self.src
+        self_as_dict['records'] = [x.as_dict() for x in self.records]
+        return self_as_dict
+
+
+class VCFLine(object):
+    """Process data from a VCF line."""
+
+    def __init__(self, *args, **kwargs):
+        """Store data from a VCF line."""
+        vcf_line = kwargs['vcf_line']
+        skip_info = ('skip_info' in kwargs and kwargs['skip_info'])
+
         vcf_fields = vcf_line.strip().split('\t')
         self.chrom = vcf_fields[0]
         self.start = int(vcf_fields[1])
         self.ref_allele = vcf_fields[3]
-        self.alt_alleles = vcf_fields[4].split(',')
-        self.info = self._parse_info(vcf_fields[7])
-        # Shouldn't be storing second element in arrays below, this is a
-        # counter for the number of copies of the allele in the genome,
-        # it's not ClinVarData.
-        self.alleles = [[self.ref_allele, 0, None]] + [[x, 0, None] for x in
-                                                       self.alt_alleles]
-        self._parse_allele_data()
+        if vcf_fields[4] == '.':
+            self.alt_alleles = []
+        else:
+            self.alt_alleles = vcf_fields[4].split(',')
+        if not skip_info:
+            self.info = self._parse_info(vcf_fields[7])
+        self.alleles = self._parse_allele_data()
 
-    def __str__(self):
-        return json.dumps(self.as_dict(), ensure_ascii=True)
-
-    def as_dict(self):
-        return {'chrom': self.chrom,
-                'start': self.start,
-                'ref_allele': self.ref_allele,
-                'alt_alleles': self.alt_alleles,
-                'info': self.info,
-                'alleles': [[x[0], x[1], x[2].as_dict()] if x[1] else
-                            x for x in self.alleles],
-                }
+    def _parse_allele_data(self):
+        return [Allele(sequence=x) for x in
+                [self.ref_allele] + self.alt_alleles]
 
     def _parse_info(self, info_field):
         info = dict()
@@ -100,91 +168,177 @@ class ClinVarData():
                 info[info_item_data[0]] = info_item_data[1]
         return info
 
+    def __str__(self):
+        return json.dumps(self.as_dict(), ensure_ascii=True)
+
+    def as_dict(self):
+        self_as_dict = {'chrom': self.chrom,
+                        'start': self.start,
+                        'ref_allele': self.ref_allele,
+                        'alt_alleles': self.alt_alleles,
+                        'alleles': [x.as_dict() for x in self.alleles]
+                        }
+        try:
+            self_as_dict['info'] = self.info
+        except AttributeError:
+            pass
+        return self_as_dict
+
+    @staticmethod
+    def get_pos(vcf_line):
+        """
+        Very lightweight parsing of a vcf line to get position.
+
+        Returns a dict containing:
+        'chrom': index of chromosome (int), indicates sort order
+        'pos': position on chromosome (int)
+        """
+        if not vcf_line:
+            return None
+        vcf_data = vcf_line.strip().split("\t")
+        return_data = dict()
+        return_data['chrom'] = CHROM_INDEX[vcf_data[0]]
+        return_data['pos'] = int(vcf_data[1])
+        return return_data
+
+
+class GenomeVCFLine(VCFLine):
+    """Store Genome data from a VCF line."""
+    def __init__(self, *args, **kwargs):
+        super(GenomeVCFLine, self).__init__(self, *args, **kwargs)
+        vcf_line = kwargs['vcf_line']
+        vcf_fields = vcf_line.strip().split('\t')
+        self.genotype_allele_indexes = self._parse_genotype(vcf_fields)
+
+    def _parse_genotype(self, vcf_fields):
+        format = vcf_fields[8].split(':')
+        gt_idx = format.index('GT')
+        genome_data = vcf_fields[9].split(':')
+        return [int(x) for x in re.split(r'[\|/]', genome_data[gt_idx])]
+
+
+class ClinVarVCFLine(VCFLine):
+    """Store ClinVar data from a VCF line."""
+    def __init__(self, *args, **kwargs):
+        kwargs['skip_info'] = False
+        super(ClinVarVCFLine, self).__init__(self, *args, **kwargs)
+
+    def as_dict(self):
+        return {'chrom': self.chrom,
+                'start': self.start,
+                'ref_allele': self.ref_allele,
+                'alt_alleles': self.alt_alleles,
+                'info': self.info,
+                'alleles': [[x[0], x[1], x[2].as_dict()] if x[1] else
+                            x for x in self.alleles],
+                }
+
+    def _parse_frequencies(self):
+        given_freqs = self.info['CAF'].rstrip(']').lstrip('[').split(',')
+        parsed_freqs = ['NOT1000G' if x == '.' else x for x in given_freqs]
+        return parsed_freqs
+
+    def _parse_clinvar_allele(self, *args, **kwargs):
+        cln_data, cln_idx, allele_idx = [kwargs[x] for x in
+                                         ['cln_data', 'cln_idx', 'allele_idx']]
+        if 'frequency' in kwargs:
+            frequency = kwargs['frequency']
+        else:
+            frequency = None
+
+        if allele_idx == 0:
+            sequence = self.ref_allele
+        else:
+            sequence = self.alt_alleles[allele_idx - 1]
+        clnsrcs = cln_data['CLNSRC'][cln_idx]
+        clnsrcids = cln_data['CLNSRCID'][cln_idx]
+        clnhgvs = cln_data['CLNHGVS'][cln_idx][0]
+
+        # Process all the ClinVar records for this allele.
+        records = []
+        for record_idx in range(len(cln_data['CLNACC'])):
+            try:
+                record = ClinVarRecord(
+                    clndsdb=cln_data['CLNDSDB'][cln_idx][record_idx],
+                    clndsdbid=cln_data['CLNDSDBID'][cln_idx][record_idx],
+                    clnacc=cln_data['CLNACC'][cln_idx][record_idx],
+                    clndbn=cln_data['CLNDBN'][cln_idx][record_idx],
+                    clnsig=cln_data['CLNSIG'][cln_idx][record_idx])
+            except IndexError:
+                # Skip inconsintent entries. At least one line in the
+                # ClinVar VCF as of 2014/06 has inconsistent CLNSIG and
+                # CLNACC information (rs799916).
+                return self._parse_allele(*args, **kwargs)
+            records.append(record)
+        if frequency:
+            return ClinVarAllele(sequence=sequence,
+                                 clnhgvs=clnhgvs,
+                                 clnsrcs=clnsrcs,
+                                 clnsrcids=clnsrcids,
+                                 records=records,
+                                 frequency=frequency)
+        else:
+            return ClinVarAllele(sequence=sequence,
+                                 clnhgvs=clnhgvs,
+                                 clnsrcs=clnsrcs,
+                                 clnsrcids=clnsrcids,
+                                 records=records)
+
+    def _parse_allele(self, *args, **kwargs):
+        """Create an Allele, with optional frequency data."""
+        allele_idx = kwargs['allele_idx']
+        try:
+            frequency = kwargs['frequency']
+        except KeyError:
+            frequency = None
+
+        if allele_idx == 0:
+            sequence = self.ref_allele
+        else:
+            sequence = self.alt_alleles[allele_idx - 1]
+        if frequency:
+            return Allele(sequence=sequence,
+                          frequency=frequency)
+        else:
+            return Allele(sequence=sequence)
+
     def _parse_allele_data(self):
+        """Parse alleles, overrides parent method."""
+        # Get allele frequencies if they exist.
+        frequencies = []
+        if 'CAF' in self.info:
+            frequencies = self._parse_frequencies()
+
         # CLNALLE describes which allele ClinVar data correspond to.
         clnalle_keys = [int(x) for x in self.info['CLNALLE'].split(',')]
         info_clnvar_tags = ['CLNDSDB', 'CLNDSDBID', 'CLNACC', 'CLNDBN',
                             'CLNSIG', 'CLNHGVS', 'CLNSRC', 'CLNSRCID']
-        clnvar_data = {x:[ y.split('|') for y in self.info[x].split(',') ]
+        # Clinvar data is split first by comma, then by pipe.
+        cln_data = {x:[ y.split('|') for y in self.info[x].split(',') ]
                        for x in info_clnvar_tags if x}
-        # For each clnalle_key, create a list of ClinVarEntries
-        for i in range(len(clnalle_keys)):
-            if int(clnalle_keys[i]) == -1:
-                continue
-            entries = []
-            # Each ClinVarEntry has it's own CLNDSDB, CLNDSDBID, CLNACC,
-            # CLNDBN, and CLNSIG.
-            for j in range(len(clnvar_data['CLNACC'][i])):
-                try:
-                    remove_caf = self.info['CAF'].replace("[","")
-                    remove2_caf = remove_caf.replace("]","")
-                    caf_list = remove2_caf.split(',')
-                except KeyError:
-                    pass
-                try:
-                    for alle in clnalle_keys:
-                        entry = ClinVarEntry(clndsdb=clnvar_data['CLNDSDB'][i][j],
-                                             clndsdbid=clnvar_data['CLNDSDBID'][i][j],
-                                             clnacc=clnvar_data['CLNACC'][i][j],
-                                             clndbn=clnvar_data['CLNDBN'][i][j],
-                                             clnsig=clnvar_data['CLNSIG'][i][j],
-                                             freq=caf_list[alle])
-                except IndexError:
-                    # Skip inconsintent entries. At least one line in the
-                    # ClinVar VCF as of 2014/06 has inconsistent CLNSIG and
-                    # CLNACC information (rs799916).
-                    pass
-                except KeyError:
-                    entry = ClinVarEntry(clndsdb=clnvar_data['CLNDSDB'][i][j],
-                                     clndsdbid=clnvar_data['CLNDSDBID'][i][j],
-                                     clnacc=clnvar_data['CLNACC'][i][j],
-                                     clndbn=clnvar_data['CLNDBN'][i][j],
-                                     clnsig=clnvar_data['CLNSIG'][i][j],
-                                     freq="Not Provided")
-                except UnboundLocalError:
-                    entry = ClinVarEntry(clndsdb=clnvar_data['CLNDSDB'][i][j],
-                                     clndsdbid=clnvar_data['CLNDSDBID'][i][j],
-                                     clnacc=clnvar_data['CLNACC'][i][j],
-                                     clndbn=clnvar_data['CLNDBN'][i][j],
-                                     clnsig=clnvar_data['CLNSIG'][i][j],
-                                     freq="Not Provided")
-                entries.append(entry)
-            self.alleles[int(clnalle_keys[i])][2] = ClinVarAllele(
-                entries=entries,
-                clnhgvs=clnvar_data['CLNHGVS'][i][0],
-                clnsrcs=clnvar_data['CLNSRC'][i],
-                clnsrcids=clnvar_data['CLNSRCID'][i])
 
-def vcf_line_pos(vcf_line):
-    """
-    Very lightweight processing of vcf line to enable position matching.
-
-    Returns a dict containing:
-        'chrom': index of chromosome (int), indicates sort order
-        'pos': position on chromosome (int)
-    """
-    if not vcf_line:
-        return None
-    vcf_data = vcf_line.strip().split("\t")
-    return_data = dict()
-    return_data['chrom'] = CHROM_INDEX[vcf_data[0]]
-    return_data['pos'] = int(vcf_data[1])
-    return return_data
-
-
-def genome_vcf_line_alleles(vcf_line):
-    if not vcf_line:
-        return None
-    vcf_data = vcf_line.strip().split("\t")
-    possible_alleles = [vcf_data[3]] + vcf_data[4].split(',')
-    format_tags = vcf_data[8].split(":")
-    genome_values = vcf_data[9].split(":")
-    genome_data = { format_tags[i]:genome_values[i] for i in
-                    range(len(genome_values)) }
-    alleles = [possible_alleles[int(x)] for x in
-               re.split('[|/]', genome_data['GT'])
-               if x != '.']
-    return alleles
+        # Iterate over all alleles, if index is in clnallele_keys then
+        # create a ClinVarAllele, otherwise create an Allele.
+        alleles = []
+        for i in range(len(self.alt_alleles) + 1):
+            if i in clnalle_keys and frequencies:
+                cln_idx = clnalle_keys.index(i)
+                allele = self._parse_clinvar_allele(allele_idx=i,
+                                                    cln_idx=cln_idx,
+                                                    cln_data=cln_data,
+                                                    frequency=frequencies[i])
+            elif i in clnalle_keys:
+                cln_idx = clnalle_keys.index(i)
+                allele = self._parse_clinvar_allele(allele_idx=i,
+                                                    cln_idx=cln_idx,
+                                                    cln_data=cln_data)
+            elif frequencies:
+                allele = self._parse_allele(allele_idx=i,
+                                            frequency=frequencies[i])
+            else:
+                allele = self._parse_allele(allele_idx=i)
+            alleles.append(allele)
+        return alleles
 
 
 def match_to_clinvar(genome_file, clin_file):
@@ -201,103 +355,102 @@ def match_to_clinvar(genome_file, clin_file):
     # Advance through both files simultaneously to find matches
     while clin_curr_line or genome_curr_line:
 
-        clin_curr_pos = vcf_line_pos(clin_curr_line)
-        genome_curr_pos = vcf_line_pos(genome_curr_line)
-        if clin_curr_pos['chrom'] > genome_curr_pos['chrom']:
-            # If the ClinVar chromosome is greater, advance the genome's file
+        # Advance a file when positions aren't equal.
+        clin_curr_pos = VCFLine.get_pos(clin_curr_line)
+        genome_curr_pos = VCFLine.get_pos(genome_curr_line)
+        try:
+            if clin_curr_pos['chrom'] > genome_curr_pos['chrom']:
+                genome_curr_line = genome_file.next()
+                continue
+            elif clin_curr_pos['chrom'] < genome_curr_pos['chrom']:
+                clin_curr_line = clin_file.next()
+                continue
+            if clin_curr_pos['pos'] > genome_curr_pos['pos']:
+                genome_curr_line = genome_file.next()
+                continue
+            elif clin_curr_pos['pos'] < genome_curr_pos['pos']:
+                clin_curr_line = clin_file.next()
+                continue
+        except StopIteration:
+            break
+
+        # If we get here, start positions match.
+        # Look for allele matching.
+
+        genome_vcf_line = GenomeVCFLine(vcf_line=genome_curr_line,
+                                        skip_info=True)
+        clinvar_vcf_line = ClinVarVCFLine(vcf_line=clin_curr_line)
+
+        genotype_allele_indexes = genome_vcf_line.genotype_allele_indexes
+        genome_alleles = [genome_vcf_line.alleles[x] for
+                          x in genotype_allele_indexes]
+
+        # Determine zygosity. Zygosity is assumed to be exclusive
+        # (heterozygous, homozygous, or hemizygous).
+        if (len(genome_alleles) == 1):
+            zygosity = 'Hem'
+        elif (len(genome_alleles) == 2):
+            if genome_alleles[0].sequence == genome_alleles[1].sequence:
+                zygosity = 'Hom'
+                genome_alleles = [genome_alleles[0]]
+            else:
+                zygosity = 'Het'
+        else:
+            raise ValueError('This code only expects to work on genomes with ' +
+                             'one or two alleles called at each location.' +
+                             'The following line violates this:' +
+                             genome_vcf_line)
+
+        clinvar_allele_findings = []
+        clinvar_findings_zygosity = []
+
+        # Match only if ClinVar and Genome ref_alleles match.
+        if not (genome_vcf_line.ref_allele == clinvar_vcf_line.ref_allele):
             try:
                 genome_curr_line = genome_file.next()
-            except StopIteration:
-                break
-
-        elif clin_curr_pos['chrom'] < genome_curr_pos['chrom']:
-            # If the genome's chromosome is greater, advance the ClinVar file
-            try:
                 clin_curr_line = clin_file.next()
+                continue
             except StopIteration:
                 break
 
-        if clin_curr_pos['chrom'] == genome_curr_pos['chrom']:
+        for genome_allele in genome_alleles:
+            for allele in clinvar_vcf_line.alleles:
+                if genome_allele.sequence == allele.sequence:
+                    # The 'records' attribute is specific to ClinVarAlleles.
+                    if hasattr(allele, 'records'):
+                        try:
+                            frequency = allele.frequency
+                        except AttributeError:
+                            frequency = 'Unknown'
 
-            if clin_curr_pos['pos'] > genome_curr_pos['pos']:
-                # If the ClinVar position is greater, advance the genome's file
-                try:
-                    genome_curr_line = genome_file.next()
-                except StopIteration:
-                    break
-            elif clin_curr_pos['pos'] < genome_curr_pos['pos']:
-                # If the genome's position is greater, advance the ClinVar file
-                try:
-                    clin_curr_line = clin_file.next()
-                except StopIteration:
-                    break
-            # Start positions match, look for allele matching.
-            else:
-                # Figure out what alleles the genome has
-                genome_alleles = genome_vcf_line_alleles(genome_curr_line)
-
-                # Because ClinVar records can match ref allele, include
-                # checks for both ref and alt alleles in both records.
-                clinvar_data = ClinVarData(clin_curr_line)
-
-                for genome_allele in genome_alleles:
-                    # Using index so we can call up relevant ClinVarEntries
-                    for i in range(len(clinvar_data.alleles)):
-                        is_same_len_change = (
-                            len(genome_allele) - len(genome_alleles[0]) ==
-                             len(clinvar_data.alleles[i][0]) -
-                             len(clinvar_data.alleles[0][0]))
-                        is_match = (is_same_len_change and
-                            (genome_allele.startswith(
-                                clinvar_data.alleles[i][0])) or
-                            (clinvar_data.alleles[i][0].startswith(
-                                genome_allele)))
-                        if is_match:
-                            clinvar_data.alleles[i][1] += 1
-
-                for i in range(len(clinvar_data.alleles)):
-                    zygosity = "???"
-                    if (clinvar_data.alleles[i][1] and
-                        clinvar_data.alleles[i][2]):
-                        if len(genome_alleles) == 2:
-                            if clinvar_data.alleles[i][1] == 1:
-                                zygosity = "Het"
-                            elif clinvar_data.alleles[i][1] == 2:
-                                zygosity = "Hom"
-                        elif len(genome_alleles) == 1:
-                            if clinvar_data.alleles[i][1] == 1:
-                                # Hemizygous, e.g. X chrom when XY.
-                                zygosity = "Hem"
-
-                        clnsig = [int(clinvar_data.alleles[i][2].entries[x].sig) \
-                                  for x in range(len(clinvar_data.alleles[i][2].entries))]
-
-                        data = [(clinvar_data.alleles[i][2].entries[n].acc,
-                                 clinvar_data.alleles[i][2].entries[n].dbn,
-                                CLNSIG_INDEX[clnsig[n]])\
-                                     for n in range(len(clnsig)) \
-                                     if clnsig[n] == 4 or clnsig[n] == 5 or clnsig[n] == 255]
-
-                        freq_list = [clinvar_data.alleles[i][2].entries[n].freq
-                                for n in range(len(clnsig))]
-                        freq = freq_list[0]
+                        clnsig = [int(allele.records[x].sig) for
+                                  x in range(len(allele.records))]
+                        data = [(allele.records[n].acc,
+                                 allele.records[n].dbn,
+                                 CLNSIG_INDEX[clnsig[n]]) for n in
+                                range(len(clnsig)) if (clnsig[n] == 4 or
+                                                       clnsig[n] == 5 or
+                                                       clnsig[n] == 255)]
                         if data:
-                            print "DATA:"
-                            print data
-                            # acc is a list of accession numbers for this variant
                             yield (genome_curr_pos['chrom'],
                                    genome_curr_pos['pos'],
-                                   clinvar_data.alleles[0][0],
-                                   clinvar_data.alleles[i][0],
+                                   clinvar_vcf_line.alleles[0].sequence,
+                                   allele.sequence,
                                    data,
-                                   freq,
+                                   frequency,
                                    zygosity)
-                # Known bug: A couple ClinVar entries are swapped
-                # relative to the genome: what the genome calls
-                # reference, ClinVar calls alternate (and visa versa).
-                # Currently these rare situations result in a non-match.
-                try:
-                    genome_curr_line = genome_file.next()
-                    clin_curr_line = clin_file.next()
-                except StopIteration:
-                    break
+
+        # Done matching, move on.
+        try:
+            genome_curr_line = genome_file.next()
+            clin_curr_line = clin_file.next()
+        except StopIteration:
+            break
+
+
+if __name__ == "__main__":
+    clinvar_file = open(sys.argv[1])
+    genome_file = open(sys.argv[2])
+    matching = match_to_clinvar(genome_file, clinvar_file)
+    for data in matching:
+        print data
