@@ -20,6 +20,7 @@ TWOBIT_MAGIC_NUMBER_SWAP = 0x4327411A
 TWOBIT_MAGIC_SIZE = 4
 TWOBIT_VERSION = 0
 
+
 class TwoBitSequence(object):
     """Store index, length, and other information for a twobit sequence"""
     def __init__(self, twobit_file, header_offset=None):
@@ -30,7 +31,7 @@ class TwoBitSequence(object):
         self.n_blocks = None
         self.masked_blocks = None
         self.loaded = False
-        
+
     def __getitem__(self, slice_data):
         """
         Interpret slice data and return region of sequence from twobit file
@@ -40,11 +41,11 @@ class TwoBitSequence(object):
         if stop - start < 1:
             return ""
         return _twobit.read(self.twobit_file, self, start, stop, False)
-        
+
     def __len__(self):
         """Return sequence size"""
         return self.size
-        
+
     def get(self, start, end):
         """Get region of sequence from twobit file"""
         # Trim start / stop
@@ -59,7 +60,8 @@ class TwoBitSequence(object):
         dna = _twobit.read(self.twobit_file, self, start, end, False)
         # Return
         return dna
-        
+
+
 class TwoBitFile(DictMixin):
     """Open and keep track of twobit genome file"""
 
@@ -75,9 +77,9 @@ class TwoBitFile(DictMixin):
         self.byte_order = ">"
         magic = unpack(">L", twobit_file.read(TWOBIT_MAGIC_SIZE))[0]
         if magic != TWOBIT_MAGIC_NUMBER:
-            if magic == TWOBIT_MAGIC_NUMBER_SWAP: 
+            if magic == TWOBIT_MAGIC_NUMBER_SWAP:
                 self.byte_order = "<"
-            else: 
+            else:
                 raise Exception("not a 2bit file")
         self.magic = magic
         self.twobit_file = twobit_file
@@ -97,7 +99,7 @@ class TwoBitFile(DictMixin):
             offset = self.read("L")
             index[name] = TwoBitSequence(self.twobit_file, offset)
         self.index = index
-    
+
     def __getitem__(self, name):
         """Return sequence region requested, load index data if necessary"""
         seq = self.index[name]
@@ -107,17 +109,17 @@ class TwoBitFile(DictMixin):
                     self.unload_sequence(item)
             self.load_sequence(name)
         return seq
-    
+
     def close(self):
         """Close twobit file"""
         assert (self.twobit_file is not None)
         self.twobit_file.close()
         self.twobit_file = None
-    
+
     def keys(self):
         """Report sequence names"""
         return self.index.keys()
-        
+
     def load_sequence(self, name):
         """
         Store positions for a seq, to be used later as an index for file read
@@ -138,13 +140,13 @@ class TwoBitFile(DictMixin):
         seq.sequence_offset = self.twobit_file.tell()
         # Mark as loaded
         seq.loaded = True
-        
+
     def unload_sequence(self, name):
         """
         Attempt to remove stored data when done with a chromosome
 
-        We can do this because we've presorted files in analysis, 
-        we shouldn't see that sequence again. Unfortunately, using del 
+        We can do this because we've presorted files in analysis,
+        we shouldn't see that sequence again. Unfortunately, using del
         doesn't seem to be freeing the memory with python.
         """
         offset = self.index[name].header_offset
@@ -160,7 +162,7 @@ class TwoBitFile(DictMixin):
         starts = self.read(str(block_count) + "L", untuple=False, skip=skip)
         sizes = self.read(str(block_count) + "L", untuple=False, skip=skip)
         return list(starts), list(sizes)
-        
+
     def read(self, pattern, untuple=True, skip=False):
         """
         Read in twobit data from a file and use struct.unpack to interpret it.
@@ -174,16 +176,16 @@ class TwoBitFile(DictMixin):
             self.twobit_file.read(calcsize(self.byte_order + pattern))
             return []
         else:
-            rval = unpack(self.byte_order + pattern, 
-                      self.twobit_file.read(calcsize(self.byte_order + 
+            rval = unpack(self.byte_order + pattern,
+                      self.twobit_file.read(calcsize(self.byte_order +
                                                      pattern)))
-            if untuple and len(rval) == 1: 
+            if untuple and len(rval) == 1:
                 return rval[0]
             return rval
-        
+
     def read_p_string(self):
         """
-        Read a length-prefixed string 
+        Read a length-prefixed string
         """
         length = self.read("B")
         return self.twobit_file.read(length)
