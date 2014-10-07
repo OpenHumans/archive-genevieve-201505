@@ -17,7 +17,7 @@ from django.core.files import File
 from .utils import vcf_parsing_tools as vcftools
 from .utils.conv23andMetoVCF import conv23andme_to_vcf
 
-CLINVAR_FILENAME = "clinvar-latest.vcf" 
+CLINVAR_FILENAME = "clinvar-latest.vcf"
 HG19_2BIT_FILEPATH = 'hg19.2bit'
 
 @shared_task
@@ -35,13 +35,13 @@ def read_input_genome(analysis_in):
     print "In read_input_genome"
     name = os.path.basename(analysis_in.uploadfile.path)
     print name
-    if re.match(r"\w+.vcf(_\d+)?.gz$", name):
+    if re.match(r"[-\w]+.vcf(_\w+)?.gz$", name):
         print "I think this is vcf"
         genome_file = gzip.GzipFile(mode='rb', compresslevel=9,
                                 fileobj=analysis_in.uploadfile)
         print "sending to read vcf"
         read_vcf(analysis_in, genome_file)
-    elif re.match(r"\w+.txt(_\d+)?.gz$", name):
+    elif re.match(r"[-\w]+.txt(_\w+)?.gz$", name):
         print "I think this is 23andMe"
         conv23Me_file = gzip.GzipFile(mode='rb', compresslevel=9,
                                   fileobj=analysis_in.uploadfile)
@@ -58,7 +58,7 @@ def read_vcf(analysis_in, genome_file):
     '''Takes two .vcf files and returns matches'''
 
     clin_file = open(CLINVAR_FILEPATH, 'r')
-    
+
     '''creates a tmp file to write the .csv'''
     tmp_output_file_path = os.path.join('/tmp', 'django_celery_fileprocess-' +
                                     str(randint(10000000,99999999)) + '-' +
@@ -101,14 +101,13 @@ def read_vcf(analysis_in, genome_file):
             #for CSV output
             data = (chrom, pos, name, clnsig, freq, zygosity, url)
             a.writerow(data)
-            
+
     #closes the tmp file
     tmp_output_file.close()
-            
+
     #opens the tmp file and creates an output processed file"
     csv_filename = os.path.basename(analysis_in.uploadfile.path) + '.csv'
-            
+
     with open(tmp_output_file_path, 'rb') as f:
-        output_file = File(f)    
+        output_file = File(f)
         analysis_in.processedfile.save(csv_filename, output_file)
-                

@@ -6,7 +6,7 @@ CHROM_INDEX = {"1": 1, "2": 2, "3": 3, "4": 4, "5": 5,
                "6": 6, "7": 7, "8": 8, "9": 9, "10": 10,
                "11": 11, "12": 12, "13": 13, "14": 14, "15": 15,
                "16": 16, "17": 17, "18": 18, "19": 19, "20": 20,
-               "21": 21, "22": 22, "X": 23, "Y": 24, "M": 25,
+               "21": 21, "22": 22, "X": 23, "Y": 24, "M": 25, "MT": 25,
            }
 
 CLNSIG_INDEX = {0 : "unknown",
@@ -60,7 +60,7 @@ class Allele(object):
         else:
             frequency = None
 
-        if not re.match('^[ACGT]*$', sequence):
+        if not re.match('^[ACGTN]*$', sequence):
             raise ValueError("Allele sequence isn't a standard DNA sequence")
         self.sequence = sequence
         if frequency:
