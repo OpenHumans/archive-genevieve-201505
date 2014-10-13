@@ -6,6 +6,10 @@
 {% block content %}
     {# Welcome user #}
     <h3>Welcome {{username}}!</h3>
+    {# 23andme import #}
+    <div style="margin-top:10px; margin-bottom:20px;">
+        <a class='btn btn-primary' href='{{auth_23andme_url}}'>Import genotyping data from 23andme</a>
+    </div>
     {# List genome analyses #}
     <table class="table table-striped">
       {% if genome_analyses %}

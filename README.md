@@ -13,6 +13,11 @@ These instructions were written for Ubuntu Linux 13.10 or 14.04.
 Navigate to the directory you want to have the code in, and clone the
 repository with: `git clone git://github.com/emilysa/Genevieve`.
 
+### Create local, secret settings ###
+
+Copy `genevieve/settings_local_example.py` to `genevieve/settings_local.py` and
+replace the stub variables with your own local/secret values.
+
 ### Install pip, virtualenv, and virtualenvwrapper ###
 
 1. **(Root user action)** Install pip: `sudo apt-get install python-pip`
