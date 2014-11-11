@@ -1,7 +1,7 @@
 """Convert 23andme raw file to VCF"""
 import re
 
-from get_reference_seq.get_reference import get_reference_allele
+from get_reference import get_reference_allele
 
 CONV23ME_CHROM_INDEX = {
     "1": 1, "2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7, "8": 8, "9": 9,
@@ -11,7 +11,7 @@ CONV23ME_CHROM_INDEX = {
     }
 
 
-def conv23andme_to_vcf(conv23me_file):
+def conv23andme_to_vcf(conv23me_file, hg19_2bit):
     """Take 23andme raw file, return generator of VCF data"""
     global conv23ME_CHROM_INDEX
     for conv23me_line in conv23me_file:
@@ -43,7 +43,7 @@ def conv23andme_to_vcf(conv23me_file):
         else:
             vcf_id = '.'
 
-        refallele = get_reference_allele('chr' + str(chrom), pos)
+        refallele = get_reference_allele('chr' + str(chrom), pos, hg19_2bit)
         vcf_ref = refallele
         # This is for extracting the ref/alt alleles
         split_genotype = list(genotype)

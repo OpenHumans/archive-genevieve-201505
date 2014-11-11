@@ -23,7 +23,6 @@ from .utils.twentythree_and_me import (api23andme_full_gen_data,
                                        api23andme_to_vcf)
 
 CLINVAR_FILENAME = "clinvar-latest.vcf"
-HG19_2BIT_FILEPATH = 'hg19.2bit'
 
 
 @shared_task
@@ -58,6 +57,7 @@ def analyze_23andme_from_api(access_token, profile_id, user):
 def read_input_genome(analysis_in):
     """Read input genome, either 23andme or VCF, and match against ClinVar"""
     name = os.path.basename(analysis_in.uploadfile.path)
+    hg19_2bit = os.path.join(settings.DATA_FILE_ROOT, 'hg19.2bit')
     if re.match(r"[-\w]+.vcf(_\w+)?.gz$", name):
         genome_file = gzip.GzipFile(mode='rb', compresslevel=9,
                                     fileobj=analysis_in.uploadfile)
@@ -65,7 +65,7 @@ def read_input_genome(analysis_in):
     elif re.match(r"[-\w]+.txt(_\w+)?.gz$", name):
         conv23Me_file = gzip.GzipFile(mode='rb', compresslevel=9,
                                       fileobj=analysis_in.uploadfile)
-        genome_file = conv23andme_to_vcf(conv23Me_file)
+        genome_file = conv23andme_to_vcf(conv23Me_file, hg19_2bit)
         read_vcf(analysis_in, genome_file)
     else:
         print "Error with incorrect file name"
