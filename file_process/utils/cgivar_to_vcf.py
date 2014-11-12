@@ -15,6 +15,7 @@ from get_reference import get_reference_allele
 
 
 def auto_zip_open(filepath, mode):
+    """Convenience function for opening potentially-compressed files."""
     if filepath.endswith('.gz'):
         outfile = gzip.open(filepath, mode)
     elif filepath.endswith('.bz2'):
@@ -25,14 +26,14 @@ def auto_zip_open(filepath, mode):
 
 
 def process_full_position(data, header):
-    """Return genetic data when all alleles called on same line
+    """Return genetic data when all alleles called on same line.
 
-    Returns five items in this order:
+    Returns an array containing one item, a tuple of five items:
         (string) chromosome
         (string) start position (1-based)
         (array of strings) matching dbSNP entries
         (string) reference allele sequence
-        (array of strings) variant allele sequences
+        (array of strings) the genome's allele sequences
     """
 
     feature_type = data[header['varType']]
@@ -63,7 +64,7 @@ def process_allele(allele_data, dbsnp_data, header):
     """Combine data from multiple lines refering to a single allele.
 
     Returns three items in this order:
-        (string) concatenated variant sequence
+        (string) concatenated variant sequence (ie allele the genome has)
         (string) concatenated reference sequence
         (string) start position (1-based)
     """
@@ -74,8 +75,8 @@ def process_allele(allele_data, dbsnp_data, header):
     for data in allele_data:
         # We reject allele data if any subset of the data has a no-call.
         if (data[header['varType']] == 'no-call' or
-            ('varQuality' in header and
-                data[header['varQuality']].startswith('VQLOW'))):
+                ('varQuality' in header and
+                 data[header['varQuality']].startswith('VQLOW'))):
             var_allele = None
             ref_allele = None
             break
@@ -108,7 +109,15 @@ def get_split_pos_lines(data, cgi_input, header):
 
 
 def process_split_position(data, cgi_input, header):
-    """Process CGI var where alleles are reported separately."""
+    """Process CGI var where alleles are reported separately.
+
+    Returns an array containing tuples with five items each:
+        (string) chromosome
+        (string) start position (1-based)
+        (array of strings) matching dbSNP entries
+        (string) reference allele sequence
+        (array of strings) the genome's allele sequences
+    """
     assert data[2] == "1"
     chrom = data[header['chromosome']]
 
@@ -141,6 +150,17 @@ def process_split_position(data, cgi_input, header):
 
 
 def vcf_line(input_data, twobit_ref):
+    """Convert the var files information into VCF format.
+
+    This requires us to up reference genome sequences for length-changing
+    variants where Complete Genomics reports an empty string for either
+    reference or variant sequences. VCF does not allow empty strings, and
+    tells authors to move backwards by one position and prepend that reference
+    base to all allele sequences.
+
+    The returned line is a very simple, VCF-valid row containing the
+    genome's data for this position.
+    """
     chrom, start, dbsnp_data, ref_allele, genome_alleles = input_data
     # VCF does not allow zero-length sequences. If we have this situation,
     # move the start backwards by one position, get that reference base,
@@ -174,6 +194,7 @@ def vcf_line(input_data, twobit_ref):
 
 
 def process_next_position(data, cgi_data, header, twobit_ref):
+    """Determine appropriate processing to get data, then convert it to VCF"""
     if data[2] == "all" or data[1] == "1":
         # The output from process_full_position is a str.
         out = process_full_position(data, header)
