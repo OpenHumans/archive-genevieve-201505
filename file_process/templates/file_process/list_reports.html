@@ -3,57 +3,62 @@
 {% block navbar %}
 <a href="/accounts/logout"><button type="button" class="btn btn-primary navbar-btn navbar-right">Logout</button></a>
 {% endblock %}
+
 {% block content %}
     {# Welcome user #}
     <h3>Welcome {{username}}!</h3>
-    {# 23andme import #}
-    <div style="margin-top:10px; margin-bottom:20px;">
-        <a class='btn btn-primary' href='{{auth_23andme_url}}'>Import genotyping data from 23andme</a>
-    </div>
-    {# List genome analyses #}
-    <table class="table table-striped">
-      {% if genome_analyses %}
-      <thead>
-	<tr>
-	  <th>File Name</th>
-	  <th>Date Added</th>
-	  <th>Uploaded File</th>
-	  <th>Processed File</th>
-	  <th>Report</th>
-	</tr>
-	</thead>
-      <tbody>
-      {% for genome_analysis in genome_analyses %}
-      {% if user == genome_analysis.user %}
-      <tr>
-	<td>
-	  {{ genome_analysis.name }}
-	</td>
-	<td>
-	  {{ genome_analysis.timestamp }}
-	</td>
-	<td>
-	  <a href="{{ genome_analysis.uploadfile.url }}">Download Uploaded File</a>
-	</td>
-        {% if genome_analysis.processedfile %}
-        <td>
-	  <a href="{{ genome_analysis.processedfile.url }}">Download Processed File</a>
-	</td>
-	{% if genome_analysis.variants %}
-	<td>
-	  <a href="report/{{ genome_analysis.id }}/">View Report</a>
-	</td>
-      </tr>
-      {% endif %}
-      {% else %}
-      File processing not complete.
-      {% endif %}
-      {% endif %}
-    {% endfor %}
-{% else %}
-<p>No files uploaded.</p>
-{% endif %}
 
+    {# List genome analyses #}
+    {% if genome_analyses %}
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>File Name</th>
+          <th>Date Added</th>
+          <th>Uploaded File</th>
+	        <th>Processed File</th>
+	        <th>Report</th>
+	      </tr>
+      </thead>
+      <tbody>
+        {% for genome_analysis in genome_analyses %}
+        {% if user == genome_analysis.user %}
+        <tr>
+          <td>{{ genome_analysis.name }}</td>
+          <td>{{ genome_analysis.timestamp }}</td>
+          <td>
+            <a href="{{ genome_analysis.uploadfile.url }}">
+              Download Uploaded File</a>
+          </td>
+          <td>
+            {% if genome_analysis.processedfile %}
+	          <a href="{{ genome_analysis.processedfile.url }}">
+              Download Processed File</a>
+            {% else %}
+            File processing not complete.
+            {% endif %}
+          </td>
+          <td>
+          <td>
+              {% if genome_analysis.variants %}
+              <a href="report/{{ genome_analysis.id }}/">View Report</a>
+              {% endif %}
+          </td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+      <p>No files uploaded.</p>
+    {% endif %}
+
+{# 23andme import #}
+<div style="margin-top:10px; margin-bottom:20px;">
+    <a class='btn btn-primary' href='{{auth_23andme_url}}'>Import genotyping data from 23andme</a>
+</div>
+
+<p>Or use the form below to upload a genome file...</p>
 {# Note enctype 'multipart/form-data' for upload of files. #}
 
 <form role="form" action="{% url 'list_reports' %}" method="post" enctype="multipart/form-data">
@@ -71,6 +76,12 @@
         {% endif %}
 	<input type="text" id="id_reportname" class="form-control" name="reportname" type="text"
 	       placeholder="Enter Filename">
+      </div>
+      <div class="form-group">
+        <select id="id_genome_format" name="genome_format">
+          <option value="vcf">VCF</option>
+          <option value="cgivar">Complete Genomics var file</option>
+        </select>
       </div>
       <p><button type="submit" class="btn btn-default">Submit</button></p>
     </form>

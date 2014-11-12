@@ -2,10 +2,11 @@
 # absolute_import prevents conflicts between project celery.py file
 # and the celery package.
 from __future__ import absolute_import
+import bz2
 import csv
 import gzip
 import os
-import re
+
 from random import randint
 
 from celery import shared_task
@@ -17,10 +18,10 @@ from .models import (Variant, ClinVarRecord, GenomeAnalysis,
                      GenomeAnalysisVariant)
 
 from .utils import vcf_parsing_tools as vcftools
-from .utils.conv23andMetoVCF import conv23andme_to_vcf
 from .utils.twentythree_and_me import (api23andme_full_gen_data,
                                        api23andme_full_gen_infer_sex,
                                        api23andme_to_vcf)
+from .utils.cgivar_to_vcf import convert as convert_cgivar_to_vcf
 
 CLINVAR_FILENAME = "clinvar-latest.vcf"
 
@@ -50,25 +51,28 @@ def analyze_23andme_from_api(access_token, profile_id, user):
     new_analysis.save()
     vcf_file.close()
     os.remove(filepath)
-    read_input_genome(analysis_in=new_analysis)
+    read_input_genome(analysis_in=new_analysis, genome_format='vcf')
 
 
 @shared_task
-def read_input_genome(analysis_in):
-    """Read input genome, either 23andme or VCF, and match against ClinVar"""
+def read_input_genome(analysis_in, genome_format='vcf'):
+    """Read genome, VCF or Complete Genomics, and match against ClinVar"""
     name = os.path.basename(analysis_in.uploadfile.path)
-    hg19_2bit = os.path.join(settings.DATA_FILE_ROOT, 'hg19.2bit')
-    if re.match(r"[-\w]+.vcf(_\w+)?.gz$", name):
-        genome_file = gzip.GzipFile(mode='rb', compresslevel=9,
-                                    fileobj=analysis_in.uploadfile)
-        read_vcf(analysis_in, genome_file)
-    elif re.match(r"[-\w]+.txt(_\w+)?.gz$", name):
-        conv23Me_file = gzip.GzipFile(mode='rb', compresslevel=9,
-                                      fileobj=analysis_in.uploadfile)
-        genome_file = conv23andme_to_vcf(conv23Me_file, hg19_2bit)
-        read_vcf(analysis_in, genome_file)
-    else:
-        print "Error with incorrect file name"
+    print genome_format
+    if genome_format == 'cgivar':
+        print "Treating as CGI var to be translated"
+        genome_file = convert_cgivar_to_vcf(
+            analysis_in.uploadfile.path,
+            os.path.join(settings.DATA_FILE_ROOT, 'hg19.2bit'))
+    elif name.endswith('.gz'):
+        print "reading directly as gzip"
+        genome_file = gzip.open(analysis_in.uploadfile.path, 'rb')
+    elif name.endswith('.bz2'):
+        print 'reading directly as bz2'
+        genome_file = bz2.BZ2File(analysis_in.uploadfile.path, 'rb')
+        # GzipFile(mode='rb', compresslevel=9,
+        #                        fileobj=analysis_in.uploadfile)
+    read_vcf(analysis_in, genome_file)
 
 
 @shared_task
@@ -98,10 +102,10 @@ def read_vcf(analysis_in, genome_file):
         name_acc = var[4]
         freq = var[5]
         zygosity = var[6]
-        variant, created = Variant.objects.get_or_create(chrom=chrom,
-                                                         pos=pos,
-                                                         ref_allele=ref_allele,
-                                                         alt_allele=alt_allele)
+        variant, _ = Variant.objects.get_or_create(chrom=chrom,
+                                                   pos=pos,
+                                                   ref_allele=ref_allele,
+                                                   alt_allele=alt_allele)
         if not variant.freq:
             variant.freq = freq
             variant.save()
@@ -115,7 +119,7 @@ def read_vcf(analysis_in, genome_file):
             name = spec[1]
             clnsig = spec[2]
 
-            record, created = ClinVarRecord.objects.get_or_create(
+            record, _ = ClinVarRecord.objects.get_or_create(
                 accnum=spec[0], variant=variant, condition=name, clnsig=clnsig)
             record.save()
             # analysis_in.variants.add(variant)

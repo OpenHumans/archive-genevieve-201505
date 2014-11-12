@@ -60,9 +60,11 @@ def list_reports(request):
             new_analysis = GenomeAnalysis(
                 uploadfile=request.FILES['uploadfile'],
                 user=form.user, name=request.POST['reportname'])
+            genome_format = request.POST['genome_format']
             new_analysis.save()
-            print "Sending to analysis"
-            read_input_genome.delay(analysis_in=new_analysis)
+            print "Sending to analysis with format " + genome_format
+            read_input_genome.delay(analysis_in=new_analysis,
+                                    genome_format=genome_format)
             # Redirect to the uploaded files list after POST
             return HttpResponseRedirect(reverse('file_process.views.list_reports'))
     else:
