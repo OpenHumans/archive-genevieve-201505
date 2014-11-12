@@ -5,7 +5,6 @@ from django.contrib.auth.models import User
 
 class Variant(models.Model):
     """Genetic variant basic information"""
-    """Store info about a variant"""
     chrom = models.TextField("Chromosome")
     pos = models.TextField("Position")
     ref_allele = models.TextField("Reference Allele")
