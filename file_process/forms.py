@@ -2,7 +2,7 @@ from django import forms
 from django.conf import settings
 
 
-class UploadForm(forms.Form):
+class GenomeUploadForm(forms.Form):
     """File upload form."""
     uploadfile = forms.FileField(
         label='Select a file'

@@ -95,6 +95,7 @@ def read_vcf(analysis_in, genome_file):
     matched_variants = vcftools.match_to_clinvar(genome_file, clin_file)
 
     for var in matched_variants:
+        print var
         chrom = var[0]
         pos = var[1]
         ref_allele = var[2]

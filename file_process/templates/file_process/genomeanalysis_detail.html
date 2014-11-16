@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "home.html" %}
 
 {% block title %}Genevieve Report{% endblock %}
 
@@ -11,15 +11,15 @@
     Logout</button></a>
 {% endblock %}
 
-{% block content %}
-<h2>Genome Report: {{specific_analysis.name}}</h2>
+{% block main %}
+<h2>Genome Report: {{genomeanalysis.name}}</h2>
 
-{% if specific_analysis.variants %}
+{% if genomeanalysis.variants %}
 <div class="table-responsive">
   <table class="table">
     <thead></thead>
     <tbody>
-    {% for genomevariant in specific_analysis.genomeanalysisvariant_set.all|dictsort:"variant.freq" %}
+    {% for genomevariant in genomeanalysis.genomeanalysisvariant_set.all|dictsort:"variant.freq" %}
     {% with genomevariant.variant as variant %}
       <tr class="active">
         <td>Chromosome: {{variant.chrom}}</td>
@@ -58,4 +58,4 @@
 {% else %}
 There were no matches against the ClinVar Database.
 {% endif %}
-{% endblock %}
+{% endblock main %}

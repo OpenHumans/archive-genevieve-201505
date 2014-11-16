@@ -1,0 +1,64 @@
+{% extends "home.html" %}
+{% block title %}Genevieve {{ username }}'s Reports{% endblock %}
+
+{% block main %}
+{# Welcome user #}
+<h3>Welcome {{ request.user.username }}!</h3>
+
+{# List genome analyses #}
+{% if genomeanalysis_list %}
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>File Name</th>
+      <th>Date Added</th>
+      <th>Uploaded File</th>
+       <th>Processed File</th>
+       <th>Report</th>
+     </tr>
+  </thead>
+  <tbody>
+    {% for genomeanalysis in genomeanalysis_list %}
+    <tr>
+      <td>{{ genomeanalysis.name }}</td>
+      <td>{{ genomeanalysis.timestamp }}</td>
+      <td>
+        <a href="{{ genomeanalysis.uploadfile.url }}">
+          Download Uploaded File</a>
+      </td>
+      <td>
+        {% if genomeanalysis.processedfile %}
+        <a href="{{ genomeanalysis.processedfile.url }}">
+          Download Processed File</a>
+        {% else %}
+        File processing not complete.
+        {% endif %}
+      </td>
+      <td>
+        {% if genomeanalysis.variants %}
+        <a href="report/{{ genomeanalysis.id }}/">View Report</a>
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>No files uploaded.</p>
+{% endif %}
+
+{# 23andme import #}
+<div style="margin-top:10px; margin-bottom:20px;">
+  <a class='btn btn-primary' href='{{auth_23andme_url}}'>
+    Import genotyping data from 23andme
+  </a>
+</div>
+
+<p>
+  Or use the form below to import a genome file...
+</p>
+
+{# Abstract so we can load same form on a different URL in event of errors. #}
+{% include 'file_process/genome-import-form.html' %}
+
+{% endblock main %}

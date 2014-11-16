@@ -1,23 +1,25 @@
 # -*- coding: utf-8 -*-
 """Views for genome reports and genetic variants"""
-import json
 
 import requests
 
-from django.http import Http404
+from django.conf import settings
+from django.contrib.auth.decorators import login_required
+from django.core.urlresolvers import reverse
+from django.http import Http404, HttpResponse, HttpResponseRedirect
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import FormView
+from django.views.generic.list import ListView
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.http import HttpResponseRedirect, HttpResponse
-from django.contrib.auth import logout
-from django.conf import settings
-from django.core.urlresolvers import reverse
+from django.utils.decorators import method_decorator
 
 from .models import GenomeAnalysis, ClinVarRecord
-from .forms import UploadForm
+from .forms import GenomeUploadForm
 from .tasks import read_input_genome, analyze_23andme_from_api
 
 
-def make_auth_23andme_url(url_type=None):
+def make_auth_23andme_url():
     return ("https://api.23andme.com/authorize/?" +
             "&".join(["response_type=code",
                       "client_id=%s" % settings.CLIENT_ID_23ANDME,
@@ -42,55 +44,14 @@ def complete_23andme_auth(code):
                                  headers=headers, verify=False)
         if names_req.status_code == 200:
             return names_req.json(), access_token
-    return None
-
-
-def list_reports(request):
-    """List all genome reports"""
-    # Authenticate
-    if not request.user.is_authenticated():
-        return render_to_response('file_process/login_error.html')
-    # Handle file upload
-    if request.method == 'POST':
-        print "list_reports: in POST"
-        form = UploadForm(request.POST or None, request.FILES or None)
-        user = request.user
-        if form.is_valid():
-            form.user = user
-            new_analysis = GenomeAnalysis(
-                uploadfile=request.FILES['uploadfile'],
-                user=form.user, name=request.POST['reportname'])
-            genome_format = request.POST['genome_format']
-            new_analysis.save()
-            print "Sending to analysis with format " + genome_format
-            read_input_genome.delay(analysis_in=new_analysis,
-                                    genome_format=genome_format)
-            # Redirect to the uploaded files list after POST
-            return HttpResponseRedirect(reverse('file_process.views.list_reports'))
-    else:
-        # A empty, unbound form
-        form = UploadForm()
-
-    # Load documents for the list page
-    genome_analyses = GenomeAnalysis.objects.all()
-    # Render list page with the documents and the form
-    return render_to_response(
-        'file_process/list_reports.html',
-        {'genome_analyses': genome_analyses,
-         'form': form,
-         'username': request.user.username,
-         'user': request.user,
-         'auth_23andme_url': make_auth_23andme_url(),
-         },
-        context_instance=RequestContext(request)
-    )
+    return None, None
 
 
 def receive_23andme(request):
     """Receive 23andme authorization, prompt selection of account data."""
     data, access_token = complete_23andme_auth(request.GET['code'])
-    request.session['23andme_access_token'] = access_token
-    if data:
+    if data and access_token:
+        request.session['23andme_access_token'] = access_token
         return render_to_response('file_process/select_23andme.html',
                                   {'profiles': data['profiles']},
                                   context_instance=RequestContext(request))
@@ -100,39 +61,64 @@ def receive_23andme(request):
 
 def complete_23andme(request):
     """Initiate 23andme import and processing and redirect to reports list"""
-    print request
     if request.method == 'POST':
         if 'profile_id' in request.POST:
             print "Sending to analyze_23andme_from_api"
-            analyze_23andme_from_api.delay(request.session['23andme_access_token'],
-                                           request.POST['profile_id'], request.user)
-            return HttpResponseRedirect(reverse('file_process.views.list_reports'))
+            analyze_23andme_from_api.delay(
+                request.session['23andme_access_token'],
+                request.POST['profile_id'], request.user)
+            return HttpResponseRedirect(
+                reverse('file_process.views.list_reports'))
         else:
             return HttpResponse("Sorry that didn't seem to work")
 
 
-def report(request, genomeanalysis_id):
-    """Details about a specific genome report"""
-    # Authenticate
-    if not request.user.is_authenticated():
-        return render_to_response('file_process/login_error.html')
-    try:
-        specific_analysis = GenomeAnalysis.objects.get(pk=genomeanalysis_id)
-    except GenomeAnalysis.DoesNotExist:
-        raise Http404
-    if request.user != specific_analysis.user:
-        return render_to_response('file_process/not_authorized.html')
-    else:
-        return render_to_response(
-            'file_process/report.html',
-            {'genomeanalysis_id': genomeanalysis_id,
-             'specific_analysis': specific_analysis}
-            )
+class GenomeAnalysesView(ListView):
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(GenomeAnalysesView, self).dispatch(*args, **kwargs)
+
+    def get_queryset(self):
+        genome_analyses = GenomeAnalysis.objects.filter(user=self.request.user)
+        return genome_analyses
+
+    def get_context_data(self, **kwargs):
+        context = super(GenomeAnalysesView, self).get_context_data(**kwargs)
+        additional_context = {
+            'auth_23andme_url': make_auth_23andme_url(),
+        }
+        context.update(additional_context)
+        return context
 
 
-def logout_view(request):
-    """Log out"""
-    logout(request)
+class GenomeImportView(FormView):
+    form_class = GenomeUploadForm
+    success_url = '/file_process'
+    template_name = 'file_process/genome_import.html'
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(GenomeImportView, self).dispatch(*args, **kwargs)
+
+    def form_valid(self, form):
+        form.user = self.request.user
+        new_analysis = GenomeAnalysis(
+            uploadfile=self.request.FILES['uploadfile'],
+            user=form.user, name=self.request.POST['reportname'])
+        genome_format = self.request.POST['genome_format']
+        new_analysis.save()
+        read_input_genome.delay(analysis_in=new_analysis,
+                                genome_format=genome_format)
+        return super(GenomeImportView, self).form_valid(form)
+
+
+class GenomeReportView(DetailView):
+    model = GenomeAnalysis
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(GenomeReportView, self).dispatch(*args, **kwargs)
 
 
 def commentary(request, variant_id):

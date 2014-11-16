@@ -66,7 +66,8 @@ class Allele(object):
         else:
             frequency = None
 
-        if not re.match('^[ACGTN]*$', sequence):
+        if not (re.match('^[ACGTN]*$', sequence) or
+                re.match('^<.*>$', sequence)):
             raise ValueError("Allele sequence isn't a standard DNA sequence")
         self.sequence = sequence
         if frequency:
@@ -222,9 +223,13 @@ class GenomeVCFLine(VCFLine):
     def _parse_genotype(self, vcf_fields):
         """Parse genotype from VCF line data"""
         format_col = vcf_fields[8].split(':')
-        gt_idx = format_col.index('GT')
         genome_data = vcf_fields[9].split(':')
-        return [int(x) for x in re.split(r'[\|/]', genome_data[gt_idx])]
+        try:
+            gt_idx = format_col.index('GT')
+        except ValueError:
+            return []
+        return [int(x) for x in re.split(r'[\|/]', genome_data[gt_idx]) if
+                x != '.']
 
 
 class ClinVarVCFLine(VCFLine):
@@ -372,7 +377,6 @@ def match_to_clinvar(genome_file, clin_file):
         # Advance a file when positions aren't equal.
         clin_curr_pos = VCFLine.get_pos(clin_curr_line)
         genome_curr_pos = VCFLine.get_pos(genome_curr_line)
-        # print str(clin_curr_pos) + ' ' + str(genome_curr_pos)
         try:
             if clin_curr_pos['chrom'] > genome_curr_pos['chrom']:
                 genome_curr_line = genome_file.next()
@@ -394,6 +398,10 @@ def match_to_clinvar(genome_file, clin_file):
 
         genome_vcf_line = GenomeVCFLine(vcf_line=genome_curr_line,
                                         skip_info=True)
+        # We can skip if genome has no allele information for this point.
+        if not genome_vcf_line.genotype_allele_indexes:
+            genome_curr_line = genome_file.next()
+            continue
         clinvar_vcf_line = ClinVarVCFLine(vcf_line=clin_curr_line)
 
         genotype_allele_indexes = genome_vcf_line.genotype_allele_indexes
@@ -414,7 +422,7 @@ def match_to_clinvar(genome_file, clin_file):
             raise ValueError('This code only expects to work on genomes with ' +
                              'one or two alleles called at each location.' +
                              'The following line violates this:' +
-                             genome_vcf_line)
+                             str(genome_vcf_line))
 
         # Match only if ClinVar and Genome ref_alleles match.
         if not (genome_vcf_line.ref_allele == clinvar_vcf_line.ref_allele):

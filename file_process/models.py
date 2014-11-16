@@ -39,7 +39,8 @@ class GenomeAnalysis(models.Model):
     name = models.TextField("File Name")
     timestamp = models.DateTimeField(auto_now_add=True)
     uploadfile = models.FileField(upload_to='uploads/%Y/%m/%d')
-    processedfile = models.FileField(blank=True, upload_to='processed/%Y/%m/%d')
+    processedfile = models.FileField(blank=True,
+                                     upload_to='processed/%Y/%m/%d')
     variants = models.ManyToManyField(Variant, through='GenomeAnalysisVariant')
 
     def __unicode__(self):

@@ -111,6 +111,12 @@ def get_split_pos_lines(data, cgi_input, header):
 def process_split_position(data, cgi_input, header):
     """Process CGI var where alleles are reported separately.
 
+    Split positions report each allele with one or more lines. To ensure that
+    we've read through all lines, we end up reading one line beyond.
+
+    This function returns data for this position, then handles the remainder
+    line by calling itself or process_full_position (as appropriate).
+
     Returns an array containing tuples with five items each:
         (string) chromosome
         (string) start position (1-based)
@@ -196,12 +202,13 @@ def vcf_line(input_data, twobit_ref):
 def process_next_position(data, cgi_data, header, twobit_ref):
     """Determine appropriate processing to get data, then convert it to VCF"""
     if data[2] == "all" or data[1] == "1":
-        # The output from process_full_position is a str.
+        # The output from process_full_position is an array, so it can be
+        # treated in the same manner as process_split_position output.
         out = process_full_position(data, header)
     else:
         assert data[2] == "1"
-        # The output from process_split_position is a str generator;
-        # it may end up calling itself recursively.
+        # The output from process_split_position is a generator, and may end
+        # up calling itself recursively.
         out = process_split_position(data, cgi_data, header)
     if out:
         return [vcf_line(l, twobit_ref) for l in out]
@@ -215,7 +222,7 @@ def convert(cgi_data, twobit_ref):
         cgi_data = auto_zip_open(cgi_data, 'rb')
 
     for line in cgi_data:
-        if re.search(r'^\W*$', line) or re.search("^#", line):
+        if re.search(r'^\W*$', line) or line.startswith('#'):
             continue
         if line.startswith('>'):
             header_data = line.lstrip('>').rstrip('\n').split('\t')
@@ -225,6 +232,7 @@ def convert(cgi_data, twobit_ref):
         data = line.rstrip('\n').split("\t")
 
         out = process_next_position(data, cgi_data, header, twobit_ref)
+        # process_split_position may read ahead, resulting in multiple lines.
         if out:
             for line in out:
                 yield line

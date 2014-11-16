@@ -1,19 +1,19 @@
-from django.shortcuts import render_to_response
-from django.template import RequestContext
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from django.views.generic.edit import CreateView
 
+
 def home(request):
-     return render_to_response(
-         'home.html'
-         )
+    return render_to_response('home.html')
+
 
 def auto_login(request):
-     if request.user.is_authenticated():
-          return HttpResponseRedirect('/file_process')
+    if request.user.is_authenticated():
+        return HttpResponseRedirect('/file_process')
+
 
 class UserCreateView(CreateView):
     """
