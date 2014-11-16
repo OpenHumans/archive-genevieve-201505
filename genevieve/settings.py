@@ -21,8 +21,11 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'file_process',
+
     'genevieve',
+    'file_process',
+    'genomes',
+    'variants',
 )
 
 MIDDLEWARE_CLASSES = (

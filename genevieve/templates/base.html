@@ -49,10 +49,13 @@
           {% else %}
           <ul class="nav navbar-nav navbar-right">
             <li>
-              <a href="/file_process/">Genome Analyses</a>
+              <a href="{% url 'genomes:reports_list' %}">Genome analyses</a>
             </li>
             <li>
-              <form action="/accounts/logout">
+              <a href="{% url 'file_process:genome_import' %}">Import genome</a>
+            </li>
+            <li>
+              <form action="{% url 'auth_logout' %}">
                 <input class="btn btn-primary navbar-btn" type="submit"
                   value="Logout" />
               </form>

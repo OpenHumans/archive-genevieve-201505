@@ -13,9 +13,12 @@
       </a>
     </div>
     {% else %}
-    <a href="/file_process/"><button type="button"
+    <a href="{% url 'genomes:reports_list' %}"><button type="button"
         class="btn btn-success btn-lg">
       Go to genome reports</button></a>
+    <a href="{% url 'file_process:genome_import' %}"><button type="button"
+        class="btn btn-success btn-lg">
+      Import a genome</button></a>
     {% endif %}
   </div>
   {% endblock main %}

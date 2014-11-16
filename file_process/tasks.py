@@ -14,8 +14,8 @@ from celery import shared_task
 from django.conf import settings
 from django.core.files import File
 
-from .models import (Variant, ClinVarRecord, GenomeAnalysis,
-                     GenomeAnalysisVariant)
+from genomes.models import GenomeAnalysis, GenomeAnalysisVariant
+from variants.models import Variant, ClinVarRecord
 
 from .utils import vcf_parsing_tools as vcftools
 from .utils.twentythree_and_me import (api23andme_full_gen_data,

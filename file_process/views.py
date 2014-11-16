@@ -7,14 +7,14 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http import Http404, HttpResponse, HttpResponseRedirect
-from django.views.generic.detail import DetailView
 from django.views.generic.edit import FormView
-from django.views.generic.list import ListView
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.decorators import method_decorator
 
-from .models import GenomeAnalysis, ClinVarRecord
+from genomes.models import GenomeAnalysis
+from variants.models import ClinVarRecord
+
 from .forms import GenomeUploadForm
 from .tasks import read_input_genome, analyze_23andme_from_api
 
@@ -73,25 +73,6 @@ def complete_23andme(request):
             return HttpResponse("Sorry that didn't seem to work")
 
 
-class GenomeAnalysesView(ListView):
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(GenomeAnalysesView, self).dispatch(*args, **kwargs)
-
-    def get_queryset(self):
-        genome_analyses = GenomeAnalysis.objects.filter(user=self.request.user)
-        return genome_analyses
-
-    def get_context_data(self, **kwargs):
-        context = super(GenomeAnalysesView, self).get_context_data(**kwargs)
-        additional_context = {
-            'auth_23andme_url': make_auth_23andme_url(),
-        }
-        context.update(additional_context)
-        return context
-
-
 class GenomeImportView(FormView):
     form_class = GenomeUploadForm
     success_url = '/file_process'
@@ -111,14 +92,6 @@ class GenomeImportView(FormView):
         read_input_genome.delay(analysis_in=new_analysis,
                                 genome_format=genome_format)
         return super(GenomeImportView, self).form_valid(form)
-
-
-class GenomeReportView(DetailView):
-    model = GenomeAnalysis
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(GenomeReportView, self).dispatch(*args, **kwargs)
 
 
 def commentary(request, variant_id):

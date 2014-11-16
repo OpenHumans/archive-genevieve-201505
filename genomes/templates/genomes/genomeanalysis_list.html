@@ -47,18 +47,4 @@
 <p>No files uploaded.</p>
 {% endif %}
 
-{# 23andme import #}
-<div style="margin-top:10px; margin-bottom:20px;">
-  <a class='btn btn-primary' href='{{auth_23andme_url}}'>
-    Import genotyping data from 23andme
-  </a>
-</div>
-
-<p>
-  Or use the form below to import a genome file...
-</p>
-
-{# Abstract so we can load same form on a different URL in event of errors. #}
-{% include 'file_process/genome-import-form.html' %}
-
 {% endblock main %}

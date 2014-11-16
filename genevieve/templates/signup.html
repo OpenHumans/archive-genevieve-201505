@@ -1,8 +1,8 @@
-{% extends "base.html" %}
+{% extends "home.html" %}
 
 {% block title %}Genevieve Signup{% endblock %}
 
-{% block content %}
+{% block main %}
 <form role="form" method="POST" action="/accounts/signup/" id="signup-form">
   {% csrf_token %}
 
@@ -45,4 +45,4 @@
   <button type="submit" class="btn btn-success" id="create-account">Create Account</button>
 
 </form>
-{% endblock %}
+{% endblock main %}

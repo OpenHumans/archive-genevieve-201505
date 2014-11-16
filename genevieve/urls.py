@@ -15,6 +15,9 @@ urlpatterns = patterns(
 
     url(r'^file_process/', include('file_process.urls',
                                    namespace='file_process')),
+    url(r'^genomes/', include('genomes.urls',
+                              namespace='genomes')),
+
     url(r'^accounts/signup/$', UserCreateView.as_view()),
     url(r'^$',
         auth_views.login,
