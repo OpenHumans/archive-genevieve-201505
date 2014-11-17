@@ -12,7 +12,7 @@ cdef extern from "Python.h":
 
 cdef extern from "ctype.h":
     int tolower(int)
-    
+
 cdef extern from "string.h":
     void * memset(void *, int, int)
 
@@ -31,7 +31,9 @@ def read(file, seq, int fragStart, int fragEnd, do_mask=False):
     cdef int pOff, pStart, pEnd
     cdef int midStart, remainder, partCount
     cdef int i, j, s, e
-    cdef char * packed, * dna, * dna_orig
+    cdef char * packed
+    cdef char * dna
+    cdef char * dna_orig
     cdef char partial
     packedStart = (fragStart>>2);
     packedEnd = ((fragEnd+3)>>2);
@@ -43,7 +45,7 @@ def read(file, seq, int fragStart, int fragEnd, do_mask=False):
     file.seek(seq.sequence_offset + packedStart)
     packed_py = file.read(packByteCount)
     packed = PyString_AsString(packed_py)
-    # Handle case where everything is in one packed byte 
+    # Handle case where everything is in one packed byte
     if packByteCount == 1:
         pOff = (packedStart<<2)
         pStart = fragStart - pOff
@@ -80,7 +82,7 @@ def read(file, seq, int fragStart, int fragEnd, do_mask=False):
             dna[1] = valToNt[partial&3];
             partial = partial >> 2
             dna[0] = valToNt[partial&3];
-            dna = dna + 4;            
+            dna = dna + 4;
             # Increment
             i = i + 4
             ## sys.stderr.write("!!!< " + dna_py + " >!!!\n"); sys.stderr.flush()
@@ -97,7 +99,7 @@ def read(file, seq, int fragStart, int fragEnd, do_mask=False):
     n_block_count = len(seq.n_block_starts)
     if n_block_count > 0:
         start_ix = bisect(seq.n_block_starts, fragStart) - 1
-        if start_ix < 0: start_ix = 0            
+        if start_ix < 0: start_ix = 0
         for i from start_ix <= i < n_block_count:
             s = seq.n_block_starts[i];
             e = s + seq.n_block_sizes[i];
@@ -114,7 +116,7 @@ def read(file, seq, int fragStart, int fragEnd, do_mask=False):
         m_block_count = len(seq.masked_block_starts)
         if m_block_count > 0:
             start_ix = bisect(seq.masked_block_starts, fragStart) - 1
-            if start_ix < 0: start_ix = 0    
+            if start_ix < 0: start_ix = 0
             for i from start_ix <= i < m_block_count:
                 s = seq.masked_block_starts[i];
                 e = s + seq.masked_block_sizes[i];
