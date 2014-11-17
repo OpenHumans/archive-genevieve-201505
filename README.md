@@ -18,7 +18,8 @@ repository with: `git clone git://github.com/emilysa/Genevieve`.
 Genevieve needs the following data to enable interpretion of Complete Genomics
 var files:
 1. Go to the `data_files/` directory
-2. Add the `hg19.2bit` file to this directory by typing: `wget http://hgdownload-test.cse.ucsc.edu/goldenPath/hg19/bigZips/hg19.2bit`.
+2. Add the `hg19.2bit` file to this directory by typing:
+`wget http://hgdownload-test.cse.ucsc.edu/goldenPath/hg19/bigZips/hg19.2bit`.
 
 (Other ways of adding this file are fine.)
 

@@ -26,6 +26,7 @@ INSTALLED_APPS = (
     'file_process',
     'genomes',
     'variants',
+    'genes',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -63,7 +64,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 # Directory that will hold data files imported by admin or Genevieve.
-DATA_FILE_ROOT = os.path.join(BASE_DIR, 'data_files')
+DATA_FILE_ROOT = os.path.join(BASE_DIR, 'external_data_files')
 
 # Max Upload Size
 MAX_UPLOAD_SIZE = "400000000"

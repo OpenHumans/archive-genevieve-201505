@@ -23,7 +23,7 @@ from .utils.twentythree_and_me import (api23andme_full_gen_data,
                                        api23andme_to_vcf)
 from .utils.cgivar_to_vcf import convert as convert_cgivar_to_vcf
 
-CLINVAR_FILENAME = "clinvar-latest.vcf"
+CLINVAR_FILENAME = "clinvar-latest-b37.vcf.gz"
 
 
 @shared_task
@@ -79,7 +79,7 @@ def read_input_genome(analysis_in, genome_format='vcf'):
 def read_vcf(analysis_in, genome_file):
     """Takes two .vcf files and returns matches"""
     clinvar_filepath = os.path.join(settings.DATA_FILE_ROOT, CLINVAR_FILENAME)
-    clin_file = open(clinvar_filepath, 'r')
+    clin_file = gzip.open(clinvar_filepath, 'r')
 
     # Creates a tmp file to write the .csv
     tmp_output_file_path = os.path.join(
