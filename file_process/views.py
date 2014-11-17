@@ -75,7 +75,7 @@ def complete_23andme(request):
 
 class GenomeImportView(FormView):
     form_class = GenomeUploadForm
-    success_url = '/file_process'
+    success_url = '/genomes/'
     template_name = 'file_process/genome_import.html'
 
     @method_decorator(login_required)

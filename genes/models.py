@@ -17,14 +17,16 @@ class Gene(models.Model):
 
     """
 
-    hgnc_symbol = models.CharField(unique=True,
-                                   verbose_name='HGNC gene symbol',
-                                   max_length=15,)
-    hgnc_name = models.TextField(verbose_name='HGNC gene name',
-                                 )
     hgnc_id = models.CharField(unique=True,
                                verbose_name='HGNC ID',
                                max_length=5,)
+    hgnc_symbol = models.CharField(unique=True,
+                                   null=True,
+                                   verbose_name='HGNC gene symbol',
+                                   max_length=15,)
+    hgnc_name = models.TextField(verbose_name='HGNC gene name',
+                                 null=True,
+                                 )
     ncbi_gene_id = models.CharField(unique=True,
                                     null=True,
                                     verbose_name="NCBI Gene ID",
