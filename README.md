@@ -13,6 +13,21 @@ These instructions were written for Ubuntu Linux 13.10 or 14.04.
 Navigate to the directory you want to have the code in, and clone the
 repository with: `git clone git://github.com/emilysa/Genevieve`.
 
+## Add expected additional data files
+
+Genevieve needs the following data to enable interpretion of Complete Genomics
+var files:
+1. Go to the `data_files/` directory
+2. Add the `hg19.2bit` file to this directory by typing:
+`wget http://hgdownload-test.cse.ucsc.edu/goldenPath/hg19/bigZips/hg19.2bit`.
+
+(Other ways of adding this file are fine.)
+
+### Create local, secret settings ###
+
+Copy `genevieve/settings_local_example.py` to `genevieve/settings_local.py` and
+replace the stub variables with your own local/secret values.
+
 ### Install pip, virtualenv, and virtualenvwrapper ###
 
 1. **(Root user action)** Install pip: `sudo apt-get install python-pip`
@@ -75,7 +90,7 @@ In a new terminal, start your virtual environment (with
 project's base directory to initialize the database and then run a
 local Django server.
 
-1. `python manage.py syncdb`
+1. `python manage.py migrate`
 2. `python manage.py runserver`
 
 If you're running this locally, you'll be able to navigate to

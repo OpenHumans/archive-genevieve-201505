@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Genevieve: Confirm 23andme import for {{username}}{% endblock title%}
+
+{% block navbar %}
+<a href="/accounts/logout"><button type="button" class="btn btn-primary navbar-btn navbar-right">Logout</button></a>
+{% endblock navbar %}
+
+{% block content %}
+    <h3>Please select and confirm 23andme genotyping data import</h3>
+
+    <form role="form" action="{% url 'complete_23andme' %}" method="post">
+    {% csrf_token %}
+        {% for profile in profiles %}
+        <input type="radio" name="profile_id"
+          value="{{ profile.id }}">{{ profile.first_name }} {{ profile.last_name }}</input>
+        {% endfor %}
+      <p><button type="submit"
+          class="btn btn-default">Import genome</button></p>
+    </form>
+
+    <a class="btn" href="{% url 'list_reports' %}">Cancel</a>
+{% endblock %}

@@ -1,3 +1,4 @@
+"""Tools for parsing and matching VCF files"""
 import json
 import re
 import sys
@@ -6,27 +7,32 @@ CHROM_INDEX = {"1": 1, "2": 2, "3": 3, "4": 4, "5": 5,
                "6": 6, "7": 7, "8": 8, "9": 9, "10": 10,
                "11": 11, "12": 12, "13": 13, "14": 14, "15": 15,
                "16": 16, "17": 17, "18": 18, "19": 19, "20": 20,
-               "21": 21, "22": 22, "X": 23, "Y": 24, "M": 25,
-           }
-
-CLNSIG_INDEX = {0 : "unknown",
-                1 : "untested",
-                2 : "non-pathogenic",
-                3 : "probably non-pathogenic",
-                4 : "probably pathogenic",
-                5 : "pathogenic",
-                6 : "affecting drug response",
-                7 : "affecting histocompatibility",
-                255 : "other"
+               "21": 21, "22": 22, "X": 23, "Y": 24, "M": 25, "MT": 25,
+               "chr1": 1, "chr2": 2, "chr3": 3, "chr4": 4, "chr5": 5,
+               "chr6": 6, "chr7": 7, "chr8": 8, "chr9": 9, "chr10": 10,
+               "chr11": 11, "chr12": 12, "chr13": 13, "chr14": 14, "chr15": 15,
+               "chr16": 16, "chr17": 17, "chr18": 18, "chr19": 19, "chr20": 20,
+               "chr21": 21, "chr22": 22, "chrX": 23, "chrY": 24, "chrM": 25,
                }
+
+CLNSIG_INDEX = {0: "unknown",
+                1: "untested",
+                2: "non-pathogenic",
+                3: "probably non-pathogenic",
+                4: "probably pathogenic",
+                5: "pathogenic",
+                6: "affecting drug response",
+                7: "affecting histocompatibility",
+                255: "other"}
+
 
 class ClinVarRecord(object):
     """Store ClinVar data relating to one record."""
     def __init__(self, clndsdb, clndsdbid, clnacc, clndbn, clnsig):
         clndsdbs = clndsdb.split(':')
         clndsdbids = clndsdbid.split(':')
-        self.dsdb = [ (clndsdbs[i], clndsdbids[i]) for i
-                      in range(len(clndsdbs)) ]
+        self.dsdb = [(clndsdbs[i], clndsdbids[i]) for i
+                     in range(len(clndsdbs))]
         self.acc = clnacc
         self.dbn = clndbn
         self.sig = clnsig
@@ -60,16 +66,17 @@ class Allele(object):
         else:
             frequency = None
 
-        if not re.match('^[ACGT]*$', sequence):
+        if not (re.match('^[ACGTN]*$', sequence) or
+                re.match('^<.*>$', sequence)):
             raise ValueError("Allele sequence isn't a standard DNA sequence")
         self.sequence = sequence
         if frequency:
             try:
                 if (float(frequency) < 0.0 or
-                    float(frequency) > 1.0):
-                    raise ValueError('Allele frequency must be between 0 and 1')
+                        float(frequency) > 1.0):
+                    raise ValueError('Allele frequency not between 0 and 1')
             except ValueError:
-                if not (frequency == 'NOT1000G'):
+                if not frequency == 'NOT1000G':
                     raise ValueError('Allele frequency must be a number ' +
                                      'between 0 and 1, or the string ' +
                                      '"NOT1000G".')
@@ -81,6 +88,7 @@ class Allele(object):
 
     def as_dict(self):
         """Return Allele data as dict object."""
+        self_as_dict = dict()
         self_as_dict['sequence'] = self.sequence
         if hasattr(self, 'frequency'):
             self_as_dict['frequency'] = self.frequency
@@ -115,13 +123,12 @@ class ClinVarAllele(Allele):
         clnsrcs, clnsrcids, clnhgvs, records = [kwargs[x] for x in
                                                 ['clnsrcs', 'clnsrcids',
                                                  'clnhgvs', 'records']]
-        self.src = [ (clnsrcs[i], clnsrcids[i]) for
-                     i in range(len(clnsrcs)) ]
+        self.src = [(clnsrcs[i], clnsrcids[i]) for i in range(len(clnsrcs))]
         self.hgvs = clnhgvs
         self.records = records
         super(ClinVarAllele, self).__init__(*args, **kwargs)
 
-    def as_dict(self):
+    def as_dict(self, *args, **kwargs):
         """Return ClinVarAllele data as dict object."""
         self_as_dict = super.ClinVarAllele.as_dict(*args, **kwargs)
         self_as_dict['hgvs'] = self.hgvs
@@ -151,10 +158,12 @@ class VCFLine(object):
         self.alleles = self._parse_allele_data()
 
     def _parse_allele_data(self):
+        """Create list of Alleles from VCF line data"""
         return [Allele(sequence=x) for x in
                 [self.ref_allele] + self.alt_alleles]
 
     def _parse_info(self, info_field):
+        """Parse the VCF info field"""
         info = dict()
         for item in info_field.split(';'):
             # Info fields may be "foo=bar" or just "foo".
@@ -169,15 +178,16 @@ class VCFLine(object):
         return info
 
     def __str__(self):
+        """String representation of parsed VCF data"""
         return json.dumps(self.as_dict(), ensure_ascii=True)
 
     def as_dict(self):
+        """Dict representation of parsed VCF data"""
         self_as_dict = {'chrom': self.chrom,
                         'start': self.start,
                         'ref_allele': self.ref_allele,
                         'alt_alleles': self.alt_alleles,
-                        'alleles': [x.as_dict() for x in self.alleles]
-                        }
+                        'alleles': [x.as_dict() for x in self.alleles]}
         try:
             self_as_dict['info'] = self.info
         except AttributeError:
@@ -211,34 +221,43 @@ class GenomeVCFLine(VCFLine):
         self.genotype_allele_indexes = self._parse_genotype(vcf_fields)
 
     def _parse_genotype(self, vcf_fields):
-        format = vcf_fields[8].split(':')
-        gt_idx = format.index('GT')
+        """Parse genotype from VCF line data"""
+        format_col = vcf_fields[8].split(':')
         genome_data = vcf_fields[9].split(':')
-        return [int(x) for x in re.split(r'[\|/]', genome_data[gt_idx])]
+        try:
+            gt_idx = format_col.index('GT')
+        except ValueError:
+            return []
+        return [int(x) for x in re.split(r'[\|/]', genome_data[gt_idx]) if
+                x != '.']
 
 
 class ClinVarVCFLine(VCFLine):
     """Store ClinVar data from a VCF line."""
+
     def __init__(self, *args, **kwargs):
+        """Initialize ClinVarVCFLine with VCF line"""
         kwargs['skip_info'] = False
         super(ClinVarVCFLine, self).__init__(self, *args, **kwargs)
 
     def as_dict(self):
+        """Dict representation of parsed ClinVar VCF line"""
         return {'chrom': self.chrom,
                 'start': self.start,
                 'ref_allele': self.ref_allele,
                 'alt_alleles': self.alt_alleles,
                 'info': self.info,
                 'alleles': [[x[0], x[1], x[2].as_dict()] if x[1] else
-                            x for x in self.alleles],
-                }
+                            x for x in self.alleles]}
 
     def _parse_frequencies(self):
+        """Parse frequency data in ClinVar VCF"""
         given_freqs = self.info['CAF'].rstrip(']').lstrip('[').split(',')
         parsed_freqs = ['NOT1000G' if x == '.' else x for x in given_freqs]
         return parsed_freqs
 
     def _parse_clinvar_allele(self, *args, **kwargs):
+        """Parse ClinVar records for each allele"""
         cln_data, cln_idx, allele_idx = [kwargs[x] for x in
                                          ['cln_data', 'cln_idx', 'allele_idx']]
         if 'frequency' in kwargs:
@@ -314,8 +333,8 @@ class ClinVarVCFLine(VCFLine):
         info_clnvar_tags = ['CLNDSDB', 'CLNDSDBID', 'CLNACC', 'CLNDBN',
                             'CLNSIG', 'CLNHGVS', 'CLNSRC', 'CLNSRCID']
         # Clinvar data is split first by comma, then by pipe.
-        cln_data = {x:[ y.split('|') for y in self.info[x].split(',') ]
-                       for x in info_clnvar_tags if x}
+        cln_data = {x: [y.split('|') for y in self.info[x].split(',')]
+                    for x in info_clnvar_tags if x}
 
         # Iterate over all alleles, if index is in clnallele_keys then
         # create a ClinVarAllele, otherwise create an Allele.
@@ -342,7 +361,7 @@ class ClinVarVCFLine(VCFLine):
 
 
 def match_to_clinvar(genome_file, clin_file):
-
+    """Match a genome VCF to variants in the ClinVar VCF file"""
     clin_curr_line = clin_file.next()
     genome_curr_line = genome_file.next()
 
@@ -379,6 +398,10 @@ def match_to_clinvar(genome_file, clin_file):
 
         genome_vcf_line = GenomeVCFLine(vcf_line=genome_curr_line,
                                         skip_info=True)
+        # We can skip if genome has no allele information for this point.
+        if not genome_vcf_line.genotype_allele_indexes:
+            genome_curr_line = genome_file.next()
+            continue
         clinvar_vcf_line = ClinVarVCFLine(vcf_line=clin_curr_line)
 
         genotype_allele_indexes = genome_vcf_line.genotype_allele_indexes
@@ -387,9 +410,9 @@ def match_to_clinvar(genome_file, clin_file):
 
         # Determine zygosity. Zygosity is assumed to be exclusive
         # (heterozygous, homozygous, or hemizygous).
-        if (len(genome_alleles) == 1):
+        if len(genome_alleles) == 1:
             zygosity = 'Hem'
-        elif (len(genome_alleles) == 2):
+        elif len(genome_alleles) == 2:
             if genome_alleles[0].sequence == genome_alleles[1].sequence:
                 zygosity = 'Hom'
                 genome_alleles = [genome_alleles[0]]
@@ -399,10 +422,7 @@ def match_to_clinvar(genome_file, clin_file):
             raise ValueError('This code only expects to work on genomes with ' +
                              'one or two alleles called at each location.' +
                              'The following line violates this:' +
-                             genome_vcf_line)
-
-        clinvar_allele_findings = []
-        clinvar_findings_zygosity = []
+                             str(genome_vcf_line))
 
         # Match only if ClinVar and Genome ref_alleles match.
         if not (genome_vcf_line.ref_allele == clinvar_vcf_line.ref_allele):
@@ -449,8 +469,8 @@ def match_to_clinvar(genome_file, clin_file):
 
 
 if __name__ == "__main__":
-    clinvar_file = open(sys.argv[1])
-    genome_file = open(sys.argv[2])
-    matching = match_to_clinvar(genome_file, clinvar_file)
-    for data in matching:
-        print data
+    input_clinvar_file = open(sys.argv[1])
+    input_genome_file = open(sys.argv[2])
+    matching = match_to_clinvar(input_genome_file, input_clinvar_file)
+    for match_var in matching:
+        print match_var

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Genevieve{% endblock %}</title>
+
+    <!-- Bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<link href="http://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="/static/css/main.css">
+
+{% block head %}
+{% endblock %}
+
+  </head>
+
+  <body>
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Genevieve</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          {% if user.is_anonymous %}
+          <button class="btn btn-primary navbar-btn navbar-right"
+              data-toggle="modal" data-target="#login-modal">
+            Log in
+          </button>
+          {% else %}
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="{% url 'genomes:reports_list' %}">Genome analyses</a>
+            </li>
+            <li>
+              <a href="{% url 'file_process:genome_import' %}">Import genome</a>
+            </li>
+            <li>
+              <form action="{% url 'auth_logout' %}">
+                <input class="btn btn-primary navbar-btn" type="submit"
+                  value="Logout" />
+              </form>
+            </li>
+          </ul>
+          {% endif %}
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+    <div id="content">
+      {% block content %}
+      {% endblock %}
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+  {% block modals %}
+  {% include 'login-modal.html' %}
+  {% endblock modals %}
+  </body>
+</html>

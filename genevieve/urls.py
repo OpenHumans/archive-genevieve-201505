@@ -8,15 +8,16 @@ from .views import UserCreateView
 
 admin.autodiscover()
 
-urlpatterns = patterns('',
-    url(r'^admin/', include(admin.site.urls)),
-)
+urlpatterns = patterns(
+    '',
 
-urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'genevieve.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
-    (r'^file_process/', include('file_process.urls')),
+    url(r'^admin/', include(admin.site.urls)),
+
+    url(r'^file_process/', include('file_process.urls',
+                                   namespace='file_process')),
+    url(r'^genomes/', include('genomes.urls',
+                              namespace='genomes')),
+
     url(r'^accounts/signup/$', UserCreateView.as_view()),
     url(r'^$',
         auth_views.login,
@@ -25,4 +26,3 @@ urlpatterns = patterns('',
     url(r'^accounts/logout/$', auth_views.logout, {'next_page': '/'},
         name='auth_logout'),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-

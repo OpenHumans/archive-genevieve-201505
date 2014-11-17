@@ -70,5 +70,8 @@ target/
 # Data Files
 data_files/
 
+# Local, secret settings data
+genevieve/settings_local.py
+
 #2bitreference
 hg19.2bit
