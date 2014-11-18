@@ -9,10 +9,9 @@ import gzip
 import re
 import sys
 
-from optparse import OptionParser
+from argparse import ArgumentParser
 
 from get_reference import get_reference_allele
-
 
 def auto_zip_open(filepath, mode):
     """Convenience function for opening potentially-compressed files."""
@@ -252,24 +251,37 @@ def convert_to_file(cgi_input, output_file, twobit_ref):
 
 def main():
     # Parse options
-    usage = "\n%prog -i inputfile [-o outputfile]\n" \
-            + "%prog [-o outputfile] < inputfile"
-    parser = OptionParser(usage=usage)
-    parser.add_option("-i", "--input", dest="inputfile",
+    parser = ArgumentParser()
+
+    parser.add_argument("-i", "--input", dest="inputfile",
                       help="read CGI data from INFILE (uncompressed, .gz," +
                       " or .bz2)", metavar="INFILE")
-    parser.add_option("-o", "--output", dest="outputfile",
+    parser.add_argument("-o", "--output", dest="outputfile",
                       help="write report to OUTFILE (uncompressed, " +
                       "*.gz, or *.bz2)", metavar="OUTFILE")
-    parser.add_option("-r", "--ref2bit", dest="twobitref",
+    parser.add_argument("-r", "--ref2bit", dest="twobitref",
                       help="2bit reference genome file",
                       metavar="TWOBITREF")
-    options, _ = parser.parse_args()
+    options = parser.parse_args()
+
+
     # Handle input
     if sys.stdin.isatty():  # false if data is piped in
+        if options.inputfile:
+          var_input = options.inputfile
+        else:
+          print "Provide CGI input file\n"
+          parser.print_help()
+          sys.exit(1)
         var_input = options.inputfile
     else:
         var_input = sys.stdin
+
+    if not options.twobitref:
+      print "Provide 2bit refernce file\n"
+      parser.print_help()
+      sys.exit(1)
+
     # Handle output
     if options.outputfile:
         convert_to_file(var_input, options.outputfile, options.twobitref)

@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-from .twobit import TwoBitFile
+from twobit import TwoBitFile
 
 
 def get_reference_allele(chrom, start, hg19_path):
