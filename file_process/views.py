@@ -93,6 +93,14 @@ class GenomeImportView(FormView):
                                 genome_format=genome_format)
         return super(GenomeImportView, self).form_valid(form)
 
+    def get_context_data(self, **kwargs):
+            context = super(GenomeImportView, self).get_context_data(**kwargs)
+            additional_context = {
+                'auth_23andme_url': make_auth_23andme_url(),
+            }
+            context.update(additional_context)
+            return context
+
 
 def commentary(request, variant_id):
     """Genevieve comments on a specific genetic variant"""
