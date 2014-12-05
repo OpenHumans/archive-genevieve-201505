@@ -9,7 +9,7 @@
 {% block content %}
     <h3>Please select and confirm 23andme genotyping data import</h3>
 
-    <form role="form" action="{% url 'complete_23andme' %}" method="post">
+    <form role="form" action="{% url 'file_process:complete_23andme' %}" method="post">
     {% csrf_token %}
         {% for profile in profiles %}
         <input type="radio" name="profile_id"
@@ -19,5 +19,5 @@
           class="btn btn-default">Import genome</button></p>
     </form>
 
-    <a class="btn" href="{% url 'list_reports' %}">Cancel</a>
+    <a class="btn" href="{% url 'genomes:reports_list' %}">Cancel</a>
 {% endblock %}

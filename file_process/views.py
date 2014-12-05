@@ -68,7 +68,7 @@ def complete_23andme(request):
                 request.session['23andme_access_token'],
                 request.POST['profile_id'], request.user)
             return HttpResponseRedirect(
-                reverse('file_process.views.list_reports'))
+                reverse('genomes:reports_list'))
         else:
             return HttpResponse("Sorry that didn't seem to work")
 
