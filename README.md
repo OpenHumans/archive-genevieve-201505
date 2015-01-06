@@ -1,8 +1,19 @@
 Genevieve
 =================================
+Genevieve is being developed as an open source tool for understanding the
+impact of genetic variations. Each variant's interpretation may be edited by
+users to form a consensus understanding, generally based upon of existing
+literature and other public sources. Genevieve is directly inspired by a
+previous open source website used by the
+[Harvard Personal Genome Project](http://www.personalgenomes.org/harvard),
+[GET-Evidence](http://evidence.pgp-hms.org/about).
 
-This project, a summer project at the GMC lab, is a remake of their GETevidence page.
-It utitlizes django and celery and is designed to compare .vcf files to a ClinVar database.
+Genevieve also enables users to upload genomes and create genome reports that
+summarize notable variants within a given genome.
+
+Genevieve's variant database and genome reports are currently limited to
+understanding variants listed within
+[ClinVar](http://www.ncbi.nlm.nih.gov/clinvar/).
 
 Installation
 ------------
