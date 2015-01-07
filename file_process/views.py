@@ -32,7 +32,7 @@ def complete_23andme_auth(code):
         'client_secret': settings.CLIENT_SECRET_23ANDME,
         'grant_type': 'authorization_code',
         'code': code,
-        'redirect_uri': 'http://localhost:8000/file_process/receive_23andme/',
+        'redirect_uri': settings.REDIRECT_URI,
         'scope': 'basic names genomes'
     }
     token_req = requests.post("https://api.23andme.com/token/",
