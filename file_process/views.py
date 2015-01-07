@@ -32,11 +32,14 @@ def complete_23andme_auth(code):
         'client_secret': settings.CLIENT_SECRET_23ANDME,
         'grant_type': 'authorization_code',
         'code': code,
-        'redirect_uri': 'http://localhost:8000/file_process/receive_23andme/',
+        'redirect_uri': settings.REDIRECT_URI,
         'scope': 'basic names genomes'
     }
     token_req = requests.post("https://api.23andme.com/token/",
                               data=parameters, verify=False)
+    print parameters
+    print token_req.status_code
+    print token_req
     if token_req.status_code == 200 and 'access_token' in token_req.json():
         access_token = token_req.json()['access_token']
         headers = {'Authorization': 'Bearer %s' % access_token}
@@ -50,6 +53,9 @@ def complete_23andme_auth(code):
 def receive_23andme(request):
     """Receive 23andme authorization, prompt selection of account data."""
     data, access_token = complete_23andme_auth(request.GET['code'])
+    print request
+    print data
+    print access_token
     if data and access_token:
         request.session['23andme_access_token'] = access_token
         return render_to_response('file_process/select_23andme.html',
