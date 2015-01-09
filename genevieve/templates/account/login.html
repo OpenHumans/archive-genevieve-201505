@@ -1,0 +1,30 @@
+{% extends 'panel.html' %}
+
+{% block panel_title %}Log in to Genevieve{% endblock %}
+
+{% block panel_content %}
+<div class="row">
+  <div class="col-xs-12">
+    {% include 'account/login-form.html' %}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 text-right">
+    <input id="login" type="submit" value="Log in" form="login-form"
+      class="btn btn-primary">
+  </div>
+
+  <div class="col-xs-12">
+    <hr>
+  </div>
+
+  <div class="col-xs-12 text-center small">
+    <p>
+      <a href="{% url 'account_password_reset' %}">Reset&nbsp;password</a>
+      |
+      <a href="{% url 'account_signup' %}">Create&nbsp;account</a>
+    </p>
+  </div>
+</div>
+{% endblock %}

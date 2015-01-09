@@ -27,6 +27,9 @@ INSTALLED_APPS = (
     'genomes',
     'variants',
     'genes',
+
+     # Third-party modules
+    'account',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -37,6 +40,9 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'account.middleware.LocaleMiddleware',
+    'account.middleware.TimezoneMiddleware',
 )
 
 ROOT_URLCONF = 'genevieve.urls'
@@ -71,9 +77,12 @@ MAX_UPLOAD_SIZE = "400000000"
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
+    'account.context_processors.account',
 ) + global_settings.TEMPLATE_CONTEXT_PROCESSORS
 
+LOGIN_URL = 'account_login'
 LOGIN_REDIRECT_URL = "file_process/"
+ACCOUNT_LOGIN_REDIRECT_URL = LOGIN_REDIRECT_URL
 
 # Import settings last. These override anything defined above.
 try:
