@@ -5,11 +5,17 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 
 from .views import UserCreateView
+from django.core.urlresolvers import reverse_lazy
+from django.views.generic import TemplateView
 
 admin.autodiscover()
 
 urlpatterns = patterns(
     '',
+
+    #simple pages
+    url(r'^$', TemplateView.as_view(template_name='home.html'),
+        name='home'),
 
     url(r'^admin/', include(admin.site.urls)),
 
