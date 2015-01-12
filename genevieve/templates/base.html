@@ -48,17 +48,12 @@
             <span class="icon-bar"></span>
           </button>
 
-          <a class="navbar-brand" href="/">Open Humans</a>
+          <a class="navbar-brand" href="/">Genevieve</a>
         </div>
 
         <div class="collapse navbar-collapse" id="main-navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/about/">About Us</a></li>
-            <li>
-              Member Profiles</li>
-            <li>
-              Activities</li>
-            <li class="divider"></li>
 
             {% if user.is_authenticated %}
             <li><a
@@ -108,11 +103,9 @@
     <div class="footer">
       <div class="container">
         <div class="text-center">
-          About Us |
-          Our Blog |
-          Contact Us |
-          Community Guidelines |
-          Terms of Service
+          <a href="/about/">About Us</a> |
+          <a href="{% url 'contact_us' %}">Contact Us</a> |
+          <a href="{% url 'community_guidelines' %}">Community Guidelines</a>
         </div>
       </div>
     </div>
