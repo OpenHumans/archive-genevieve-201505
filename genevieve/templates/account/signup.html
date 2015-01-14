@@ -3,82 +3,46 @@
 {% block title %}Genevieve Signup{% endblock %}
 
 {% block main %}
-<form class="form-horizontal" role="form" method="POST"
-    action="{% url 'account_signup' %}" id="signup-form">
+<form role="form" method="POST" action="/account/signup/" id="signup-form">
   {% csrf_token %}
 
-  {% if form.non_field_errors %}
-  <div class="alert alert-danger">
-    {% for error in form.non_field_errors %}
-    {{ error }}<br>
-    {% endfor %}
-  </div>
-  {% endif %}
-
-  <div class="form-group{% if form.username.errors %} has-error{% endif %}">
-    <label for="username" class="col-sm-4 control-label">Username</label>
-
-    <div class="col-sm-8">
-      <input type="text" class="form-control" name="username" id="username"
-      placeholder="Username" value="{{ form.username.value|default:"" }}">
-      {% if form.username.errors %}
-      {% for error in form.username.errors %}
-      <span class="help-block">{{ error }}</span>
-      {% endfor %}
-      {% endif %}
-    </div>
+  <div class="form-group">
+    <label for="form.username.label_for">Username</label>
+    {% if form.username.errors %}
+    <div class="alert alert-danger" role="alert">{{ form.username.errors }}</div>
+    {% endif %}
+    <input type="text" class="form-control" name="username" id="username" placeholder="Enter Username"
+              value="{{ form.username.value|default:"" }}">
   </div>
 
-  <div class="form-group{% if form.email.errors %} has-error{% endif %}">
-    <label for="email-address" class="col-sm-4 control-label">Email</label>
-
-    <div class="col-sm-8">
-      <input type="email" class="form-control" name="email" id="email-address"
-      placeholder="Email" value="{{ form.email.value|default:"" }}">
-      {% if form.email.errors %}
-      {% for error in form.email.errors %}
-      <span class="help-block">{{ error }}</span>
-      {% endfor %}
-      {% endif %}
-    </div>
+  <div class="form-group">
+    <label for="form.email.label_for">Email address</label>
+    {% if form.email.errors %}
+    <div class="alert alert-danger" role="alert">{{ form.email.errors }}</div>
+    {% endif %}
+    <input type="email" class="form-control" name="email" id="email-address" placeholder="Enter Email"
+              value="{{ form.email.value|default:"" }}">
   </div>
 
-  <div class="form-group{% if form.password.errors %} has-error{% endif %}">
-    <label for="password-1" class="col-sm-4 control-label">Password</label>
-
-    <div class="col-sm-8">
-      <input type="password" class="form-control" name="password" id="password"
-      placeholder="Password" value="{{ form.password.value|default:"" }}">
-      {% if form.password.errors %}
-      {% for error in form.password.errors %}
-      <span class="help-block">{{ error }}</span>
-      {% endfor %}
-      {% endif %}
-    </div>
+  <div class="form-group">
+    <label for="form.password1.label_for">Password</label>
+    {% if form.password1.errors %}
+    <div class="alert alert-danger" role="alert">{{ form.password1.errors }}</div>
+    {% endif %}
+    <input type="password" class="form-control" name="password1" id="password-1" placeholder="Enter Password"
+              value="{{ form.password1.value|default:"" }}">
   </div>
 
-  <div class="form-group{% if form.password_confirm.errors %} has-error{% endif %}">
-    <label for="password-confirm" class="col-sm-4 control-label">
-      Re-enter password
-    </label>
+  <div class="form-group">
+    <label for="form.password2.label_for">Retype Password</label>
+    {% if form.password2.errors %}
+    <div class="alert alert-danger" role="alert">{{ form.password2.errors }}</div>
+    {% endif %}
+    <input type="password" class="form-control" name="password2" id="password-2" placeholder="Re-enter Password"
+              value="{{ form.password2.value|default:"" }}">
+   </div>
 
-    <div class="col-sm-8">
-      <input type="password" class="form-control" name="password_confirm"
-      id="password-confirm" placeholder="Password"
-      value="{{ form.password_confirm.value|default:"" }}">
-      {% if form.password_confirm.errors %}
-      {% for error in form.password_confirm.errors %}
-      <span class="help-block">{{ error }}</span>
-      {% endfor %}
-      {% endif %}
-    </div>
-  </div>
-
-  <input type="hidden" name="{{ redirect_field_name }}"
-    value="{{ redirect_field_value }}">
-
-  <input type="submit" id="create-account"
-    class="btn btn-primary" value="Create my account">
+  <input type="submit" value="Create Account">
 
 </form>
 {% endblock main %}

@@ -15,7 +15,7 @@
       <div class="modal-body">
         <div style="margin:0px 20px;">
           <form class="form-horizontal" role="form" method="post"
-              action="{% url 'account_login' %}">
+              action="{% url 'account_login' %}"
             {% csrf_token %}
             <div class="form-group">
               <label for="form.username.label_tag">Username</label>

@@ -14,8 +14,26 @@ urlpatterns = patterns(
     '',
 
     #simple pages
+<<<<<<< HEAD
     url(r'^$', TemplateView.as_view(template_name='home.html'),
         name='home'),
+=======
+<<<<<<< HEAD
+    url(r'^$', TemplateView.as_view(template_name='home.html'),
+        name='home'),
+=======
+    url(r'^$', TemplateView.as_view(template_name='pages/home.html'),
+        name='home'),
+    url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'),
+        name='about'),
+    url(r'^community_guidelines/$',
+        TemplateView.as_view(template_name='pages/community_guidelines.html'),
+        name='community_guidelines'),
+    url(r'^contact-us/$',
+        TemplateView.as_view(template_name='pages/contact_us.html'),
+        name='contact_us'),
+>>>>>>> c8757c2dbdefcc02dc41063b0fd4f8c43607fbc8
+>>>>>>> dd197f87a63a14c0d388a12f3aa7db2ed2a88e34
 
     url(r'^admin/', include(admin.site.urls)),
 
