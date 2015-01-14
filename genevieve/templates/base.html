@@ -36,6 +36,10 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
+<<<<<<< HEAD
+=======
+
+>>>>>>> c8757c2dbdefcc02dc41063b0fd4f8c43607fbc8
           <a class="navbar-brand" href="/">Genevieve</a>
         </div>
 
@@ -48,8 +52,28 @@
           </button>
           {% else %}
           <ul class="nav navbar-nav navbar-right">
+<<<<<<< HEAD
             <li>
               <a href="{% url 'genomes:reports_list' %}">Genome analyses</a>
+=======
+            <li><a href="/about/">About Us</a></li>
+
+            {% if user.is_authenticated %}
+            <li><a
+              href="{% url 'my-member-dashboard' %}">My Account</a></li>
+            <li style="margin-left:8px;">
+              {# django-user-accounts requires logout to be a POST #}
+              <a href="{% url 'account_logout' %}"
+                onclick="$.post(&quot;{% url 'account_logout' %}&quot;,
+                         function() { location.reload(); });">
+                  Log out
+              </a>
+            </li>
+            {% else %}
+            <li>
+              <a href="#" data-toggle="modal" data-target="#signup-modal">
+		              Create account</a>
+>>>>>>> c8757c2dbdefcc02dc41063b0fd4f8c43607fbc8
             </li>
             <li>
               <a href="{% url 'file_process:genome_import' %}">Import genome</a>
@@ -65,11 +89,23 @@
       {% endblock %}
     </div>
 
+<<<<<<< HEAD
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+=======
+    <div class="footer">
+      <div class="container">
+        <div class="text-center">
+          <a href="/about/">About Us</a> |
+          <a href="{% url 'contact_us' %}">Contact Us</a> |
+          <a href="{% url 'community_guidelines' %}">Community Guidelines</a>
+        </div>
+      </div>
+    </div>
+>>>>>>> c8757c2dbdefcc02dc41063b0fd4f8c43607fbc8
 
   {% block modals %}
   {% include 'account/login-modal.html' %}
