@@ -15,16 +15,16 @@
       <div class="modal-body">
         <div style="margin:0px 20px;">
           <form class="form-horizontal" role="form" method="post"
-              action="{% url 'django.contrib.auth.views.login' %}">
+              action="{% url 'account_login' %}">
             {% csrf_token %}
             <div class="form-group">
               <label for="form.username.label_tag">Username</label>
-              <input type="text" id="id_username" class="form-control" maxlength="254"
+              <input type="text" id="username" class="form-control" maxlength="254"
                 name="username" placeholder="Enter Username">
             </div>
             <div class="form-group">
               <label for="form.password.label_tag">Password</label>
-              <input type="password" class="form-control" placeholder="Enter Password" id=" id_password" name="password">
+              <input type="password" class="form-control" placeholder="Enter Password" id="password" name="password">
             </div>
             <button type="submit" class="btn btn-primary">Login</button>
             <input type="hidden" name="next" value="/" />
@@ -33,7 +33,7 @@
       </div>
 
       <div class="modal-footer">
-        Want an account? <a href='/accounts/signup/'>Sign up!</a>
+        Want an account? <a href="{% url 'account_signup' %}">Sign up!</a>
       </div>
 
     </div><!-- /.modal-content -->
