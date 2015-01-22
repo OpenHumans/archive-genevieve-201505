@@ -52,13 +52,8 @@
               <a href="{% url 'genomes:reports_list' %}">Genome analyses</a>
             </li>
             <li>
+              <a href="{% url 'account_logout' %}">Log Out</a>
               <a href="{% url 'file_process:genome_import' %}">Import genome</a>
-            </li>
-            <li>
-              <form action="{% url 'auth_logout' %}">
-                <input class="btn btn-primary navbar-btn" type="submit"
-                  value="Logout" />
-              </form>
             </li>
           </ul>
           {% endif %}
@@ -71,14 +66,26 @@
       {% endblock %}
     </div>
 
+<<<<<<< HEAD
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+=======
+    <div class="footer">
+      <div class="container">
+        <div class="text-center">
+          <a href="/about/">About Us</a> |
+          <a href="{% url 'contact_us' %}">Contact Us</a> |
+          <a href="{% url 'community_guidelines' %}">Community Guidelines</a>
+        </div>
+      </div>
+    </div>
+>>>>>>> c8757c2dbdefcc02dc41063b0fd4f8c43607fbc8
 
   {% block modals %}
-  {% include 'login-modal.html' %}
+  {% include 'account/login-modal.html' %}
   {% endblock modals %}
   </body>
 </html>
