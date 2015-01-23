@@ -19,16 +19,18 @@
             {% csrf_token %}
             <div class="form-group">
               <label for="form.username.label_tag">Username</label>
-              <input type="text" id="username" class="form-control" maxlength="254"
-                name="username" placeholder="Enter Username">
+              <input type="text" class="form-control" name="username"
+              id="login-username" placeholder="Username" placeholder="Enter Username">
             </div>
             <div class="form-group">
               <label for="form.password.label_tag">Password</label>
-              <input type="password" class="form-control" placeholder="Enter Password" id="password" name="password">
+              <input type="password" class="form-control" name="password"
+              id="login-password" placeholder="Enter Password">
             </div>
-            <button type="submit" class="btn btn-primary">Login</button>
-            <input type="hidden" name="next" value="/" />
           </form>
+          <input type="submit" form="login-form" id="login"
+          class="btn btn-primary" value="Log in">
+          <input type="hidden" name="next" value="/" />
         </div>
       </div>
 
