@@ -14,28 +14,12 @@
 
       <div class="modal-body">
         <div style="margin:0px 20px;">
-          <form class="form-horizontal" role="form" method="post"
-              action="{% url 'account_login' %}"
-            {% csrf_token %}
-            <div class="form-group">
-              <label for="form.username.label_tag">Username</label>
-              <input type="text" class="form-control" name="username"
-              id="login-username" placeholder="Username" placeholder="Enter Username">
-            </div>
-            <div class="form-group">
-              <label for="form.password.label_tag">Password</label>
-              <input type="password" class="form-control" name="password"
-              id="login-password" placeholder="Enter Password">
-            </div>
-          </form>
-          <input type="submit" form="login-form" id="login"
-          class="btn btn-primary" value="Log in">
-          <input type="hidden" name="next" value="/" />
+          {% include 'account/login-form.html' %}
         </div>
       </div>
 
       <div class="modal-footer">
-        Want an account? <a href="{% url 'account_signup' %}">Sign up!</a>
+        Want an account? <a href='/accounts/signup/'>Sign up!</a>
       </div>
 
     </div><!-- /.modal-content -->

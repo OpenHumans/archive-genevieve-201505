@@ -22,7 +22,7 @@ These instructions were written for Ubuntu Linux 13.10 or 14.04.
 ### Clone the Git repository ###
 
 Navigate to the directory you want to have the code in, and clone the
-repository with: `git clone git://github.com/emilysa/Genevieve`.
+repository with: `git clone git://github.com/PersonalGenomesOrg/genevieve`.
 
 ## Add expected additional data files
 
