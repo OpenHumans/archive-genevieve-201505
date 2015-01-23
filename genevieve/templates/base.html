@@ -52,9 +52,14 @@
               <a href="{% url 'genomes:reports_list' %}">Genome analyses</a>
             </li>
             <li>
-              <a href="{% url 'account_logout' %}">Log Out</a>
               <a href="{% url 'file_process:genome_import' %}">Import genome</a>
             </li>
+            <li>
+            <form method=post action="{% url 'account_logout' %}">
+              {% csrf_token %}
+              <input class="btn btn-primary navbar-btn navbar-right" type="submit" value="Log out">
+            </form>
+          </li>
           </ul>
           {% endif %}
         </div><!-- /.navbar-collapse -->
