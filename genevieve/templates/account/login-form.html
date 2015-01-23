@@ -1,0 +1,34 @@
+{% if form.non_field_errors %}
+<div class="panel panel-danger">
+  <div class="panel-heading">Errors</div>
+  <div class="panel-body">
+  {{ form.non_field_errors }}
+  </div>
+</div>
+{% endif %}
+<form class="form-horizontal" role="form" method="post"
+    action="{% url 'account_login' %}" id="login-form">
+  {% csrf_token %}
+  <div class="form-group{% if form.username.errors %} has-error{% endif %}">
+    <label for="id_username">Username</label>
+    <input type="text" id="id_username" class="form-control" maxlength="254"
+      name="username" placeholder="Enter Username">
+    {% if form.username.errors %}
+      {% for error in form.username.errors %}
+      <span class="help-block">{{ error }}</span>
+      {% endfor %}
+    {% endif %}
+  </div>
+  <div class="form-group{% if form.password.errors %} has-error{% endif %}">
+    <label for="id_password">Password</label>
+    <input type="password" class="form-control" placeholder="Enter Password"
+      id=" id_password" name="password">
+    {% if form.password.errors %}
+      {% for error in form.password.errors %}
+      <span class="help-block">{{ error }}</span>
+      {% endfor %}
+    {% endif %}
+  </div>
+  <button type="submit" class="btn btn-primary">Login</button>
+  <input type="hidden" name="next" value="/" />
+</form>

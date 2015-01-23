@@ -2,14 +2,14 @@ from django.conf import settings
 from django.conf.urls import patterns, include, url
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.contrib.auth import views as auth_views
-
-from .views import UserCreateView
+from django.views.generic import TemplateView
 
 admin.autodiscover()
 
 urlpatterns = patterns(
     '',
+
+    url(r'^$', TemplateView.as_view(template_name='home.html')),
 
     url(r'^admin/', include(admin.site.urls)),
 
@@ -18,11 +18,5 @@ urlpatterns = patterns(
     url(r'^genomes/', include('genomes.urls',
                               namespace='genomes')),
 
-    url(r'^accounts/signup/$', UserCreateView.as_view()),
-    url(r'^$',
-        auth_views.login,
-        {'template_name': 'home.html',
-         'extra_context': {'next': '/'}}, name='auth_login'),
-    url(r'^accounts/logout/$', auth_views.logout, {'next_page': '/'},
-        name='auth_logout'),
+    url(r'^account/', include('account.urls')),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

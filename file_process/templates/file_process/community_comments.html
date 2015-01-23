@@ -2,7 +2,7 @@
 {% block title %}Community Comments{% endblock %}
 {% block head %}
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
-<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script> 
+<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
 <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
@@ -15,10 +15,10 @@ $(document).ready(function() {
 {% endblock %}
 {% block navbar %}
 <a href="/file_process/"><button type="button" class="btn btn-default navbar-btn">Genome Uploads</button></a>
-<a href="/accounts/logout"><button type="button" class="btn btn-primary navbar-btn navbar-right">Logout</button></a>
+<a href="{% url 'account_logout' %}"><button type="button" class="btn btn-primary navbar-btn navbar-right">Logout</button></a>
 {% endblock %}
 {% block content %}
-<h2> 
+<h2>
 <a href="http://www.ncbi.nlm.nih.gov/clinvar/{{specific_variant.accnum}}">
 {{specific_variant.accnum}}</a></h2>
 <h3>{{specific_variant.condition}}</h3>

@@ -6,6 +6,7 @@ astroid==1.2.1
 billiard==3.3.0.18
 boto==2.33.0
 celery==3.1.13
+django-user-accounts==1.0.1
 flake8==2.2.3
 kombu==3.0.21
 logilab-common==0.62.1
