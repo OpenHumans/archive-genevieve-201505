@@ -1,0 +1,96 @@
+{% extends "home.html" %}
+
+{% block title %}Genevieve Signup{% endblock %}
+
+{% block main %}
+<form class="form-horizontal" role="form" method="POST"
+action="{% url 'account_signup' %}" id="signup-form">
+{% csrf_token %}
+
+<input type="hidden" name="next" value="{{ request.REQUEST.next }}">
+
+{% if form.non_field_errors %}
+<div class="alert alert-danger">
+  {% for error in form.non_field_errors %}
+  {{ error }}<br>
+  {% endfor %}
+</div>
+{% endif %}
+
+<div class="form-group{% if form.username.errors %} has-error {% endif %}">
+  <label for="signup-username">Username</label>
+
+  <div>
+    <input type="text" class="form-control" name="username"
+    id="signup-username" placeholder="Username"
+    value="{{ form.username.value|default:'' }}">
+
+    {% if form.username.errors %}
+    {% for error in form.username.errors %}
+    <span class="help-block">{{ error }}</span>
+    {% endfor %}
+    {% endif %}
+  </div>
+</div>
+
+<div class="form-group{% if form.email.errors %} has-error{% endif %}">
+  <label for="email-address">Email</label>
+
+  <div>
+    <input type="email" class="form-control" name="email" id="email-address"
+    placeholder="Email" value="{{ form.email.value|default:'' }}">
+
+    {% if form.email.errors %}
+    {% for error in form.email.errors %}
+    <span class="help-block">{{ error }}</span>
+    {% endfor %}
+    {% endif %}
+  </div>
+</div>
+
+<div class="form-group{% if form.password.errors %} has-error{% endif %}">
+  <label for="signup-password">Password</label>
+
+  <div>
+    <input type="password" class="form-control" name="password"
+    id="signup-password" placeholder="Password"
+    value="{{ form.password.value|default:'' }}">
+
+    {% if form.password.errors %}
+    {% for error in form.password.errors %}
+    <span class="help-block">{{ error }}</span>
+    {% endfor %}
+    {% endif %}
+  </div>
+</div>
+
+<div class="form-group{% if form.password_confirm.errors %} has-error{% endif %}">
+  <label for="signup-password-confirm">
+    Re-enter password
+  </label>
+
+  <div>
+    <input type="password" class="form-control" name="password_confirm"
+    id="signup-password-confirm" placeholder="Password"
+    value="{{ form.password_confirm.value|default:'' }}">
+
+    {% if form.password_confirm.errors %}
+    {% for error in form.password_confirm.errors %}
+    <span class="help-block">{{ error }}</span>
+    {% endfor %}
+    {% endif %}
+  </div>
+</div>
+
+{% if form.terms.errors %}
+<div>
+  {% for error in form.terms.errors %}
+  {{ error }}<br>
+  {% endfor %}
+</div>
+{% endif %}
+</form>
+<input type="submit" form="signup-form" id="create-account"
+class="btn btn-primary" value="Create my account">
+
+{% endblock main %}

@@ -1,0 +1,9 @@
+Dear {{ user.username }},
+
+Thank you for joining Genevieve!
+
+We'd like you to verify this email address ({{ email_address.email }}).
+
+Please click the link below to confirm this email address:
+
+{{ activate_url }}
