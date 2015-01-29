@@ -86,6 +86,8 @@ LOGIN_URL = 'account_login'
 LOGIN_REDIRECT_URL = "file_process/"
 ACCOUNT_LOGIN_REDIRECT_URL = LOGIN_REDIRECT_URL
 
+ACCOUNT_EMAIL_CONFIRMATION_REQUIRED = True
+
 # Import settings last. These override anything defined above.
 try:
     from settings_local import *
