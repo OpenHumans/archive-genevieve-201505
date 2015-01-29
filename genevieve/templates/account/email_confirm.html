@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block content %}
+{% block main %}
 <form method="post" class="form-horizontal"
 action="{% url 'account_confirm_email' key=confirmation.key %}">
 <fieldset>
