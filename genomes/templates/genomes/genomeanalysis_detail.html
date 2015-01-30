@@ -42,7 +42,7 @@
           <a href="http://www.ncbi.nlm.nih.gov/clinvar/{{clinvarrecord.accnum}}">
             {{clinvarrecord.condition}}</a>
         </td>
-	      <td>Significance: {{clinvarrecord.clnsig}}</td>
+	      <td>Significance: {{clinvarrecord.get_clnsig_display}}</td>
 	      <td>
 	        <a href="/file_process/commentary/{{clinvarrecord.id}}/">
 	          Genevieve Re-Evaluation

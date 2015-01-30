@@ -207,7 +207,8 @@ class VCFLine(object):
             return None
         vcf_data = vcf_line.strip().split("\t")
         return_data = dict()
-        return_data['chrom'] = CHROM_INDEX[vcf_data[0]]
+        return_data['chrom'] = vcf_data[0]
+        return_data['chrom_idx'] = CHROM_INDEX[vcf_data[0]]
         return_data['pos'] = int(vcf_data[1])
         return return_data
 
@@ -253,7 +254,7 @@ class ClinVarVCFLine(VCFLine):
     def _parse_frequencies(self):
         """Parse frequency data in ClinVar VCF"""
         given_freqs = self.info['CAF'].rstrip(']').lstrip('[').split(',')
-        parsed_freqs = ['NOT1000G' if x == '.' else x for x in given_freqs]
+        parsed_freqs = ['0' if x == '.' else x for x in given_freqs]
         return parsed_freqs
 
     def _parse_clinvar_allele(self, *args, **kwargs):
@@ -378,10 +379,10 @@ def match_to_clinvar(genome_file, clin_file):
         clin_curr_pos = VCFLine.get_pos(clin_curr_line)
         genome_curr_pos = VCFLine.get_pos(genome_curr_line)
         try:
-            if clin_curr_pos['chrom'] > genome_curr_pos['chrom']:
+            if clin_curr_pos['chrom_idx'] > genome_curr_pos['chrom_idx']:
                 genome_curr_line = genome_file.next()
                 continue
-            elif clin_curr_pos['chrom'] < genome_curr_pos['chrom']:
+            elif clin_curr_pos['chrom_idx'] < genome_curr_pos['chrom_idx']:
                 clin_curr_line = clin_file.next()
                 continue
             if clin_curr_pos['pos'] > genome_curr_pos['pos']:
@@ -447,10 +448,8 @@ def match_to_clinvar(genome_file, clin_file):
                                   x in range(len(allele.records))]
                         data = [(allele.records[n].acc,
                                  allele.records[n].dbn,
-                                 CLNSIG_INDEX[clnsig[n]]) for n in
-                                range(len(clnsig)) if (clnsig[n] == 4 or
-                                                       clnsig[n] == 5 or
-                                                       clnsig[n] == 255)]
+                                 clnsig[n]) for n in
+                                range(len(clnsig))]
                         if data:
                             yield (genome_curr_pos['chrom'],
                                    genome_curr_pos['pos'],

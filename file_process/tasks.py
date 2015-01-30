@@ -4,6 +4,7 @@
 from __future__ import absolute_import
 import bz2
 import csv
+from decimal import Decimal
 import gzip
 import os
 
@@ -15,7 +16,7 @@ from django.conf import settings
 from django.core.files import File
 
 from genomes.models import GenomeAnalysis, GenomeAnalysisVariant
-from variants.models import Variant, ClinVarRecord
+from variants.models import chr_normalize, ClinVarRecord, Variant
 
 from .utils import vcf_parsing_tools as vcftools
 from .utils.twentythree_and_me import (api23andme_full_gen_data,
@@ -103,13 +104,13 @@ def read_vcf(analysis_in, genome_file):
         name_acc = var[4]
         freq = var[5]
         zygosity = var[6]
-        variant, _ = Variant.objects.get_or_create(chrom=chrom,
-                                                   pos=pos,
+        variant, _ = Variant.objects.get_or_create(chrom=chr_normalize(chrom),
+                                                   pos=int(pos),
                                                    ref_allele=ref_allele,
                                                    alt_allele=alt_allele)
-        if not variant.freq:
-            variant.freq = freq
-            variant.save()
+        if freq and freq != 'Unknown':
+            variant.freq = Decimal(freq)
+        variant.save()
 
         genomeanalysisvariant = GenomeAnalysisVariant.objects.create(
             genomeanalysis=analysis_in, variant=variant, zyg=zygosity)
