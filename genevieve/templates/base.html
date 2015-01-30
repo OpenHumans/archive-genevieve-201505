@@ -19,6 +19,7 @@
     <![endif]-->
 <link href="http://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+<link rel="stylesheet" type="text/css" href="/static/css/sticky-footer.css">
 
 {% block head %}
 {% endblock %}
@@ -55,6 +56,9 @@
               <a href="{% url 'file_process:genome_import' %}">Import genome</a>
             </li>
             <li>
+              <a href="{%url 'account_settings' %}">Account settings</a>
+            </li>
+            <li>
             <form method=post action="{% url 'account_logout' %}">
               {% csrf_token %}
               <input class="btn btn-primary navbar-btn navbar-right" type="submit" value="Log out">
@@ -68,8 +72,18 @@
 
     <div id="content">
       {% block content %}
+        <div class="container">
+            {% block main %}
+            {% endblock %}
+        </div>
       {% endblock %}
     </div>
+
+
+    {% block footer %}
+    {% include 'footer.html' %}
+    {% endblock footer %}
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 

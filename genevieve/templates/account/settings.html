@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Account{% endblock %}
+
+{% block main %}
+    <form method="POST" action="{% url "account_settings" %}">
+        <legend>Account</legend>
+        {% csrf_token %}
+        <label for="id_email">Email:</label>
+        <input id="id_email" name="email" type="email">
+        <div class="form-actions">
+            <button class="btn btn-primary" type="submit">Save</button>
+        </div>
+    </form>
+
+    <a href="{% url 'account_password' %}">Change password</a>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<form method="post" class="form-horizontal"
+action="{% url 'account_confirm_email' key=confirmation.key %}">
+<fieldset>
+  {% csrf_token %}
+  <p>
+    Confirm the email address
+    <strong>{{ confirmation.email_address.email }}</strong> for Genevieve member
+    <strong>{{ confirmation.email_address.user.username }}</strong>?
+  </p>
+  <div class="form-actions">
+    <button type="submit" class="btn btn-primary">Confirm address</button>
+    <input type="hidden" name="next" value="^file_process/" />
+  </div>
+</fieldset>
+</form>
+{% endblock %}

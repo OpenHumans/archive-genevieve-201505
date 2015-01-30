@@ -20,8 +20,9 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sessions',
+    'django.contrib.sites',
     'django.contrib.staticfiles',
 
     'genevieve',
@@ -66,6 +67,11 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
+
+SITE_ID = 1
 
 # Path to the directory that will hold user-uploaded files.
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -85,6 +91,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 LOGIN_URL = 'account_login'
 LOGIN_REDIRECT_URL = "file_process/"
 ACCOUNT_LOGIN_REDIRECT_URL = LOGIN_REDIRECT_URL
+
+ACCOUNT_EMAIL_CONFIRMATION_REQUIRED = True
 
 # Import settings last. These override anything defined above.
 try:

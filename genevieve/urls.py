@@ -8,6 +8,10 @@ admin.autodiscover()
 
 urlpatterns = patterns(
     '',
+    
+    url(r'^contact-us/$',
+        TemplateView.as_view(template_name='pages/contact_us.html'),
+        name='contact_us'),
 
     url(r'^$', TemplateView.as_view(template_name='home.html')),
 
