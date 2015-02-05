@@ -14,7 +14,7 @@
 {% block main %}
 <h2>Genome Report: {{genomeanalysis.name}}</h2>
 
-{% if genomeanalysis.variants %}
+{% if genomeanalysis.genomeanalysisvariant_set.all %}
 <div class="table-responsive">
   <table class="table">
     <thead></thead>
@@ -56,6 +56,14 @@
   </table>
 </div>
 {% else %}
-There were no matches against the ClinVar Database.
+  {% if genomeanalysis.processedfile %}
+  <div>
+    There were no matches against the ClinVar Database.
+  </div>
+  {% else %}
+  <div>
+    We're still processing your file.
+  </div>
+  {% endif %}
 {% endif %}
 {% endblock main %}

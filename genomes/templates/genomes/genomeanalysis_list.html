@@ -1,4 +1,8 @@
 {% extends "home.html" %}
+
+{% block head %}
+<script src="/static/js/reports.js"></script>
+{% endblock %}
 {% block title %}Genevieve {{ username }}'s Reports{% endblock %}
 
 {% block main %}
@@ -17,16 +21,20 @@
        <th>Report</th>
      </tr>
   </thead>
-  <tbody>
+  <tbody id="genome-reports-table">
     {% for genomeanalysis in genomeanalysis_list %}
-    <tr>
-      <td>{{ genomeanalysis.name }}</td>
-      <td>{{ genomeanalysis.timestamp }}</td>
-      <td>
+    <tr id="report-{{genomeanalysis.id}}">
+      <td class="report-name">{{ genomeanalysis.name }}</td>
+      <td class="report-timestamp">{{ genomeanalysis.timestamp }}</td>
+      <td class="report-uploadfile">
+        {% if genomeanalysis.uploadfile %}
         <a href="{{ genomeanalysis.uploadfile.url }}">
           Download Uploaded File</a>
+        {% else %}
+        File import not complete.
+        {% endif %}
       </td>
-      <td>
+      <td class="report-processedfile">
         {% if genomeanalysis.processedfile %}
         <a href="{{ genomeanalysis.processedfile.url }}">
           Download Processed File</a>
