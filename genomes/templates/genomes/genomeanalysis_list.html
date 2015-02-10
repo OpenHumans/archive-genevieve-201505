@@ -22,33 +22,6 @@
      </tr>
   </thead>
   <tbody id="genome-reports-table">
-    {% for genomeanalysis in genomeanalysis_list %}
-    <tr id="report-{{genomeanalysis.id}}">
-      <td class="report-name">{{ genomeanalysis.name }}</td>
-      <td class="report-timestamp">{{ genomeanalysis.timestamp }}</td>
-      <td class="report-uploadfile">
-        {% if genomeanalysis.uploadfile %}
-        <a href="{{ genomeanalysis.uploadfile.url }}">
-          Download Uploaded File</a>
-        {% else %}
-        File import not complete.
-        {% endif %}
-      </td>
-      <td class="report-processedfile">
-        {% if genomeanalysis.processedfile %}
-        <a href="{{ genomeanalysis.processedfile.url }}">
-          Download Processed File</a>
-        {% else %}
-        File processing not complete.
-        {% endif %}
-      </td>
-      <td>
-        {% if genomeanalysis.variants %}
-        <a href="report/{{ genomeanalysis.id }}/">View Report</a>
-        {% endif %}
-      </td>
-    </tr>
-    {% endfor %}
   </tbody>
 </table>
 {% else %}
