@@ -1,5 +1,9 @@
 {% extends "home.html" %}
 
+{% block head %}
+<script src="/static/js/variants.js"></script>
+{% endblock %}
+
 {% block title %}Genevieve Report{% endblock %}
 
 {% block navbar %}
@@ -17,8 +21,11 @@
 {% if genomeanalysis.genomeanalysisvariant_set.all %}
 <div class="table-responsive">
   <table class="table">
-    <thead></thead>
-    <tbody>
+    <thead>
+
+    </thead>
+    <tbody id="genome-variants-table">
+    {% comment "Comment Out Table" %}
     {% for genomevariant in genomeanalysis.genomeanalysisvariant_set.all|dictsort:"variant.freq" %}
     {% with genomevariant.variant as variant %}
       <tr class="active">
@@ -52,6 +59,7 @@
       {% endfor %}
     {% endwith %}
     {% endfor %}
+    {% endcomment %}
     </tbody>
   </table>
 </div>

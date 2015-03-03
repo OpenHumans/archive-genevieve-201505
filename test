@@ -1,0 +1,3809 @@
+{
+  "name": "23andme-api-845eaa2a6c83cee2.vcf.gz", 
+  "uploadfile": "uploads/2015/02/10/23andme-api-845eaa2a6c83cee2.vcf_FTVR8s9.gz", 
+  "timestamp": "2015-02-10 19:03:30.481557+00:00", 
+  "genomeanalysisvariants_dataset": {
+    "1": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "T", 
+        "clinvarrecords_dataset": {
+          "1": {
+            "clnsig": "pathogenic", 
+            "accnum": "RCV000013593.16", 
+            "id": 1, 
+            "condition": "Obesity\\x2c_association_with", 
+            "variant_id": 1
+          }
+        }, 
+        "pos": "31349647", 
+        "freq": "0.101", 
+        "ref_allele": "C", 
+        "chrom": "1", 
+        "id": 1
+      }
+    }, 
+    "2": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "2": {
+            "clnsig": "other", 
+            "accnum": "RCV000023026.1", 
+            "id": 2, 
+            "condition": "Encephalopathy\\x2c_acute\\x2c_infection-induced\\x2c_4\\x2c_susceptibility_to", 
+            "variant_id": 2
+          }
+        }, 
+        "pos": "53676448", 
+        "freq": "0.4995", 
+        "ref_allele": "G", 
+        "chrom": "1", 
+        "id": 2
+      }
+    }, 
+    "3": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "T", 
+        "clinvarrecords_dataset": {
+          "3": {
+            "clnsig": "other", 
+            "accnum": "RCV000007411.1", 
+            "id": 3, 
+            "condition": "Myocardial_infarction_1", 
+            "variant_id": 3
+          }
+        }, 
+        "pos": "53712727", 
+        "freq": "0.1837", 
+        "ref_allele": "C", 
+        "chrom": "1", 
+        "id": 3
+      }
+    }, 
+    "4": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "T", 
+        "clinvarrecords_dataset": {
+          "4": {
+            "clnsig": "other", 
+            "accnum": "RCV000007497.1", 
+            "id": 4, 
+            "condition": "Low_density_lipoprotein_cholesterol_level_quantitative_trait_locus_6", 
+            "variant_id": 4
+          }
+        }, 
+        "pos": "109817590", 
+        "freq": "0.1864", 
+        "ref_allele": "G", 
+        "chrom": "1", 
+        "id": 4
+      }
+    }, 
+    "5": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "5": {
+            "clnsig": "other", 
+            "accnum": "RCV000009460.1", 
+            "id": 5, 
+            "condition": "Diabetes_mellitus\\x2c_insulin-dependent\\x2c_susceptibility_to", 
+            "variant_id": 5
+          }
+        }, 
+        "pos": "114377568", 
+        "freq": "0.04224", 
+        "ref_allele": "A", 
+        "chrom": "1", 
+        "id": 5
+      }
+    }, 
+    "6": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "6": {
+            "clnsig": "pathogenic", 
+            "accnum": "RCV000077975.1", 
+            "id": 6, 
+            "condition": "not_provided", 
+            "variant_id": 6
+          }
+        }, 
+        "pos": "115231254", 
+        "freq": "0.05464", 
+        "ref_allele": "G", 
+        "chrom": "1", 
+        "id": 6
+      }
+    }, 
+    "7": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "7": {
+            "clnsig": "pathogenic", 
+            "accnum": "RCV000019933.27", 
+            "id": 7, 
+            "condition": "Muscle_AMP_deaminase_deficiency", 
+            "variant_id": 7
+          }
+        }, 
+        "pos": "115236057", 
+        "freq": "0.05326", 
+        "ref_allele": "G", 
+        "chrom": "1", 
+        "id": 7
+      }
+    }, 
+    "8": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "8": {
+            "clnsig": "other", 
+            "accnum": "RCV000013088.1", 
+            "id": 8, 
+            "condition": "Hyperlipidemia\\x2c_familial_combined\\x2c_susceptibility_to", 
+            "variant_id": 8
+          }
+        }, 
+        "pos": "161009523", 
+        "freq": "0.2158", 
+        "ref_allele": "G", 
+        "chrom": "1", 
+        "id": 8
+      }
+    }, 
+    "9": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "T", 
+        "clinvarrecords_dataset": {
+          "9": {
+            "clnsig": "other", 
+            "accnum": "RCV000013089.1", 
+            "id": 9, 
+            "condition": "Hyperlipidemia\\x2c_familial_combined\\x2c_susceptibility_to", 
+            "variant_id": 9
+          }
+        }, 
+        "pos": "161010762", 
+        "freq": "0.2158", 
+        "ref_allele": "C", 
+        "chrom": "1", 
+        "id": 9
+      }
+    }, 
+    "10": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "10": {
+            "clnsig": "other", 
+            "accnum": "RCV000015946.2", 
+            "id": 10, 
+            "condition": "Lupus_nephritis\\x2c_susceptibility_to", 
+            "variant_id": 10
+          }
+        }, 
+        "pos": "161479745", 
+        "freq": "0.4302", 
+        "ref_allele": "A", 
+        "chrom": "1", 
+        "id": 10
+      }
+    }, 
+    "11": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "11": {
+            "clnsig": "other", 
+            "accnum": "RCV000017711.1", 
+            "id": 11, 
+            "condition": "Trimethylaminuria\\x2c_mild", 
+            "variant_id": 11
+          }
+        }, 
+        "pos": "171076966", 
+        "freq": "0.3531", 
+        "ref_allele": "G", 
+        "chrom": "1", 
+        "id": 11
+      }
+    }, 
+    "12": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "T", 
+        "clinvarrecords_dataset": {
+          "12": {
+            "clnsig": "other", 
+            "accnum": "RCV000013880.2", 
+            "id": 12, 
+            "condition": "Prostate_cancer\\x2c_susceptibility_to", 
+            "variant_id": 12
+          }
+        }, 
+        "pos": "182554557", 
+        "freq": "0.2447", 
+        "ref_allele": "C", 
+        "chrom": "1", 
+        "id": 12
+      }
+    }, 
+    "13": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "13": {
+            "clnsig": "other", 
+            "accnum": "RCV000018024.1", 
+            "id": 13, 
+            "condition": "Age-related_macular_degeneration_4", 
+            "variant_id": 13
+          }
+        }, 
+        "pos": "196696933", 
+        "freq": "0.539", 
+        "ref_allele": "G", 
+        "chrom": "1", 
+        "id": 13
+      }
+    }, 
+    "14": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "T", 
+        "clinvarrecords_dataset": {
+          "14": {
+            "clnsig": "other", 
+            "accnum": "RCV000017984.1", 
+            "id": 14, 
+            "condition": "Venous_thrombosis\\x2c_susceptibility_to", 
+            "variant_id": 14
+          }
+        }, 
+        "pos": "197031021", 
+        "freq": "0.8062", 
+        "ref_allele": "C", 
+        "chrom": "1", 
+        "id": 14
+      }
+    }, 
+    "15": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "T", 
+        "clinvarrecords_dataset": {
+          "15": {
+            "clnsig": "pathogenic", 
+            "accnum": "RCV000010134.1", 
+            "id": 15, 
+            "condition": "Chitotriosidase_deficiency", 
+            "variant_id": 15
+          }
+        }, 
+        "pos": "203194186", 
+        "freq": "0.3007", 
+        "ref_allele": "C", 
+        "chrom": "1", 
+        "id": 15
+      }
+    }, 
+    "16": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "16": {
+            "clnsig": "other", 
+            "accnum": "RCV000019691.2", 
+            "id": 16, 
+            "condition": "Hypertension\\x2c_essential\\x2c_susceptibility_to", 
+            "variant_id": 16
+          }
+        }, 
+        "pos": "230845794", 
+        "freq": "0.6616", 
+        "ref_allele": "A", 
+        "chrom": "1", 
+        "id": 16
+      }
+    }, 
+    "17": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "17": {
+            "clnsig": "pathogenic", 
+            "accnum": "RCV000029140.1", 
+            "id": 17, 
+            "condition": "Rhizomelic_chondrodysplasia_punctata_type_2", 
+            "variant_id": 17
+          }
+        }, 
+        "pos": "231408091", 
+        "freq": "0.1437", 
+        "ref_allele": "A", 
+        "chrom": "1", 
+        "id": 17
+      }
+    }, 
+    "18": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "T", 
+        "clinvarrecords_dataset": {
+          "18": {
+            "clnsig": "other", 
+            "accnum": "RCV000005467.1", 
+            "id": 18, 
+            "condition": "Asthma\\x2c_susceptibility_to", 
+            "variant_id": 18
+          }
+        }, 
+        "pos": "138759649", 
+        "freq": "0.05601", 
+        "ref_allele": "C", 
+        "chrom": "2", 
+        "id": 18
+      }
+    }, 
+    "19": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "T", 
+        "clinvarrecords_dataset": {
+          "19": {
+            "clnsig": "other", 
+            "accnum": "RCV000013759.1", 
+            "id": 19, 
+            "condition": "Febrile_seizures\\x2c_familial\\x2c_3a", 
+            "variant_id": 19
+          }
+        }, 
+        "pos": "166909544", 
+        "freq": "0.483", 
+        "ref_allele": "C", 
+        "chrom": "2", 
+        "id": 19
+      }
+    }, 
+    "20": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "T", 
+        "clinvarrecords_dataset": {
+          "20": {
+            "clnsig": "other", 
+            "accnum": "RCV000024612.1", 
+            "id": 20, 
+            "condition": "Systemic_lupus_erythematosus_11", 
+            "variant_id": 20
+          }
+        }, 
+        "pos": "191964633", 
+        "freq": "0.2493", 
+        "ref_allele": "T", 
+        "chrom": "2", 
+        "id": 20
+      }
+    }, 
+    "21": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "21": {
+            "clnsig": "other", 
+            "accnum": "RCV000005877.1", 
+            "id": 21, 
+            "condition": "Mycobacterium_tuberculosis\\x2c_susceptibility_to", 
+            "variant_id": 21
+          }
+        }, 
+        "pos": "231050715", 
+        "freq": "0.8972", 
+        "ref_allele": "A", 
+        "chrom": "2", 
+        "id": 21
+      }
+    }, 
+    "22": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "22": {
+            "clnsig": "other", 
+            "accnum": "RCV000001189.2", 
+            "id": 22, 
+            "condition": "Inflammatory_bowel_disease_10\\x2c_susceptibility_to", 
+            "variant_id": 22
+          }
+        }, 
+        "pos": "234183368", 
+        "freq": "0.3889", 
+        "ref_allele": "A", 
+        "chrom": "2", 
+        "id": 22
+      }
+    }, 
+    "23": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "23": {
+            "clnsig": "pathogenic", 
+            "accnum": "RCV000013075.15", 
+            "id": 23, 
+            "condition": "Lucey-Driscoll_syndrome", 
+            "variant_id": 23
+          }
+        }, 
+        "pos": "234667582", 
+        "freq": "0.5257", 
+        "ref_allele": "A", 
+        "chrom": "2", 
+        "id": 23
+      }
+    }, 
+    "24": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "24": {
+            "clnsig": "other", 
+            "accnum": "RCV000005398.1", 
+            "id": 24, 
+            "condition": "Diabetes_mellitus_type_2", 
+            "variant_id": 24
+          }
+        }, 
+        "pos": "241531174", 
+        "freq": "0.1993", 
+        "ref_allele": "G", 
+        "chrom": "2", 
+        "id": 24
+      }
+    }, 
+    "25": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "T", 
+        "clinvarrecords_dataset": {
+          "25": {
+            "clnsig": "pathogenic", 
+            "accnum": "RCV000005995.1", 
+            "id": 25, 
+            "condition": "Primary_hyperoxaluria\\x2c_type_I", 
+            "variant_id": 25
+          }
+        }, 
+        "pos": "241808314", 
+        "freq": "0.1084", 
+        "ref_allele": "C", 
+        "chrom": "2", 
+        "id": 25
+      }
+    }, 
+    "26": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "26": {
+            "clnsig": "pathogenic", 
+            "accnum": "RCV000032682.1", 
+            "id": 26, 
+            "condition": "Primary_hyperoxaluria\\x2c_type_I", 
+            "variant_id": 26
+          }
+        }, 
+        "pos": "241817516", 
+        "freq": "0.1368", 
+        "ref_allele": "A", 
+        "chrom": "2", 
+        "id": 26
+      }
+    }, 
+    "27": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "T", 
+        "clinvarrecords_dataset": {
+          "27": {
+            "clnsig": "other", 
+            "accnum": "RCV000005364.1", 
+            "id": 27, 
+            "condition": "Metabolic_syndrome\\x2c_susceptibility_to", 
+            "variant_id": 27
+          }
+        }, 
+        "pos": "10331519", 
+        "freq": "0.002755", 
+        "ref_allele": "C", 
+        "chrom": "3", 
+        "id": 27
+      }
+    }, 
+    "28": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "C", 
+        "clinvarrecords_dataset": {
+          "28": {
+            "clnsig": "pathogenic", 
+            "accnum": "RCV000010000.1", 
+            "id": 28, 
+            "condition": "Progressive_familial_heart_block_type_1A", 
+            "variant_id": 28
+          }
+        }, 
+        "pos": "38645420", 
+        "freq": "0.2057", 
+        "ref_allele": "T", 
+        "chrom": "3", 
+        "id": 28
+      }
+    }, 
+    "29": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "29": {
+            "clnsig": "other", 
+            "accnum": "RCV000008629.2", 
+            "id": 29, 
+            "condition": "Human_immunodeficiency_virus_type_1\\x2c_rapid_progression_to_AIDS", 
+            "variant_id": 29
+          }
+        }, 
+        "pos": "39307162", 
+        "freq": "0.09688", 
+        "ref_allele": "G", 
+        "chrom": "3", 
+        "id": 29
+      }
+    }, 
+    "30": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "T", 
+        "clinvarrecords_dataset": {
+          "30": {
+            "clnsig": "other", 
+            "accnum": "RCV000008629.2", 
+            "id": 30, 
+            "condition": "Human_immunodeficiency_virus_type_1\\x2c_rapid_progression_to_AIDS", 
+            "variant_id": 30
+          }
+        }, 
+        "pos": "39307256", 
+        "freq": "0.174", 
+        "ref_allele": "C", 
+        "chrom": "3", 
+        "id": 30
+      }
+    }, 
+    "31": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "T", 
+        "clinvarrecords_dataset": {
+          "31": {
+            "clnsig": "other", 
+            "accnum": "RCV000018257.1", 
+            "id": 31, 
+            "condition": "Schizophrenia\\x2c_susceptibility_to", 
+            "variant_id": 31
+          }
+        }, 
+        "pos": "113890815", 
+        "freq": "0.5482", 
+        "ref_allele": "C", 
+        "chrom": "3", 
+        "id": 31
+      }
+    }, 
+    "32": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "C", 
+        "clinvarrecords_dataset": {
+          "32": {
+            "clnsig": "other", 
+            "accnum": "RCV000019688.2", 
+            "id": 32, 
+            "condition": "Hypertension\\x2c_essential\\x2c_susceptibility_to", 
+            "variant_id": 32
+          }
+        }, 
+        "pos": "148459988", 
+        "freq": "0.1575", 
+        "ref_allele": "A", 
+        "chrom": "3", 
+        "id": 32
+      }
+    }, 
+    "33": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "33": {
+            "clnsig": "pathogenic", 
+            "accnum": "RCV000034952.1", 
+            "id": 33, 
+            "condition": "Deficiency_of_ferroxidase", 
+            "variant_id": 33
+          }
+        }, 
+        "pos": "148916215", 
+        "freq": "0.01102", 
+        "ref_allele": "G", 
+        "chrom": "3", 
+        "id": 33
+      }
+    }, 
+    "34": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "C", 
+        "clinvarrecords_dataset": {
+          "34": {
+            "clnsig": "other", 
+            "accnum": "RCV000017418.1", 
+            "id": 34, 
+            "condition": "Leanness\\x2c_susceptibility_to", 
+            "variant_id": 34
+          }
+        }, 
+        "pos": "186337713", 
+        "freq": "0.7057", 
+        "ref_allele": "T", 
+        "chrom": "3", 
+        "id": 34
+      }
+    }, 
+    "35": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "C", 
+        "clinvarrecords_dataset": {
+          "35": {
+            "clnsig": "other", 
+            "accnum": "RCV000017419.1", 
+            "id": 35, 
+            "condition": "Leanness\\x2c_susceptibility_to", 
+            "variant_id": 35
+          }
+        }, 
+        "pos": "186338382", 
+        "freq": "0.6896", 
+        "ref_allele": "G", 
+        "chrom": "3", 
+        "id": 35
+      }
+    }, 
+    "36": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "36": {
+            "clnsig": "other", 
+            "accnum": "RCV000000772.1", 
+            "id": 36, 
+            "condition": "Recombination_rate_quantitative_trait_locus_1", 
+            "variant_id": 36
+          }
+        }, 
+        "pos": "1078187", 
+        "freq": "0.7668", 
+        "ref_allele": "G", 
+        "chrom": "4", 
+        "id": 36
+      }
+    }, 
+    "37": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "37": {
+            "clnsig": "other", 
+            "accnum": "RCV000000771.1", 
+            "id": 37, 
+            "condition": "Recombination_rate_quantitative_trait_locus_1", 
+            "variant_id": 37
+          }
+        }, 
+        "pos": "1095281", 
+        "freq": "0.5432", 
+        "ref_allele": "A", 
+        "chrom": "4", 
+        "id": 37
+      }
+    }, 
+    "38": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "T", 
+        "clinvarrecords_dataset": {
+          "38": {
+            "clnsig": "other", 
+            "accnum": "RCV000019936.1", 
+            "id": 38, 
+            "condition": "Hypertension\\x2c_salt-sensitive_essential\\x2c_susceptibility_to", 
+            "variant_id": 38
+          }
+        }, 
+        "pos": "2906707", 
+        "freq": "0.2489", 
+        "ref_allele": "G", 
+        "chrom": "4", 
+        "id": 38
+      }
+    }, 
+    "39": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "39": {
+            "clnsig": "other", 
+            "accnum": "RCV000004785.4", 
+            "id": 39, 
+            "condition": "Diabetes_mellitus\\x2c_noninsulin-dependent\\x2c_association_with", 
+            "variant_id": 39
+          }
+        }, 
+        "pos": "6292915", 
+        "freq": "0.7323", 
+        "ref_allele": "A", 
+        "chrom": "4", 
+        "id": 39
+      }
+    }, 
+    "40": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "T", 
+        "clinvarrecords_dataset": {
+          "40": {
+            "clnsig": "other", 
+            "accnum": "RCV000023341.1", 
+            "id": 40, 
+            "condition": "Uric_acid_concentration\\x2c_serum\\x2c_quantitative_trait_locus_1", 
+            "variant_id": 40
+          }
+        }, 
+        "pos": "89052323", 
+        "freq": "0.1391", 
+        "ref_allele": "G", 
+        "chrom": "4", 
+        "id": 40
+      }
+    }, 
+    "41": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "C", 
+        "clinvarrecords_dataset": {
+          "41": {
+            "clnsig": "other", 
+            "accnum": "RCV000015310.1", 
+            "id": 41, 
+            "condition": "Metabolic_syndrome\\x2c_protection_against", 
+            "variant_id": 41
+          }
+        }, 
+        "pos": "100504664", 
+        "freq": "0.2158", 
+        "ref_allele": "T", 
+        "chrom": "4", 
+        "id": 41
+      }
+    }, 
+    "42": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "42": {
+            "clnsig": "pathogenic", 
+            "accnum": "RCV000001331.1", 
+            "id": 42, 
+            "condition": "Systemic_lupus_erythmatosus\\x2c_association_with", 
+            "variant_id": 42
+          }
+        }, 
+        "pos": "102751076", 
+        "freq": "0.2245", 
+        "ref_allele": "G", 
+        "chrom": "4", 
+        "id": 42
+      }
+    }, 
+    "43": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "T", 
+        "clinvarrecords_dataset": {
+          "43": {
+            "clnsig": "pathogenic", 
+            "accnum": "RCV000034357.2", 
+            "id": 43, 
+            "condition": "Congenital_human_immunodeficiency_virus", 
+            "variant_id": 43
+          }
+        }, 
+        "pos": "187004074", 
+        "freq": "0.2502", 
+        "ref_allele": "C", 
+        "chrom": "4", 
+        "id": 43
+      }
+    }, 
+    "44": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "44": {
+            "clnsig": "other", 
+            "accnum": "RCV000007444.1", 
+            "id": 44, 
+            "condition": "Neural_tube_defects\\x2c_folate-sensitive\\x2c_susceptibility_to", 
+            "variant_id": 44
+          }
+        }, 
+        "pos": "7870973", 
+        "freq": "0.376", 
+        "ref_allele": "A", 
+        "chrom": "5", 
+        "id": 44
+      }
+    }, 
+    "45": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "C", 
+        "clinvarrecords_dataset": {
+          "45": {
+            "clnsig": "pathogenic", 
+            "accnum": "RCV000015964.24", 
+            "id": 45, 
+            "condition": "Severe_combined_immunodeficiency\\x2c_autosomal_recessive\\x2c_T_cell-negative\\x2c_B_cell-positive\\x2c_NK_cell-positive", 
+            "variant_id": 45
+          }
+        }, 
+        "pos": "35861068", 
+        "freq": "0.6129", 
+        "ref_allele": "T", 
+        "chrom": "5", 
+        "id": 45
+      }
+    }, 
+    "46": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "46": {
+            "clnsig": "pathogenic", 
+            "accnum": "RCV000015965.24", 
+            "id": 46, 
+            "condition": "Severe_combined_immunodeficiency\\x2c_autosomal_recessive\\x2c_T_cell-negative\\x2c_B_cell-positive\\x2c_NK_cell-positive", 
+            "variant_id": 46
+          }
+        }, 
+        "pos": "35871190", 
+        "freq": "0.674", 
+        "ref_allele": "G", 
+        "chrom": "5", 
+        "id": 46
+      }
+    }, 
+    "47": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "C", 
+        "clinvarrecords_dataset": {
+          "47": {
+            "clnsig": "other", 
+            "accnum": "RCV000009190.1", 
+            "id": 47, 
+            "condition": "Familial_hypercholesterolemia", 
+            "variant_id": 47
+          }
+        }, 
+        "pos": "42719239", 
+        "freq": "0.4426", 
+        "ref_allele": "A", 
+        "chrom": "5", 
+        "id": 47
+      }
+    }, 
+    "48": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "48": {
+            "clnsig": "other", 
+            "accnum": "RCV000073731.1", 
+            "id": 48, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 48
+          }
+        }, 
+        "pos": "112074269", 
+        "freq": "0.4646", 
+        "ref_allele": "A", 
+        "chrom": "5", 
+        "id": 48
+      }
+    }, 
+    "49": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "T", 
+        "clinvarrecords_dataset": {
+          "49": {
+            "clnsig": "other", 
+            "accnum": "RCV000073733.1", 
+            "id": 49, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 49
+          }
+        }, 
+        "pos": "112074356", 
+        "freq": "0.5891", 
+        "ref_allele": "C", 
+        "chrom": "5", 
+        "id": 49
+      }
+    }, 
+    "50": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "50": {
+            "clnsig": "other", 
+            "accnum": "RCV000073749.1", 
+            "id": 50, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 50
+          }
+        }, 
+        "pos": "112077770", 
+        "freq": "0.6001", 
+        "ref_allele": "A", 
+        "chrom": "5", 
+        "id": 50
+      }
+    }, 
+    "51": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "C", 
+        "clinvarrecords_dataset": {
+          "51": {
+            "clnsig": "other", 
+            "accnum": "RCV000073750.1", 
+            "id": 51, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 51
+          }
+        }, 
+        "pos": "112077920", 
+        "freq": "0.4679", 
+        "ref_allele": "G", 
+        "chrom": "5", 
+        "id": 51
+      }
+    }, 
+    "52": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "52": {
+            "clnsig": "other", 
+            "accnum": "RCV000073755.1", 
+            "id": 52, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 52
+          }
+        }, 
+        "pos": "112079882", 
+        "freq": "0.4642", 
+        "ref_allele": "T", 
+        "chrom": "5", 
+        "id": 52
+      }
+    }, 
+    "53": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "53": {
+            "clnsig": "other", 
+            "accnum": "RCV000073768.1", 
+            "id": 53, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 53
+          }
+        }, 
+        "pos": "112081924", 
+        "freq": "0.4702", 
+        "ref_allele": "A", 
+        "chrom": "5", 
+        "id": 53
+      }
+    }, 
+    "54": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "54": {
+            "clnsig": "other", 
+            "accnum": "RCV000073778.1", 
+            "id": 54, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 54
+          }
+        }, 
+        "pos": "112082945", 
+        "freq": "Unknown", 
+        "ref_allele": "A", 
+        "chrom": "5", 
+        "id": 54
+      }
+    }, 
+    "55": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "55": {
+            "clnsig": "other", 
+            "accnum": "RCV000073784.1", 
+            "id": 55, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 55
+          }
+        }, 
+        "pos": "112085611", 
+        "freq": "0.4522", 
+        "ref_allele": "T", 
+        "chrom": "5", 
+        "id": 55
+      }
+    }, 
+    "56": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "56": {
+            "clnsig": "other", 
+            "accnum": "RCV000073788.1", 
+            "id": 56, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 56
+          }
+        }, 
+        "pos": "112086165", 
+        "freq": "0.4633", 
+        "ref_allele": "T", 
+        "chrom": "5", 
+        "id": 56
+      }
+    }, 
+    "57": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "57": {
+            "clnsig": "other", 
+            "accnum": "RCV000073796.1", 
+            "id": 57, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 57
+          }
+        }, 
+        "pos": "112088507", 
+        "freq": "0.983", 
+        "ref_allele": "G", 
+        "chrom": "5", 
+        "id": 57
+      }
+    }, 
+    "58": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "C", 
+        "clinvarrecords_dataset": {
+          "58": {
+            "clnsig": "other", 
+            "accnum": "RCV000073798.1", 
+            "id": 58, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 58
+          }
+        }, 
+        "pos": "112089282", 
+        "freq": "0.4601", 
+        "ref_allele": "T", 
+        "chrom": "5", 
+        "id": 58
+      }
+    }, 
+    "59": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "C", 
+        "clinvarrecords_dataset": {
+          "59": {
+            "clnsig": "other", 
+            "accnum": "RCV000073800.1", 
+            "id": 59, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 59
+          }
+        }, 
+        "pos": "112089480", 
+        "freq": "0.7066", 
+        "ref_allele": "T", 
+        "chrom": "5", 
+        "id": 59
+      }
+    }, 
+    "60": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "60": {
+            "clnsig": "other", 
+            "accnum": "RCV000073813.1", 
+            "id": 60, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 60
+          }
+        }, 
+        "pos": "112092402", 
+        "freq": "0.4674", 
+        "ref_allele": "T", 
+        "chrom": "5", 
+        "id": 60
+      }
+    }, 
+    "61": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "61": {
+            "clnsig": "other", 
+            "accnum": "RCV000074331.1", 
+            "id": 61, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 61
+          }
+        }, 
+        "pos": "112093955", 
+        "freq": "0.9821", 
+        "ref_allele": "A", 
+        "chrom": "5", 
+        "id": 61
+      }
+    }, 
+    "62": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "62": {
+            "clnsig": "other", 
+            "accnum": "RCV000073825.1", 
+            "id": 62, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 62
+          }
+        }, 
+        "pos": "112095775", 
+        "freq": "0.4596", 
+        "ref_allele": "T", 
+        "chrom": "5", 
+        "id": 62
+      }
+    }, 
+    "63": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "63": {
+            "clnsig": "other", 
+            "accnum": "RCV000073829.1", 
+            "id": 63, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 63
+          }
+        }, 
+        "pos": "112097234", 
+        "freq": "0.4591", 
+        "ref_allele": "G", 
+        "chrom": "5", 
+        "id": 63
+      }
+    }, 
+    "64": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "64": {
+            "clnsig": "other", 
+            "accnum": "RCV000073832.1", 
+            "id": 64, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 64
+          }
+        }, 
+        "pos": "112097757", 
+        "freq": "0.4798", 
+        "ref_allele": "A", 
+        "chrom": "5", 
+        "id": 64
+      }
+    }, 
+    "65": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "65": {
+            "clnsig": "other", 
+            "accnum": "RCV000073836.1", 
+            "id": 65, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 65
+          }
+        }, 
+        "pos": "112099028", 
+        "freq": "0.4674", 
+        "ref_allele": "A", 
+        "chrom": "5", 
+        "id": 65
+      }
+    }, 
+    "66": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "66": {
+            "clnsig": "other", 
+            "accnum": "RCV000073848.1", 
+            "id": 66, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 66
+          }
+        }, 
+        "pos": "112100027", 
+        "freq": "0.6129", 
+        "ref_allele": "G", 
+        "chrom": "5", 
+        "id": 66
+      }
+    }, 
+    "67": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "T", 
+        "clinvarrecords_dataset": {
+          "67": {
+            "clnsig": "other", 
+            "accnum": "RCV000073857.1", 
+            "id": 67, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 67
+          }
+        }, 
+        "pos": "112101457", 
+        "freq": "0.5546", 
+        "ref_allele": "G", 
+        "chrom": "5", 
+        "id": 67
+      }
+    }, 
+    "68": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "68": {
+            "clnsig": "other", 
+            "accnum": "RCV000073869.1", 
+            "id": 68, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 68
+          }
+        }, 
+        "pos": "112104297", 
+        "freq": "0.4624", 
+        "ref_allele": "A", 
+        "chrom": "5", 
+        "id": 68
+      }
+    }, 
+    "69": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "T", 
+        "clinvarrecords_dataset": {
+          "69": {
+            "clnsig": "other", 
+            "accnum": "RCV000073402.1", 
+            "id": 69, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 69
+          }
+        }, 
+        "pos": "112105218", 
+        "freq": "Unknown", 
+        "ref_allele": "G", 
+        "chrom": "5", 
+        "id": 69
+      }
+    }, 
+    "70": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "70": {
+            "clnsig": "other", 
+            "accnum": "RCV000073876.1", 
+            "id": 70, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 70
+          }
+        }, 
+        "pos": "112107058", 
+        "freq": "0.4642", 
+        "ref_allele": "G", 
+        "chrom": "5", 
+        "id": 70
+      }
+    }, 
+    "71": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "C", 
+        "clinvarrecords_dataset": {
+          "71": {
+            "clnsig": "other", 
+            "accnum": "RCV000073885.1", 
+            "id": 71, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 71
+          }
+        }, 
+        "pos": "112108865", 
+        "freq": "0.4816", 
+        "ref_allele": "T", 
+        "chrom": "5", 
+        "id": 71
+      }
+    }, 
+    "72": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "72": {
+            "clnsig": "other", 
+            "accnum": "RCV000073899.1", 
+            "id": 72, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 72
+          }
+        }, 
+        "pos": "112111070", 
+        "freq": "0.9816", 
+        "ref_allele": "G", 
+        "chrom": "5", 
+        "id": 72
+      }
+    }, 
+    "73": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "C", 
+        "clinvarrecords_dataset": {
+          "73": {
+            "clnsig": "other", 
+            "accnum": "RCV000073904.1", 
+            "id": 73, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 73
+          }
+        }, 
+        "pos": "112111866", 
+        "freq": "0.4568", 
+        "ref_allele": "G", 
+        "chrom": "5", 
+        "id": 73
+      }
+    }, 
+    "74": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "T", 
+        "clinvarrecords_dataset": {
+          "74": {
+            "clnsig": "other", 
+            "accnum": "RCV000073913.1", 
+            "id": 74, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 74
+          }
+        }, 
+        "pos": "112113527", 
+        "freq": "0.4651", 
+        "ref_allele": "A", 
+        "chrom": "5", 
+        "id": 74
+      }
+    }, 
+    "75": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "T", 
+        "clinvarrecords_dataset": {
+          "75": {
+            "clnsig": "other", 
+            "accnum": "RCV000073914.1", 
+            "id": 75, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 75
+          }
+        }, 
+        "pos": "112113735", 
+        "freq": "0.4559", 
+        "ref_allele": "C", 
+        "chrom": "5", 
+        "id": 75
+      }
+    }, 
+    "76": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "C", 
+        "clinvarrecords_dataset": {
+          "76": {
+            "clnsig": "other", 
+            "accnum": "RCV000073915.1", 
+            "id": 76, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 76
+          }
+        }, 
+        "pos": "112113760", 
+        "freq": "0.7369", 
+        "ref_allele": "T", 
+        "chrom": "5", 
+        "id": 76
+      }
+    }, 
+    "77": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "77": {
+            "clnsig": "other", 
+            "accnum": "RCV000073916.1", 
+            "id": 77, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 77
+          }
+        }, 
+        "pos": "112113772", 
+        "freq": "0.4545", 
+        "ref_allele": "G", 
+        "chrom": "5", 
+        "id": 77
+      }
+    }, 
+    "78": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "T", 
+        "clinvarrecords_dataset": {
+          "78": {
+            "clnsig": "other", 
+            "accnum": "RCV000073923.1", 
+            "id": 78, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 78
+          }
+        }, 
+        "pos": "112116024", 
+        "freq": "0.5445", 
+        "ref_allele": "C", 
+        "chrom": "5", 
+        "id": 78
+      }
+    }, 
+    "79": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "79": {
+            "clnsig": "other", 
+            "accnum": "RCV000073924.1", 
+            "id": 79, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 79
+          }
+        }, 
+        "pos": "112116069", 
+        "freq": "0.6451", 
+        "ref_allele": "G", 
+        "chrom": "5", 
+        "id": 79
+      }
+    }, 
+    "80": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "80": {
+            "clnsig": "other", 
+            "accnum": "RCV000073937.1", 
+            "id": 80, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 80
+          }
+        }, 
+        "pos": "112118195", 
+        "freq": "0.623", 
+        "ref_allele": "G", 
+        "chrom": "5", 
+        "id": 80
+      }
+    }, 
+    "81": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "T", 
+        "clinvarrecords_dataset": {
+          "81": {
+            "clnsig": "other", 
+            "accnum": "RCV000073939.1", 
+            "id": 81, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 81
+          }
+        }, 
+        "pos": "112118956", 
+        "freq": "0.4601", 
+        "ref_allele": "C", 
+        "chrom": "5", 
+        "id": 81
+      }
+    }, 
+    "82": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "C", 
+        "clinvarrecords_dataset": {
+          "82": {
+            "clnsig": "other", 
+            "accnum": "RCV000073969.1", 
+            "id": 82, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 82
+          }
+        }, 
+        "pos": "112124369", 
+        "freq": "0.742", 
+        "ref_allele": "T", 
+        "chrom": "5", 
+        "id": 82
+      }
+    }, 
+    "83": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "83": {
+            "clnsig": "other", 
+            "accnum": "RCV000073998.1", 
+            "id": 83, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 83
+          }
+        }, 
+        "pos": "112129754", 
+        "freq": "Unknown", 
+        "ref_allele": "G", 
+        "chrom": "5", 
+        "id": 83
+      }
+    }, 
+    "84": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "84": {
+            "clnsig": "other", 
+            "accnum": "RCV000074007.1", 
+            "id": 84, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 84
+          }
+        }, 
+        "pos": "112131288", 
+        "freq": "0.4917", 
+        "ref_allele": "A", 
+        "chrom": "5", 
+        "id": 84
+      }
+    }, 
+    "85": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "C", 
+        "clinvarrecords_dataset": {
+          "85": {
+            "clnsig": "other", 
+            "accnum": "RCV000074019.1", 
+            "id": 85, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 85
+          }
+        }, 
+        "pos": "112135067", 
+        "freq": "0.9862", 
+        "ref_allele": "T", 
+        "chrom": "5", 
+        "id": 85
+      }
+    }, 
+    "86": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "86": {
+            "clnsig": "other", 
+            "accnum": "RCV000074020.1", 
+            "id": 86, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 86
+          }
+        }, 
+        "pos": "112135090", 
+        "freq": "0.4665", 
+        "ref_allele": "G", 
+        "chrom": "5", 
+        "id": 86
+      }
+    }, 
+    "87": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "87": {
+            "clnsig": "other", 
+            "accnum": "RCV000074025.1", 
+            "id": 87, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 87
+          }
+        }, 
+        "pos": "112135737", 
+        "freq": "0.4646", 
+        "ref_allele": "A", 
+        "chrom": "5", 
+        "id": 87
+      }
+    }, 
+    "88": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "88": {
+            "clnsig": "other", 
+            "accnum": "RCV000074035.1", 
+            "id": 88, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 88
+          }
+        }, 
+        "pos": "112138734", 
+        "freq": "0.7309", 
+        "ref_allele": "G", 
+        "chrom": "5", 
+        "id": 88
+      }
+    }, 
+    "89": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "C", 
+        "clinvarrecords_dataset": {
+          "89": {
+            "clnsig": "other", 
+            "accnum": "RCV000074036.1", 
+            "id": 89, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 89
+          }
+        }, 
+        "pos": "112138888", 
+        "freq": "0.6584", 
+        "ref_allele": "G", 
+        "chrom": "5", 
+        "id": 89
+      }
+    }, 
+    "90": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "90": {
+            "clnsig": "other", 
+            "accnum": "RCV000074038.1", 
+            "id": 90, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 90
+          }
+        }, 
+        "pos": "112139745", 
+        "freq": "0.4642", 
+        "ref_allele": "A", 
+        "chrom": "5", 
+        "id": 90
+      }
+    }, 
+    "91": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "91": {
+            "clnsig": "other", 
+            "accnum": "RCV000074059.1", 
+            "id": 91, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 91
+          }
+        }, 
+        "pos": "112144023", 
+        "freq": "0.4665", 
+        "ref_allele": "A", 
+        "chrom": "5", 
+        "id": 91
+      }
+    }, 
+    "92": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "T", 
+        "clinvarrecords_dataset": {
+          "92": {
+            "clnsig": "other", 
+            "accnum": "RCV000074060.1", 
+            "id": 92, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 92
+          }
+        }, 
+        "pos": "112144444", 
+        "freq": "0.461", 
+        "ref_allele": "A", 
+        "chrom": "5", 
+        "id": 92
+      }
+    }, 
+    "93": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "C", 
+        "clinvarrecords_dataset": {
+          "93": {
+            "clnsig": "other", 
+            "accnum": "RCV000074062.1", 
+            "id": 93, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 93
+          }
+        }, 
+        "pos": "112144954", 
+        "freq": "0.7287", 
+        "ref_allele": "T", 
+        "chrom": "5", 
+        "id": 93
+      }
+    }, 
+    "94": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "94": {
+            "clnsig": "other", 
+            "accnum": "RCV000074064.1", 
+            "id": 94, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 94
+          }
+        }, 
+        "pos": "112145261", 
+        "freq": "0.4582", 
+        "ref_allele": "C", 
+        "chrom": "5", 
+        "id": 94
+      }
+    }, 
+    "95": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "95": {
+            "clnsig": "other", 
+            "accnum": "RCV000074070.1", 
+            "id": 95, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 95
+          }
+        }, 
+        "pos": "112146197", 
+        "freq": "0.4605", 
+        "ref_allele": "T", 
+        "chrom": "5", 
+        "id": 95
+      }
+    }, 
+    "96": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "96": {
+            "clnsig": "other", 
+            "accnum": "RCV000074101.1", 
+            "id": 96, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 96
+          }
+        }, 
+        "pos": "112153495", 
+        "freq": "0.7351", 
+        "ref_allele": "A", 
+        "chrom": "5", 
+        "id": 96
+      }
+    }, 
+    "97": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "97": {
+            "clnsig": "other", 
+            "accnum": "RCV000074107.1", 
+            "id": 97, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 97
+          }
+        }, 
+        "pos": "112153996", 
+        "freq": "0.7287", 
+        "ref_allele": "C", 
+        "chrom": "5", 
+        "id": 97
+      }
+    }, 
+    "98": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "98": {
+            "clnsig": "other", 
+            "accnum": "RCV000074110.1", 
+            "id": 98, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 98
+          }
+        }, 
+        "pos": "112154303", 
+        "freq": "0.6951", 
+        "ref_allele": "T", 
+        "chrom": "5", 
+        "id": 98
+      }
+    }, 
+    "99": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "T", 
+        "clinvarrecords_dataset": {
+          "99": {
+            "clnsig": "other", 
+            "accnum": "RCV000074111.1", 
+            "id": 99, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 99
+          }
+        }, 
+        "pos": "112154531", 
+        "freq": "Unknown", 
+        "ref_allele": "G", 
+        "chrom": "5", 
+        "id": 99
+      }
+    }, 
+    "100": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "100": {
+            "clnsig": "other", 
+            "accnum": "RCV000074129.1", 
+            "id": 100, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 100
+          }
+        }, 
+        "pos": "112159470", 
+        "freq": "0.4646", 
+        "ref_allele": "A", 
+        "chrom": "5", 
+        "id": 100
+      }
+    }, 
+    "101": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "101": {
+            "clnsig": "other", 
+            "accnum": "RCV000074141.1", 
+            "id": 101, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 101
+          }
+        }, 
+        "pos": "112161469", 
+        "freq": "0.4646", 
+        "ref_allele": "C", 
+        "chrom": "5", 
+        "id": 101
+      }
+    }, 
+    "102": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "102": {
+            "clnsig": "other", 
+            "accnum": "RCV000074146.1", 
+            "id": 102, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 102
+          }
+        }, 
+        "pos": "112162413", 
+        "freq": "0.5243", 
+        "ref_allele": "A", 
+        "chrom": "5", 
+        "id": 102
+      }
+    }, 
+    "103": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "103": {
+            "clnsig": "other", 
+            "accnum": "RCV000074154.1", 
+            "id": 103, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 103
+          }
+        }, 
+        "pos": "112164862", 
+        "freq": "0.4651", 
+        "ref_allele": "G", 
+        "chrom": "5", 
+        "id": 103
+      }
+    }, 
+    "104": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "104": {
+            "clnsig": "other", 
+            "accnum": "RCV000074173.1", 
+            "id": 104, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 104
+          }
+        }, 
+        "pos": "112167130", 
+        "freq": "0.685", 
+        "ref_allele": "T", 
+        "chrom": "5", 
+        "id": 104
+      }
+    }, 
+    "105": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "C", 
+        "clinvarrecords_dataset": {
+          "105": {
+            "clnsig": "other", 
+            "accnum": "RCV000074174.1", 
+            "id": 105, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 105
+          }
+        }, 
+        "pos": "112167587", 
+        "freq": "0.4637", 
+        "ref_allele": "T", 
+        "chrom": "5", 
+        "id": 105
+      }
+    }, 
+    "106": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "T", 
+        "clinvarrecords_dataset": {
+          "106": {
+            "clnsig": "other", 
+            "accnum": "RCV000074175.1", 
+            "id": 106, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 106
+          }
+        }, 
+        "pos": "112167821", 
+        "freq": "0.618", 
+        "ref_allele": "C", 
+        "chrom": "5", 
+        "id": 106
+      }
+    }, 
+    "107": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "107": {
+            "clnsig": "other", 
+            "accnum": "RCV000074176.1", 
+            "id": 107, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 107
+          }
+        }, 
+        "pos": "112167941", 
+        "freq": "0.6189", 
+        "ref_allele": "C", 
+        "chrom": "5", 
+        "id": 107
+      }
+    }, 
+    "108": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "108": {
+            "clnsig": "other", 
+            "accnum": "RCV000074177.1", 
+            "id": 108, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 108
+          }
+        }, 
+        "pos": "112168065", 
+        "freq": "0.618", 
+        "ref_allele": "A", 
+        "chrom": "5", 
+        "id": 108
+      }
+    }, 
+    "109": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "C", 
+        "clinvarrecords_dataset": {
+          "109": {
+            "clnsig": "other", 
+            "accnum": "RCV000074178.1", 
+            "id": 109, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 109
+          }
+        }, 
+        "pos": "112168130", 
+        "freq": "0.618", 
+        "ref_allele": "G", 
+        "chrom": "5", 
+        "id": 109
+      }
+    }, 
+    "110": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "110": {
+            "clnsig": "other", 
+            "accnum": "RCV000074187.1", 
+            "id": 110, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 110
+          }
+        }, 
+        "pos": "112169525", 
+        "freq": "0.7291", 
+        "ref_allele": "T", 
+        "chrom": "5", 
+        "id": 110
+      }
+    }, 
+    "111": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "111": {
+            "clnsig": "other", 
+            "accnum": "RCV000074217.1", 
+            "id": 111, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 111
+          }
+        }, 
+        "pos": "112172219", 
+        "freq": "0.6754", 
+        "ref_allele": "G", 
+        "chrom": "5", 
+        "id": 111
+      }
+    }, 
+    "112": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "C", 
+        "clinvarrecords_dataset": {
+          "112": {
+            "clnsig": "other", 
+            "accnum": "RCV000074256.1", 
+            "id": 112, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 112
+          }
+        }, 
+        "pos": "112180921", 
+        "freq": "0.4674", 
+        "ref_allele": "T", 
+        "chrom": "5", 
+        "id": 112
+      }
+    }, 
+    "113": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "T", 
+        "clinvarrecords_dataset": {
+          "113": {
+            "clnsig": "other", 
+            "accnum": "RCV000074264.1", 
+            "id": 113, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 113
+          }
+        }, 
+        "pos": "112182232", 
+        "freq": "0.6878", 
+        "ref_allele": "A", 
+        "chrom": "5", 
+        "id": 113
+      }
+    }, 
+    "114": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "114": {
+            "clnsig": "other", 
+            "accnum": "RCV000074271.1", 
+            "id": 114, 
+            "condition": "Familial_colorectal_cancer", 
+            "variant_id": 114
+          }
+        }, 
+        "pos": "112182691", 
+        "freq": "0.5473", 
+        "ref_allele": "A", 
+        "chrom": "5", 
+        "id": 114
+      }
+    }, 
+    "115": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "115": {
+            "clnsig": "other", 
+            "accnum": "RCV000019316.1", 
+            "id": 115, 
+            "condition": "Asthma\\x2c_nocturnal\\x2c_susceptibility_to", 
+            "variant_id": 115
+          }
+        }, 
+        "pos": "148206440", 
+        "freq": "0.5294", 
+        "ref_allele": "G", 
+        "chrom": "5", 
+        "id": 115
+      }
+    }, 
+    "116": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "T", 
+        "clinvarrecords_dataset": {
+          "116": {
+            "clnsig": "other", 
+            "accnum": "RCV000088686.1", 
+            "id": 116, 
+            "condition": "MEMORY_QUANTITATIVE_TRAIT_LOCUS", 
+            "variant_id": 116
+          }
+        }, 
+        "pos": "167845791", 
+        "freq": "0.545", 
+        "ref_allele": "C", 
+        "chrom": "5", 
+        "id": 116
+      }
+    }, 
+    "117": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "117": {
+            "clnsig": "pathogenic", 
+            "accnum": "RCV000017723.26", 
+            "id": 117, 
+            "condition": "Cancer_progression_and_tumor_cell_motility", 
+            "variant_id": 117
+          }
+        }, 
+        "pos": "176520243", 
+        "freq": "0.303", 
+        "ref_allele": "G", 
+        "chrom": "5", 
+        "id": 117
+      }
+    }, 
+    "118": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "118": {
+            "clnsig": "other", 
+            "accnum": "RCV000017996.1", 
+            "id": 118, 
+            "condition": "Myocardial_infarction\\x2c_protection_against", 
+            "variant_id": 118
+          }
+        }, 
+        "pos": "6318795", 
+        "freq": "0.1566", 
+        "ref_allele": "C", 
+        "chrom": "6", 
+        "id": 118
+      }
+    }, 
+    "119": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "T", 
+        "clinvarrecords_dataset": {
+          "119": {
+            "clnsig": "other", 
+            "accnum": "RCV000018132.1", 
+            "id": 119, 
+            "condition": "High_density_lipoprotein_cholesterol_level_quantitative_trait_locus_7", 
+            "variant_id": 119
+          }
+        }, 
+        "pos": "12296255", 
+        "freq": "0.2057", 
+        "ref_allele": "G", 
+        "chrom": "6", 
+        "id": 119
+      }
+    }, 
+    "120": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "120": {
+            "clnsig": "other", 
+            "accnum": "RCV000015455.1", 
+            "id": 120, 
+            "condition": "Myocardial_infarction", 
+            "variant_id": 120
+          }
+        }, 
+        "pos": "31540784", 
+        "freq": "0.3994", 
+        "ref_allele": "C", 
+        "chrom": "6", 
+        "id": 120
+      }
+    }, 
+    "121": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "121": {
+            "clnsig": "other", 
+            "accnum": "RCV000013007.1", 
+            "id": 121, 
+            "condition": "Microvascular_complications_of_diabetes_1", 
+            "variant_id": 121
+          }
+        }, 
+        "pos": "43738350", 
+        "freq": "0.6566", 
+        "ref_allele": "C", 
+        "chrom": "6", 
+        "id": 121
+      }
+    }, 
+    "122": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "122": {
+            "clnsig": "other", 
+            "accnum": "RCV000008378.1", 
+            "id": 122, 
+            "condition": "Asthma_and_atopy\\x2c_susceptibility_to", 
+            "variant_id": 122
+          }
+        }, 
+        "pos": "46672943", 
+        "freq": "0.7934", 
+        "ref_allele": "A", 
+        "chrom": "6", 
+        "id": 122
+      }
+    }, 
+    "123": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "123": {
+            "clnsig": "other", 
+            "accnum": "RCV000008377.1", 
+            "id": 123, 
+            "condition": "Asthma_and_atopy\\x2c_susceptibility_to", 
+            "variant_id": 123
+          }
+        }, 
+        "pos": "46679303", 
+        "freq": "0.1281", 
+        "ref_allele": "A", 
+        "chrom": "6", 
+        "id": 123
+      }
+    }, 
+    "124": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "C", 
+        "clinvarrecords_dataset": {
+          "124": {
+            "clnsig": "other", 
+            "accnum": "RCV000014558.1", 
+            "id": 124, 
+            "condition": "Insulin_resistance\\x2c_susceptibility_to", 
+            "variant_id": 124
+          }
+        }, 
+        "pos": "132172368", 
+        "freq": "0.2925", 
+        "ref_allele": "A", 
+        "chrom": "6", 
+        "id": 124
+      }
+    }, 
+    "125": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "125": {
+            "clnsig": "other", 
+            "accnum": "RCV000022719.1", 
+            "id": 125, 
+            "condition": "Obesity", 
+            "variant_id": 125
+          }
+        }, 
+        "pos": "132212694", 
+        "freq": "0.5106", 
+        "ref_allele": "A", 
+        "chrom": "6", 
+        "id": 125
+      }
+    }, 
+    "126": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "T", 
+        "clinvarrecords_dataset": {
+          "126": {
+            "clnsig": "other", 
+            "accnum": "RCV000002276.1", 
+            "id": 126, 
+            "condition": "ASTHMA-RELATED_TRAITS\\x2c_SUSCEPTIBILITY_TO\\x2c_2", 
+            "variant_id": 126
+          }
+        }, 
+        "pos": "34818113", 
+        "freq": "0.4826", 
+        "ref_allele": "A", 
+        "chrom": "7", 
+        "id": 126
+      }
+    }, 
+    "127": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "127": {
+            "clnsig": "other", 
+            "accnum": "RCV000038427.1", 
+            "id": 127, 
+            "condition": "AllHighlyPenetrant", 
+            "variant_id": 127
+          }
+        }, 
+        "pos": "55249063", 
+        "freq": "0.4183", 
+        "ref_allele": "G", 
+        "chrom": "7", 
+        "id": 127
+      }
+    }, 
+    "128": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "128": {
+            "clnsig": "other", 
+            "accnum": "RCV000019203.1", 
+            "id": 128, 
+            "condition": "Bone_mineral_density_quantitative_trait_locus_15", 
+            "variant_id": 128
+          }
+        }, 
+        "pos": "93055753", 
+        "freq": "0.528", 
+        "ref_allele": "A", 
+        "chrom": "7", 
+        "id": 128
+      }
+    }, 
+    "129": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "C", 
+        "clinvarrecords_dataset": {
+          "129": {
+            "clnsig": "other", 
+            "accnum": "RCV000014739.1", 
+            "id": 129, 
+            "condition": "Coronary_artery_disease\\x2c_susceptibility_to", 
+            "variant_id": 129
+          }
+        }, 
+        "pos": "94937446", 
+        "freq": "0.5165", 
+        "ref_allele": "T", 
+        "chrom": "7", 
+        "id": 129
+      }
+    }, 
+    "130": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "130": {
+            "clnsig": "other", 
+            "accnum": "RCV000018073.1", 
+            "id": 130, 
+            "condition": "Microvascular_complications_of_diabetes_2", 
+            "variant_id": 130
+          }
+        }, 
+        "pos": "100317298", 
+        "freq": "0.6621", 
+        "ref_allele": "C", 
+        "chrom": "7", 
+        "id": 130
+      }
+    }, 
+    "131": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "131": {
+            "clnsig": "other", 
+            "accnum": "RCV000009243.1", 
+            "id": 131, 
+            "condition": "Insulin_resistance\\x2c_susceptibility_to", 
+            "variant_id": 131
+          }
+        }, 
+        "pos": "113518434", 
+        "freq": "0.2911", 
+        "ref_allele": "C", 
+        "chrom": "7", 
+        "id": 131
+      }
+    }, 
+    "132": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "C", 
+        "clinvarrecords_dataset": {
+          "132": {
+            "clnsig": "pathogenic", 
+            "accnum": "RCV000007585.1", 
+            "id": 132, 
+            "condition": "Congenital_bilateral_absence_of_the_vas_deferens", 
+            "variant_id": 132
+          }
+        }, 
+        "pos": "117230454", 
+        "freq": "0.003673", 
+        "ref_allele": "G", 
+        "chrom": "7", 
+        "id": 132
+      }
+    }, 
+    "133": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "C", 
+        "clinvarrecords_dataset": {
+          "133": {
+            "clnsig": "other", 
+            "accnum": "RCV000003567.1", 
+            "id": 133, 
+            "condition": "Systemic_lupus_erythematosus\\x2c_association_wit_10", 
+            "variant_id": 133
+          }
+        }, 
+        "pos": "128589000", 
+        "freq": "0.05418", 
+        "ref_allele": "T", 
+        "chrom": "7", 
+        "id": 133
+      }
+    }, 
+    "134": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "134": {
+            "clnsig": "other", 
+            "accnum": "RCV000003566.1", 
+            "id": 134, 
+            "condition": "Systemic_lupus_erythematosus_10", 
+            "variant_id": 134
+          }
+        }, 
+        "pos": "128589427", 
+        "freq": "0.5317", 
+        "ref_allele": "G", 
+        "chrom": "7", 
+        "id": 134
+      }
+    }, 
+    "135": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "C", 
+        "clinvarrecords_dataset": {
+          "135": {
+            "clnsig": "other", 
+            "accnum": "RCV000015059.1", 
+            "id": 135, 
+            "condition": "Coronary_artery_spasm_1\\x2c_susceptibility_to", 
+            "variant_id": 135
+          }
+        }, 
+        "pos": "150690079", 
+        "freq": "0.2571", 
+        "ref_allele": "C", 
+        "chrom": "7", 
+        "id": 135
+      }
+    }, 
+    "136": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "136": {
+            "clnsig": "other", 
+            "accnum": "RCV000001625.1", 
+            "id": 136, 
+            "condition": "High_density_lipoprotein_cholesterol_level_quantitative_trait_locus_11", 
+            "variant_id": 136
+          }
+        }, 
+        "pos": "19819439", 
+        "freq": "0.3457", 
+        "ref_allele": "A", 
+        "chrom": "8", 
+        "id": 136
+      }
+    }, 
+    "137": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "C", 
+        "clinvarrecords_dataset": {
+          "137": {
+            "clnsig": "other", 
+            "accnum": "RCV000033176.1", 
+            "id": 137, 
+            "condition": "High_density_lipoprotein_cholesterol_level_quantitative_trait_locus_11", 
+            "variant_id": 137
+          }
+        }, 
+        "pos": "19824492", 
+        "freq": "0.332", 
+        "ref_allele": "T", 
+        "chrom": "8", 
+        "id": 137
+      }
+    }, 
+    "138": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "138": {
+            "clnsig": "other", 
+            "accnum": "RCV000002108.2", 
+            "id": 138, 
+            "condition": "Scoliosis\\x2c_idiopathic_3", 
+            "variant_id": 138
+          }
+        }, 
+        "pos": "61690321", 
+        "freq": "0.8242", 
+        "ref_allele": "A", 
+        "chrom": "8", 
+        "id": 138
+      }
+    }, 
+    "139": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "T", 
+        "clinvarrecords_dataset": {
+          "139": {
+            "clnsig": "pathogenic", 
+            "accnum": "RCV000033935.2", 
+            "id": 139, 
+            "condition": "ACTH_deficiency", 
+            "variant_id": 139
+          }
+        }, 
+        "pos": "67091182", 
+        "freq": "0.0202", 
+        "ref_allele": "G", 
+        "chrom": "8", 
+        "id": 139
+      }
+    }, 
+    "140": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "T", 
+        "clinvarrecords_dataset": {
+          "140": {
+            "clnsig": "other", 
+            "accnum": "RCV000001055.1", 
+            "id": 140, 
+            "condition": "Diabetes_mellitus_type_2", 
+            "variant_id": 140
+          }
+        }, 
+        "pos": "118184783", 
+        "freq": "0.2824", 
+        "ref_allele": "C", 
+        "chrom": "8", 
+        "id": 140
+      }
+    }, 
+    "141": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "141": {
+            "clnsig": "other", 
+            "accnum": "RCV000018379.27", 
+            "id": 141, 
+            "condition": "Aldosterone_to_renin_ratio\\x2c_increased", 
+            "variant_id": 141
+          }
+        }, 
+        "pos": "143999600", 
+        "freq": "0.6382", 
+        "ref_allele": "A", 
+        "chrom": "8", 
+        "id": 141
+      }
+    }, 
+    "142": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "C", 
+        "clinvarrecords_dataset": {
+          "142": {
+            "clnsig": "other", 
+            "accnum": "RCV000003495.1", 
+            "id": 142, 
+            "condition": "Tobacco_addiction\\x2c_susceptibility_to", 
+            "variant_id": 142
+          }
+        }, 
+        "pos": "101205162", 
+        "freq": "0.6107", 
+        "ref_allele": "C", 
+        "chrom": "9", 
+        "id": 142
+      }
+    }, 
+    "143": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "C", 
+        "clinvarrecords_dataset": {
+          "143": {
+            "clnsig": "other", 
+            "accnum": "RCV000003495.1", 
+            "id": 143, 
+            "condition": "Tobacco_addiction\\x2c_susceptibility_to", 
+            "variant_id": 143
+          }
+        }, 
+        "pos": "101304348", 
+        "freq": "0.7062", 
+        "ref_allele": "C", 
+        "chrom": "9", 
+        "id": 143
+      }
+    }, 
+    "144": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "144": {
+            "clnsig": "pathogenic", 
+            "accnum": "RCV000006169.1", 
+            "id": 144, 
+            "condition": "Upshaw-Schulman_syndrome", 
+            "variant_id": 144
+          }
+        }, 
+        "pos": "136301982", 
+        "freq": "0.275", 
+        "ref_allele": "C", 
+        "chrom": "9", 
+        "id": 144
+      }
+    }, 
+    "145": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "145": {
+            "clnsig": "other", 
+            "accnum": "RCV000007516.1", 
+            "id": 145, 
+            "condition": "Glaucoma\\x2c_normal_tension\\x2c_susceptibility_to", 
+            "variant_id": 145
+          }
+        }, 
+        "pos": "13152400", 
+        "freq": "0.06795", 
+        "ref_allele": "T", 
+        "chrom": "10", 
+        "id": 145
+      }
+    }, 
+    "146": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "C", 
+        "clinvarrecords_dataset": {
+          "146": {
+            "clnsig": "other", 
+            "accnum": "RCV000014980.1", 
+            "id": 146, 
+            "condition": "Hirschsprung_disease_1", 
+            "variant_id": 146
+          }
+        }, 
+        "pos": "43582056", 
+        "freq": "0.7493", 
+        "ref_allele": "T", 
+        "chrom": "10", 
+        "id": 146
+      }
+    }, 
+    "147": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "147": {
+            "clnsig": "other", 
+            "accnum": "RCV000014967.1", 
+            "id": 147, 
+            "condition": "Hirschsprung_disease_1", 
+            "variant_id": 147
+          }
+        }, 
+        "pos": "43595968", 
+        "freq": "0.2842", 
+        "ref_allele": "A", 
+        "chrom": "10", 
+        "id": 147
+      }
+    }, 
+    "148": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "C", 
+        "clinvarrecords_dataset": {
+          "148": {
+            "clnsig": "other", 
+            "accnum": "RCV000001778.1", 
+            "id": 148, 
+            "condition": "Age-related_macular_degeneration_5", 
+            "variant_id": 148
+          }
+        }, 
+        "pos": "50747539", 
+        "freq": "0.2723", 
+        "ref_allele": "G", 
+        "chrom": "10", 
+        "id": 148
+      }
+    }, 
+    "149": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "C", 
+        "clinvarrecords_dataset": {
+          "149": {
+            "clnsig": "pathogenic", 
+            "accnum": "RCV000001790.1", 
+            "id": 149, 
+            "condition": "Preeclampsia/eclampsia_4", 
+            "variant_id": 149
+          }
+        }, 
+        "pos": "70645376", 
+        "freq": "0.1437", 
+        "ref_allele": "A", 
+        "chrom": "10", 
+        "id": 149
+      }
+    }, 
+    "150": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "T", 
+        "clinvarrecords_dataset": {
+          "150": {
+            "clnsig": "pathogenic", 
+            "accnum": "RCV000007002.1", 
+            "id": 150, 
+            "condition": "Anaphylotoxin_inactivator_deficiency", 
+            "variant_id": 150
+          }
+        }, 
+        "pos": "101829514", 
+        "freq": "0.03214", 
+        "ref_allele": "C", 
+        "chrom": "10", 
+        "id": 150
+      }
+    }, 
+    "151": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "151": {
+            "clnsig": "pathogenic", 
+            "accnum": "RCV000019791.25", 
+            "id": 151, 
+            "condition": "ALPHA-2A_ADRENERGIC_RECEPTOR\\x2c_OVEREXPRESSION_or_TYPE_2_DIABETES_SUSCEPTIBILITY_(safer_to_say_the_former_than_the_latter)", 
+            "variant_id": 151
+          }
+        }, 
+        "pos": "112839579", 
+        "freq": "0.7098", 
+        "ref_allele": "A", 
+        "chrom": "10", 
+        "id": 151
+      }
+    }, 
+    "152": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "C", 
+        "clinvarrecords_dataset": {
+          "152": {
+            "clnsig": "other", 
+            "accnum": "RCV000009214.1", 
+            "id": 152, 
+            "condition": "Diabetes_mellitus_type_2", 
+            "variant_id": 152
+          }
+        }, 
+        "pos": "17409572", 
+        "freq": "0.7259", 
+        "ref_allele": "T", 
+        "chrom": "11", 
+        "id": 152
+      }
+    }, 
+    "153": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "C", 
+        "clinvarrecords_dataset": {
+          "153": {
+            "clnsig": "other", 
+            "accnum": "RCV000001812.1", 
+            "id": 153, 
+            "condition": "Intrinsic_factor_deficiency\\x2c_congenital\\x2c_susceptibility_to", 
+            "variant_id": 153
+          }
+        }, 
+        "pos": "59612859", 
+        "freq": "0.08494", 
+        "ref_allele": "T", 
+        "chrom": "11", 
+        "id": 153
+      }
+    }, 
+    "154": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "154": {
+            "clnsig": "pathogenic", 
+            "accnum": "RCV000000764.1", 
+            "id": 154, 
+            "condition": "Skin/hair/eye_pigmentation\\x2c_variation_in\\x2c_10", 
+            "variant_id": 154
+          }
+        }, 
+        "pos": "68855363", 
+        "freq": "0.2355", 
+        "ref_allele": "G", 
+        "chrom": "11", 
+        "id": 154
+      }
+    }, 
+    "155": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "155": {
+            "clnsig": "other", 
+            "accnum": "RCV000014762.3", 
+            "id": 155, 
+            "condition": "Colorectal_cancer\\x2c_susceptibility_to", 
+            "variant_id": 155
+          }
+        }, 
+        "pos": "69462910", 
+        "freq": "0.4206", 
+        "ref_allele": "G", 
+        "chrom": "11", 
+        "id": 155
+      }
+    }, 
+    "156": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "T", 
+        "clinvarrecords_dataset": {
+          "156": {
+            "clnsig": "other", 
+            "accnum": "RCV000023142.1", 
+            "id": 156, 
+            "condition": "Body_mass_index_quantitative_trait_locus_4", 
+            "variant_id": 156
+          }
+        }, 
+        "pos": "73694754", 
+        "freq": "0.4155", 
+        "ref_allele": "C", 
+        "chrom": "11", 
+        "id": 156
+      }
+    }, 
+    "157": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "157": {
+            "clnsig": "other", 
+            "accnum": "RCV000002255.1", 
+            "id": 157, 
+            "condition": "Sepsis\\x2c_susceptibility_to", 
+            "variant_id": 157
+          }
+        }, 
+        "pos": "104763117", 
+        "freq": "0.9601", 
+        "ref_allele": "G", 
+        "chrom": "11", 
+        "id": 157
+      }
+    }, 
+    "158": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "158": {
+            "clnsig": "pathogenic", 
+            "accnum": "RCV000002186.2", 
+            "id": 158, 
+            "condition": "Dopamine_receptor_d2\\x2c_reduced_brain_density_of", 
+            "variant_id": 158
+          }
+        }, 
+        "pos": "113270828", 
+        "freq": "0.2961", 
+        "ref_allele": "G", 
+        "chrom": "11", 
+        "id": 158
+      }
+    }, 
+    "159": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "159": {
+            "clnsig": "other", 
+            "accnum": "RCV000114996.1", 
+            "id": 159, 
+            "condition": "Hypertriglyceridemia\\x2c_susceptibility_to", 
+            "variant_id": 159
+          }
+        }, 
+        "pos": "116660686", 
+        "freq": "0.8866", 
+        "ref_allele": "G", 
+        "chrom": "11", 
+        "id": 159
+      }
+    }, 
+    "160": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "160": {
+            "clnsig": "other", 
+            "accnum": "RCV000014918.2", 
+            "id": 160, 
+            "condition": "Accelerated_tumor_formation\\x2c_susceptibility_to", 
+            "variant_id": 160
+          }
+        }, 
+        "pos": "69202580", 
+        "freq": "0.3691", 
+        "ref_allele": "T", 
+        "chrom": "12", 
+        "id": 160
+      }
+    }, 
+    "161": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "161": {
+            "clnsig": "other", 
+            "accnum": "RCV000015022.1", 
+            "id": 161, 
+            "condition": "Diabetes_mellitus\\x2c_type_1\\x2c_susceptibility_to", 
+            "variant_id": 161
+          }
+        }, 
+        "pos": "113348870", 
+        "freq": "0.4867", 
+        "ref_allele": "G", 
+        "chrom": "12", 
+        "id": 161
+      }
+    }, 
+    "162": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "T", 
+        "clinvarrecords_dataset": {
+          "162": {
+            "clnsig": "pathogenic", 
+            "accnum": "RCV000001643.1", 
+            "id": 162, 
+            "condition": "4-Alpha-hydroxyphenylpyruvate_hydroxylase_deficiency", 
+            "variant_id": 162
+          }
+        }, 
+        "pos": "122295335", 
+        "freq": "0.1322", 
+        "ref_allele": "T", 
+        "chrom": "12", 
+        "id": 162
+      }
+    }, 
+    "163": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "T", 
+        "clinvarrecords_dataset": {
+          "163": {
+            "clnsig": "pathogenic", 
+            "accnum": "RCV000005275.2", 
+            "id": 163, 
+            "condition": "Cone-rod_dystrophy_13", 
+            "variant_id": 163
+          }
+        }, 
+        "pos": "21790040", 
+        "freq": "0.1616", 
+        "ref_allele": "G", 
+        "chrom": "14", 
+        "id": 163
+      }
+    }, 
+    "164": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "164": {
+            "clnsig": "other", 
+            "accnum": "RCV000014603.1", 
+            "id": 164, 
+            "condition": "Neural_tube_defects\\x2c_folate-sensitive\\x2c_susceptibility_to", 
+            "variant_id": 164
+          }
+        }, 
+        "pos": "64908845", 
+        "freq": "0.3462", 
+        "ref_allele": "G", 
+        "chrom": "14", 
+        "id": 164
+      }
+    }, 
+    "165": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "T", 
+        "clinvarrecords_dataset": {
+          "165": {
+            "clnsig": "other", 
+            "accnum": "RCV000001485.2", 
+            "id": 165, 
+            "condition": "Skin/hair/eye_pigmentation\\x2c_variation_in\\x2c_6", 
+            "variant_id": 165
+          }
+        }, 
+        "pos": "92773663", 
+        "freq": "0.2893", 
+        "ref_allele": "G", 
+        "chrom": "14", 
+        "id": 165
+      }
+    }, 
+    "166": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "166": {
+            "clnsig": "other", 
+            "accnum": "RCV000019558.1", 
+            "id": 166, 
+            "condition": "PI_M3", 
+            "variant_id": 166
+          }
+        }, 
+        "pos": "94844843", 
+        "freq": "0.2268", 
+        "ref_allele": "T", 
+        "chrom": "14", 
+        "id": 166
+      }
+    }, 
+    "167": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "167": {
+            "clnsig": "other", 
+            "accnum": "RCV000009500.1", 
+            "id": 167, 
+            "condition": "Cutaneous_malignant_melanoma_6", 
+            "variant_id": 167
+          }
+        }, 
+        "pos": "104165753", 
+        "freq": "0.2507", 
+        "ref_allele": "G", 
+        "chrom": "14", 
+        "id": 167
+      }
+    }, 
+    "168": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "168": {
+            "clnsig": "pathogenic", 
+            "accnum": "RCV000001552.2", 
+            "id": 168, 
+            "condition": "Skin/hair/eye_pigmentation\\x2c_variation_in\\x2c_4", 
+            "variant_id": 168
+          }
+        }, 
+        "pos": "48426484", 
+        "freq": "0.4775", 
+        "ref_allele": "A", 
+        "chrom": "15", 
+        "id": 168
+      }
+    }, 
+    "169": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "169": {
+            "clnsig": "other", 
+            "accnum": "RCV000006692.1", 
+            "id": 169, 
+            "condition": "Lumbar_disc_disease\\x2c_susceptibility_to", 
+            "variant_id": 169
+          }
+        }, 
+        "pos": "65494212", 
+        "freq": "0.5142", 
+        "ref_allele": "A", 
+        "chrom": "15", 
+        "id": 169
+      }
+    }, 
+    "170": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "170": {
+            "clnsig": "other", 
+            "accnum": "RCV000015435.1", 
+            "id": 170, 
+            "condition": "Exfoliation_syndrome\\x2c_susceptibility_to", 
+            "variant_id": 170
+          }
+        }, 
+        "pos": "74219582", 
+        "freq": "0.225", 
+        "ref_allele": "G", 
+        "chrom": "15", 
+        "id": 170
+      }
+    }, 
+    "171": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "171": {
+            "clnsig": "other", 
+            "accnum": "RCV000018346.1", 
+            "id": 171, 
+            "condition": "Systemic_lupus_erythematosus\\x2c_susceptibility_to", 
+            "variant_id": 171
+          }
+        }, 
+        "pos": "3707747", 
+        "freq": "0.4862", 
+        "ref_allele": "G", 
+        "chrom": "16", 
+        "id": 171
+      }
+    }, 
+    "172": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "172": {
+            "clnsig": "other", 
+            "accnum": "RCV000019077.1", 
+            "id": 172, 
+            "condition": "High_density_lipoprotein_cholesterol_level_quantitative_trait_locus_10", 
+            "variant_id": 172
+          }
+        }, 
+        "pos": "57016092", 
+        "freq": "0.5519", 
+        "ref_allele": "G", 
+        "chrom": "16", 
+        "id": 172
+      }
+    }, 
+    "173": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "173": {
+            "clnsig": "other", 
+            "accnum": "RCV000013034.2", 
+            "id": 173, 
+            "condition": "Prostate_cancer\\x2c_susceptibility_to", 
+            "variant_id": 173
+          }
+        }, 
+        "pos": "68771034", 
+        "freq": "0.2323", 
+        "ref_allele": "C", 
+        "chrom": "16", 
+        "id": 173
+      }
+    }, 
+    "174": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "174": {
+            "clnsig": "other", 
+            "accnum": "RCV000018300.1", 
+            "id": 174, 
+            "condition": "Benzene_toxicity\\x2c_susceptibility_to", 
+            "variant_id": 174
+          }
+        }, 
+        "pos": "69745145", 
+        "freq": "0.2769", 
+        "ref_allele": "G", 
+        "chrom": "16", 
+        "id": 174
+      }
+    }, 
+    "175": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "T", 
+        "clinvarrecords_dataset": {
+          "175": {
+            "clnsig": "pathogenic", 
+            "accnum": "RCV000015384.24", 
+            "id": 175, 
+            "condition": "Skin/hair/eye_pigmentation_2\\x2c_blond_hair/fair_skin", 
+            "variant_id": 175
+          }
+        }, 
+        "pos": "89985844", 
+        "freq": "0.05096", 
+        "ref_allele": "G", 
+        "chrom": "16", 
+        "id": 175
+      }
+    }, 
+    "176": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "T", 
+        "clinvarrecords_dataset": {
+          "176": {
+            "clnsig": "other", 
+            "accnum": "RCV000004380.2", 
+            "id": 176, 
+            "condition": "Vitiligo-associated_multiple_autoimmune_disease_susceptibility_1", 
+            "variant_id": 176
+          }
+        }, 
+        "pos": "5485367", 
+        "freq": "0.2314", 
+        "ref_allele": "A", 
+        "chrom": "17", 
+        "id": 176
+      }
+    }, 
+    "177": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "177": {
+            "clnsig": "pathogenic", 
+            "accnum": "RCV000005358.1", 
+            "id": 177, 
+            "condition": "Prostate_cancer\\x2c_hereditary\\x2c_2", 
+            "variant_id": 177
+          }
+        }, 
+        "pos": "12915009", 
+        "freq": "0.2066", 
+        "ref_allele": "G", 
+        "chrom": "17", 
+        "id": 177
+      }
+    }, 
+    "178": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "178": {
+            "clnsig": "pathogenic", 
+            "accnum": "RCV000000382.1", 
+            "id": 178, 
+            "condition": "Neurofibromatosis\\x2c_type_1", 
+            "variant_id": 178
+          }
+        }, 
+        "pos": "29541542", 
+        "freq": "Unknown", 
+        "ref_allele": "A", 
+        "chrom": "17", 
+        "id": 178
+      }
+    }, 
+    "179": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "179": {
+            "clnsig": "other", 
+            "accnum": "RCV000112254.1", 
+            "id": 179, 
+            "condition": "Breast-ovarian_cancer\\x2c_familial_1", 
+            "variant_id": 179
+          }
+        }, 
+        "pos": "41243190", 
+        "freq": "0.4467", 
+        "ref_allele": "T", 
+        "chrom": "17", 
+        "id": 179
+      }
+    }, 
+    "180": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "C", 
+        "clinvarrecords_dataset": {
+          "180": {
+            "clnsig": "other", 
+            "accnum": "RCV000018874.1", 
+            "id": 180, 
+            "condition": "Bone_mineral_density_variation_quantitative_trait_locus", 
+            "variant_id": 180
+          }
+        }, 
+        "pos": "48277749", 
+        "freq": "0.8907", 
+        "ref_allele": "C", 
+        "chrom": "17", 
+        "id": 180
+      }
+    }, 
+    "181": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "A", 
+        "clinvarrecords_dataset": {
+          "181": {
+            "clnsig": "other", 
+            "accnum": "RCV000018881.1", 
+            "id": 181, 
+            "condition": "Bone_mineral_density_variation_quantitative_trait_locus", 
+            "variant_id": 181
+          }
+        }, 
+        "pos": "48280990", 
+        "freq": "0.2525", 
+        "ref_allele": "A", 
+        "chrom": "17", 
+        "id": 181
+      }
+    }, 
+    "182": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "182": {
+            "clnsig": "other", 
+            "accnum": "RCV000002642.2", 
+            "id": 182, 
+            "condition": "Pseudoxanthoma_elasticum\\x2c_modifier_of_severity_of", 
+            "variant_id": 182
+          }
+        }, 
+        "pos": "48437456", 
+        "freq": "0.2718", 
+        "ref_allele": "C", 
+        "chrom": "17", 
+        "id": 182
+      }
+    }, 
+    "183": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "T", 
+        "clinvarrecords_dataset": {
+          "183": {
+            "clnsig": "other", 
+            "accnum": "RCV000019463.1", 
+            "id": 183, 
+            "condition": "Myocardial_infarction", 
+            "variant_id": 183
+          }
+        }, 
+        "pos": "45408836", 
+        "freq": "0.4931", 
+        "ref_allele": "T", 
+        "chrom": "19", 
+        "id": 183
+      }
+    }, 
+    "184": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "184": {
+            "clnsig": "other", 
+            "accnum": "RCV000014331.3", 
+            "id": 184, 
+            "condition": "Prion_disease\\x2c_susceptibility_to", 
+            "variant_id": 184
+          }
+        }, 
+        "pos": "4680251", 
+        "freq": "0.2631", 
+        "ref_allele": "A", 
+        "chrom": "20", 
+        "id": 184
+      }
+    }, 
+    "185": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "185": {
+            "clnsig": "other", 
+            "accnum": "RCV000008898.2", 
+            "id": 185, 
+            "condition": "Osteoarthritis_of_hip", 
+            "variant_id": 185
+          }
+        }, 
+        "pos": "34025983", 
+        "freq": "0.4646", 
+        "ref_allele": "A", 
+        "chrom": "20", 
+        "id": 185
+      }
+    }, 
+    "186": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "T", 
+        "clinvarrecords_dataset": {
+          "186": {
+            "clnsig": "other", 
+            "accnum": "RCV000014604.1", 
+            "id": 186, 
+            "condition": "High_density_lipoprotein_cholesterol_level_quantitative_trait_locus_9", 
+            "variant_id": 186
+          }
+        }, 
+        "pos": "44548193", 
+        "freq": "0.3182", 
+        "ref_allele": "C", 
+        "chrom": "20", 
+        "id": 186
+      }
+    }, 
+    "187": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "187": {
+            "clnsig": "other", 
+            "accnum": "RCV000018431.1", 
+            "id": 187, 
+            "condition": "Hepatitis_b_virus\\x2c_susceptibility_to", 
+            "variant_id": 187
+          }
+        }, 
+        "pos": "34640788", 
+        "freq": "0.3448", 
+        "ref_allele": "A", 
+        "chrom": "21", 
+        "id": 187
+      }
+    }, 
+    "188": {
+      "zyg": "Hom", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "188": {
+            "clnsig": "other", 
+            "accnum": "RCV000014700.1", 
+            "id": 188, 
+            "condition": "Hyperapobetalipoproteinemia\\x2c_susceptibility_to", 
+            "variant_id": 188
+          }
+        }, 
+        "pos": "46614274", 
+        "freq": "0.02479", 
+        "ref_allele": "C", 
+        "chrom": "22", 
+        "id": 188
+      }
+    }, 
+    "189": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "C", 
+        "clinvarrecords_dataset": {
+          "189": {
+            "clnsig": "pathogenic", 
+            "accnum": "RCV000030653.21", 
+            "id": 189, 
+            "condition": "Mitochondrial_complex_I_deficiency", 
+            "variant_id": 189
+          }
+        }, 
+        "pos": "119005968", 
+        "freq": "0.001209", 
+        "ref_allele": "G", 
+        "chrom": "23", 
+        "id": 189
+      }
+    }, 
+    "190": {
+      "zyg": "Het", 
+      "variant_data": {
+        "alt_allele": "G", 
+        "clinvarrecords_dataset": {
+          "190": {
+            "clnsig": "other", 
+            "accnum": "RCV000011334.1", 
+            "id": 190, 
+            "condition": "Deep_venous_thrombosis\\x2c_protection_against", 
+            "variant_id": 190
+          }
+        }, 
+        "pos": "138633280", 
+        "freq": "0.1578", 
+        "ref_allele": "A", 
+        "chrom": "23", 
+        "id": 190
+      }
+    }
+  }, 
+  "user": "Emily", 
+  "processedfile": "processed/2015/02/10/23andme-api-845eaa2a6c83cee2.vcf_FTVR8s9.gz.csv"
+}

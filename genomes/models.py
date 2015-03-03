@@ -22,6 +22,17 @@ class GenomeAnalysis(models.Model):
     def __unicode__(self):
         return 'GenomeAnalysis for %s' % str(self.uploadfile)
 
+    def shared_data_as_dict(self):
+        return {
+            'user': str(self.user),
+            'name': self.name,
+            'timestamp': str(self.timestamp),
+            'uploadfile': str(self.uploadfile),
+            'processedfile': str(self.processedfile),
+            'genomeanalysisvariants_dataset':
+                {r.id: r.shared_data_as_dict() for r in self.genomeanalysisvariant_set.all()},
+            }
+
 
 class GenomeAnalysisVariant(models.Model):
     """Info specific to this genome-variant instance, e.g. zygosity"""
@@ -32,3 +43,8 @@ class GenomeAnalysisVariant(models.Model):
     def __unicode__(self):
         return ('GenomeAnalysisVariant for %s %s' % (str(self.genomeanalysis),
                                                      str(self.variant)))
+    def shared_data_as_dict(self):
+        return {
+            'zyg': self.zyg,
+            'variant_data': self.variant.shared_data_as_dict(),
+        }
