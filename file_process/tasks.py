@@ -28,11 +28,13 @@ CLINVAR_FILENAME = "clinvar-latest.vcf"
 
 @shared_task
 def analyze_23andme_from_api(access_token, profile_id, user):
+    filename = '23andme-api-' + profile_id + '.vcf.gz'
+    new_analysis = GenomeAnalysis(user=user, name=filename)
+    new_analysis.save()
     genome_data = api23andme_full_gen_data(access_token, profile_id)
     sex = api23andme_full_gen_infer_sex(genome_data)
     vcf_data = api23andme_to_vcf(genome_data, sex)
     targetdir = '/tmp'
-    filename = '23andme-api-' + profile_id + '.vcf.gz'
     if os.path.exists(os.path.join(targetdir, filename)):
         inc = 2
         while os.path.exists(os.path.join(targetdir, filename)):
@@ -46,8 +48,7 @@ def analyze_23andme_from_api(access_token, profile_id, user):
     # Reopen as binary so we don't lose compression.
     vcf_file = open(filepath)
     django_file = File(vcf_file)
-    new_analysis = GenomeAnalysis(uploadfile=django_file,
-                                  user=user, name=filename)
+    new_analysis.uploadfile = django_file
     new_analysis.save()
     vcf_file.close()
     os.remove(filepath)

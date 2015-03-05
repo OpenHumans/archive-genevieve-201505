@@ -1,4 +1,8 @@
 {% extends "home.html" %}
+
+{% block head %}
+<script src="/static/js/reports.js"></script>
+{% endblock %}
 {% block title %}Genevieve {{ username }}'s Reports{% endblock %}
 
 {% block main %}
@@ -17,30 +21,7 @@
        <th>Report</th>
      </tr>
   </thead>
-  <tbody>
-    {% for genomeanalysis in genomeanalysis_list %}
-    <tr>
-      <td>{{ genomeanalysis.name }}</td>
-      <td>{{ genomeanalysis.timestamp }}</td>
-      <td>
-        <a href="{{ genomeanalysis.uploadfile.url }}">
-          Download Uploaded File</a>
-      </td>
-      <td>
-        {% if genomeanalysis.processedfile %}
-        <a href="{{ genomeanalysis.processedfile.url }}">
-          Download Processed File</a>
-        {% else %}
-        File processing not complete.
-        {% endif %}
-      </td>
-      <td>
-        {% if genomeanalysis.variants %}
-        <a href="report/{{ genomeanalysis.id }}/">View Report</a>
-        {% endif %}
-      </td>
-    </tr>
-    {% endfor %}
+  <tbody id="genome-reports-table">
   </tbody>
 </table>
 {% else %}

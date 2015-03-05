@@ -13,13 +13,25 @@ class GenomeAnalysis(models.Model):
     user = models.ForeignKey(User)
     name = models.TextField("File Name")
     timestamp = models.DateTimeField(auto_now_add=True)
-    uploadfile = models.FileField(upload_to='uploads/%Y/%m/%d')
+    uploadfile = models.FileField(blank=True,
+                                  upload_to='uploads/%Y/%m/%d')
     processedfile = models.FileField(blank=True,
                                      upload_to='processed/%Y/%m/%d')
     variants = models.ManyToManyField(Variant, through='GenomeAnalysisVariant')
 
     def __unicode__(self):
         return 'GenomeAnalysis for %s' % str(self.uploadfile)
+
+    def shared_data_as_dict(self):
+        return {
+            'user': str(self.user),
+            'name': self.name,
+            'timestamp': str(self.timestamp),
+            'uploadfile': str(self.uploadfile),
+            'processedfile': str(self.processedfile),
+            'genomeanalysisvariants_dataset':
+                {r.id: r.shared_data_as_dict() for r in self.genomeanalysisvariant_set.all()},
+            }
 
 
 class GenomeAnalysisVariant(models.Model):
@@ -31,3 +43,8 @@ class GenomeAnalysisVariant(models.Model):
     def __unicode__(self):
         return ('GenomeAnalysisVariant for %s %s' % (str(self.genomeanalysis),
                                                      str(self.variant)))
+    def shared_data_as_dict(self):
+        return {
+            'zyg': self.zyg,
+            'variant_data': self.variant.shared_data_as_dict(),
+        }
