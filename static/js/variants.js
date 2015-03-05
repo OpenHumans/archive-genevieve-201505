@@ -20,7 +20,7 @@ var getData = function(){
       for (var idx_2 in obj['genomeanalysisvariants_dataset'][idx]['variant_data']['clinvarrecords_dataset']){
 
         conditionURL = '<a href="http://www.ncbi.nlm.nih.gov/clinvar/'+obj['genomeanalysisvariants_dataset'][idx]['variant_data']['clinvarrecords_dataset'][idx_2]['accnum']+'">'+obj['genomeanalysisvariants_dataset'][idx]['variant_data']['clinvarrecords_dataset'][idx_2]['condition']+'</a>';
-        commentaryURL = '<a href="/file_process/commentary/'+obj['genomeanalysisvariants_dataset'][idx]['variant_data']['clinvarrecords_dataset'][idx_2]+'"> View Variant Report</a>';
+        commentaryURL = '<a href="/file_process/commentary/'+obj['genomeanalysisvariants_dataset'][idx]['variant_data']['clinvarrecords_dataset'][idx_2]['id']+'"> View Variant Report</a>';
 
         $('#genome-variants-table')
         .append($('<tr class="genome-variant"'+obj['genomeanalysisvariants_dataset'][idx]['variant_data']['clinvarrecords_dataset'][idx_2]+'">')
