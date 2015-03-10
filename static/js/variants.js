@@ -1,37 +1,65 @@
-var getData = function(){
+var createVariantRow = function(genomeVar, idxVar) {
+  var variantDataTemplateHTML = $("#variant-data-template").html();
+  var templateVariantData = _.template(variantDataTemplateHTML);
+  return templateVariantData({
+    variantDataId: "genome-variant-data-" + idxVar,
+    variantDataClass: "genome-variant-" + idxVar,
+    variantDataChrom: genomeVar.variant_data.chrom,
+    variantDataPos: genomeVar.variant_data.pos,
+    variantDataRef: genomeVar.variant_data.ref_allele,
+    variantDataAlt: genomeVar.variant_data.alt_allele,
+    variantDataFreq: genomeVar.variant_data.freq,
+    variantDataZyg: genomeVar.zyg
+  });
+};
+
+
+var createClnvarRow = function(clnvarEntry, varData, idxEntry, idxVar) {
+  var clinvarDataTemplateHTML = $("#clinvar-data-template").html();
+  var templateClinvarData = _.template(clinvarDataTemplateHTML);
+  return templateClinvarData({
+    clinvarDataId: "clinvar-data-" + idxEntry,
+    variantDataClass: "genome-variant-" + idxVar,
+    clnvarClnsig: clnvarEntry.clnsig,
+    clnvarEntryURL: "http://www.ncbi.nlm.nih.gov/clinvar/" +
+                    clnvarEntry.accnum,
+    clnvarEntryCondition: clnvarEntry.condition,
+    // TODO: file_process does not seem like the correct place for this!
+    commentaryURL: "/file_process/commentary/" + clnvarEntry.id,
+    exacURL: "http://exac.broadinstitute.org/variant/" +
+             [varData.chrom, varData.pos, varData.ref_allele,
+               varData.alt_allele].join("-")
+  });
+};
+
+
+var getData = function() {
   $.ajax(
     {
-      url: "/genomes/report/1/json",
+      url: window.location.pathname + "json",
       dataType: "json"
     }
   ).done(function( data ) {
     var obj = $.parseJSON(data);
-    console.log(obj['fields']);
-    for (var idx in obj['genomeanalysisvariants_dataset']){
-      $('#genome-variants-table')
-      .append($('<tr class="genome-variant"'+obj['genomeanalysisvariants_dataset'][idx]+'">')
-      .append($('<td class="variant-chrom">'+obj['genomeanalysisvariants_dataset'][idx]['variant_data']['chrom']+'</td>'))
-      .append($('<td class="variant-pos">'+obj['genomeanalysisvariants_dataset'][idx]['variant_data']['pos']+'</td>'))
-      .append($('<td class="variant-ref">'+obj['genomeanalysisvariants_dataset'][idx]['variant_data']['ref_allele']+'</td>'))
-      .append($('<td class="variant-alt">'+obj['genomeanalysisvariants_dataset'][idx]['variant_data']['alt_allele']+'</td>'))
-      .append($('<td class="variant-freq">'+obj['genomeanalysisvariants_dataset'][idx]['variant_data']['freq']+'</td>'))
-      .append($('<td class="genome-zyg">'+obj['genomeanalysisvariants_dataset'][idx]['zyg']+'</td>'))
-      )
-      for (var idx_2 in obj['genomeanalysisvariants_dataset'][idx]['variant_data']['clinvarrecords_dataset']){
+    var genomeVars = obj.genomeanalysisvariants_dataset;
+    for (var idx in genomeVars) {
 
-        conditionURL = '<a href="http://www.ncbi.nlm.nih.gov/clinvar/'+obj['genomeanalysisvariants_dataset'][idx]['variant_data']['clinvarrecords_dataset'][idx_2]['accnum']+'">'+obj['genomeanalysisvariants_dataset'][idx]['variant_data']['clinvarrecords_dataset'][idx_2]['condition']+'</a>';
-        commentaryURL = '<a href="/file_process/commentary/'+obj['genomeanalysisvariants_dataset'][idx]['variant_data']['clinvarrecords_dataset'][idx_2]['id']+'"> View Variant Report</a>';
+      // Create and add row for Variant data.
+      var $rowVariant = createVariantRow(genomeVars[idx], idx);
+      $("#genome-variants-table").append($rowVariant);
 
-        $('#genome-variants-table')
-        .append($('<tr class="genome-variant"'+obj['genomeanalysisvariants_dataset'][idx]['variant_data']['clinvarrecords_dataset'][idx_2]+'">')
-        .append($('<td class="clinvar-clnsig">'+obj['genomeanalysisvariants_dataset'][idx]['variant_data']['clinvarrecords_dataset'][idx_2]['clnsig']+'</td>'))
-        .append($('<td class="clinvar-condition">'+conditionURL+'</td>'))
-        .append($('<td class="clinvar-accnum">'+commentaryURL+'</td>'))
-        )
-      }
+      // Create and add a row for each ClinVar record.
+      var clinvarrecords = genomeVars[idx].variant_data.clinvarrecords_dataset;
+      for (var idx2 in clinvarrecords) {
+
+        var $rowClnvar = createClnvarRow(clinvarrecords[idx2],
+                                         genomeVars[idx].variant_data,
+                                         idx2, idx);
+        $("#genome-variants-table").append($rowClnvar);
+
       }
     }
-  );
+  });
 }
 
 $(function(){

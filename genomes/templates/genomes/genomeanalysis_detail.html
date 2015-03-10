@@ -74,4 +74,37 @@
   </div>
   {% endif %}
 {% endif %}
+
 {% endblock main %}
+
+{% block js_templates %}
+
+<!-- variant-data row template, for GenomeAnalyisisVariant and Variant data -->
+<script type="text/template" id="variant-data-template">
+  <tr id="${ variantDataId }" class="${ variantDataClass }">
+    <td class="variant-chrom">${ variantDataChrom }</td>
+    <td class="variant-pos">${ variantDataPos }</td>
+    <td class="variant-ref">${ variantDataRef }</td>
+    <td class="variant-alt">${ variantDataAlt }</td>
+    <td class="variant-freq">${ variantDataFreq }</td>
+    <td class="variant-zyg">${ variantDataZyg }</td>
+  </tr>
+</script>
+
+<!-- clinvar-data row template, for ClinVarRecord data -->
+<script type="text/template" id="clinvar-data-template">
+  <tr id="${ clinvarDataId }" class="${ variantDataClass }">
+    <td class="clnvar-clnsig">${ clnvarClnsig }</td>
+    <td class="clnvar-condition">
+      <a href="${ clnvarEntryURL }">${ clnvarEntryCondition }</a>
+    </td>
+    <td class="clinvar-commentary">
+      <a href="${ commentaryURL }">View Variant Report</a>
+    </td>
+    <td class="exac-link">
+      <a href="${ exacURL }">Find on ExAC</a>
+    </td>
+  </tr>
+</script>
+
+{% endblock js_templates %}
