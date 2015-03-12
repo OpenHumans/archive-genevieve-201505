@@ -66,6 +66,7 @@ var getData = function() {
 }
 
 $(function() {
+  getData();
   setInterval(function() {
   getData();
   }, 3000);
