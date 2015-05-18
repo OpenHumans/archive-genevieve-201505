@@ -15,15 +15,16 @@ var createVariantRow = function(genomeVar, idxVar) {
 
 
 var createClnvarRow = function(clnvarEntry, varData, idxEntry, idxVar) {
+  var cleanedCondition = clnvarEntry.condition.replace(/\\x2c/g, ",").replace(/_/g, " ");
   var clinvarDataTemplateHTML = $("#clinvar-data-template").html();
   var templateClinvarData = _.template(clinvarDataTemplateHTML);
   return templateClinvarData({
+    clnvarEntryCondition: cleanedCondition,
     clinvarDataId: "clinvar-data-" + idxEntry,
     variantDataClass: "genome-variant-" + idxVar,
     clnvarClnsig: clnvarEntry.clnsig,
     clnvarEntryURL: "http://www.ncbi.nlm.nih.gov/clinvar/" +
                     clnvarEntry.accnum,
-    clnvarEntryCondition: clnvarEntry.condition,
     // TODO: file_process does not seem like the correct place for this!
     commentaryURL: "/file_process/commentary/" + clnvarEntry.id,
     exacURL: "http://exac.broadinstitute.org/variant/" +
@@ -42,12 +43,13 @@ var getData = function() {
   ).done(function( data ) {
     var obj = $.parseJSON(data);
     var genomeVars = obj.genomeanalysisvariants_dataset;
+    $("#genome-variants-table")
+    .html('');
     for (var idx in genomeVars) {
-
       // Create and add row for Variant data.
+
       var $rowVariant = createVariantRow(genomeVars[idx], idx);
       $("#genome-variants-table").append($rowVariant);
-
       // Create and add a row for each ClinVar record.
       var clinvarrecords = genomeVars[idx].variant_data.clinvarrecords_dataset;
       for (var idx2 in clinvarrecords) {
@@ -56,12 +58,12 @@ var getData = function() {
                                          genomeVars[idx].variant_data,
                                          idx2, idx);
         $("#genome-variants-table").append($rowClnvar);
-
       }
     }
+    $('.table').filterTable();
   });
 }
 
-$(function(){
+$(function() {
   getData();
 });

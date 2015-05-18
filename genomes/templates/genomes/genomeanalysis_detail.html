@@ -25,41 +25,6 @@
 
     </thead>
     <tbody id="genome-variants-table">
-    {% comment "Comment Out Table" %}
-    {% for genomevariant in genomeanalysis.genomeanalysisvariant_set.all|dictsort:"variant.freq" %}
-    {% with genomevariant.variant as variant %}
-      <tr class="active">
-        <td>Chromosome: {{variant.chrom}}</td>
-	      <td>Position: {{variant.pos}}</td>
-	      <td>Reference Allele: {{variant.ref_allele}}</td>
-	      <td>Alternate Allele: {{variant.alt_allele}}</td>
-	      {% if variant.freq == "." %}
-	      <td>Frequency: Not Seen in 1000 Genomes</td>
-	      {% else %}
-	       <td>Frequency: {{variant.freq}}</td>
-	       {% endif %}
-         <td>Zygosity: {{ genomevariant.zyg }}</td>
-	     </tr>
-      {% for clinvarrecord in variant.clinvarrecord_set.all %}
-	    <tr>
-        <td></td>
-	      <td colspan="3"
-            style="word-wrap: break-word;min-width: 140px;max-width: 140px;">
-          Condition:
-          <a href="http://www.ncbi.nlm.nih.gov/clinvar/{{clinvarrecord.accnum}}">
-            {{clinvarrecord.condition}}</a>
-        </td>
-	      <td>Significance: {{clinvarrecord.clnsig}}</td>
-	      <td>
-	        <a href="/file_process/commentary/{{clinvarrecord.id}}/">
-	          Genevieve Re-Evaluation
-	        </a>
-	      </td>
-	    </tr>
-      {% endfor %}
-    {% endwith %}
-    {% endfor %}
-    {% endcomment %}
     </tbody>
   </table>
 </div>
@@ -94,10 +59,10 @@
 <!-- clinvar-data row template, for ClinVarRecord data -->
 <script type="text/template" id="clinvar-data-template">
   <tr id="${ clinvarDataId }" class="${ variantDataClass }">
-    <td class="clnvar-clnsig">${ clnvarClnsig }</td>
-    <td class="clnvar-condition">
+    <td class="clnvar-condition" colspan="3" >
       <a href="${ clnvarEntryURL }">${ clnvarEntryCondition }</a>
     </td>
+    <td class="clnvar-clnsig">${ clnvarClnsig }</td>
     <td class="clinvar-commentary">
       <a href="${ commentaryURL }">View Variant Report</a>
     </td>

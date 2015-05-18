@@ -29,3 +29,17 @@
 {% endif %}
 
 {% endblock main %}
+
+{% block js_templates %}
+
+<script type="text/template" id="report-template">
+  <tr id="${ reportDataId }" class="${ reportDataClass }">
+    <td class="report-name">${ reportDataName }</td>
+    <td class="report-time">${ reportDataTime }</td>
+    <td class="report-upload-file">${ reportDataUploadFile }</td>
+    <td class="report-processed-file">${ reportDataProcessedFile }</td>
+    <td class="report-variants">${ reportDataVariants }</td>
+  </tr>
+</script>
+
+{% endblock js_templates %}
