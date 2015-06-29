@@ -89,6 +89,11 @@
     {% include 'footer.html' %}
     {% endblock footer %}
 
+  {% block extrajs %}
+    <script type="text/javascript" src="/static/js/jquery.tablesorter.js"></script>\
+    <script type="text/javascript" src="/static/js/genomes.js"></script>
+  {% endblock extrajs %}
+
   {% block modals %}
   {% include 'account/login-modal.html' %}
   {% endblock modals %}
